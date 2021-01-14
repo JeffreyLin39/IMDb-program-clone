@@ -10,17 +10,19 @@ public class database {
     private HashMap<String, ArrayList<String>> moviesByGenre;
 
 
-    public database(String fileName) {
+    public database(String fileName) throws IOException{
+        
         try {
             dataset = new BufferedReader(new FileReader(fileName));
+            allMovies = new HashMap<>();
+            moviesByGenre = new HashMap<>();
+            this.initializeGenreList();
+            this.fillDatabase();
         }
         catch (Exception e) {
             System.out.println(e);
         }
-        allMovies = new HashMap<>();
-        moviesByGenre = new HashMap<>();
-        this.initializeGenreList();
-        this.fillDatabase();
+
     }
 
  
@@ -53,18 +55,43 @@ public class database {
 
     private void fillDatabase() throws IOException {
         String line;
-        String[] info;
+        int marker;
+        ArrayList<String> info = new ArrayList<>();
+        Boolean shouldIgnore;
+        int lineNum;
+        lineNum = 1;
+        
         line = dataset.readLine();
 
-        while (line != null) {
-            line = dataset.readLine();
-            info = line.split(",");
+        while ((line = dataset.readLine()) != null) {
+            lineNum++;
+            marker = 0;
+            shouldIgnore = false;
+            info.clear();
+
+            for(int i = 0; i < line.length(); i++) {
+                if (line.charAt(i) == '"') {
+                    if (shouldIgnore) {
+                        shouldIgnore = false;
+                    }
+                    else {
+                        shouldIgnore = true;
+                    }
+                }
+                else if (!shouldIgnore && line.charAt(i) == ',') {
+                    info.add(line.substring(marker, i));
+                    marker = i + 1;
+                }
+            }
+
             try {
-                allMovies.put(info[0], new movie(info[1], info[7], info[8], info[9], info[13], Integer.parseInt(info[3]), Integer.parseInt(info[6]), Integer.parseInt(info[19])));
+                allMovies.put(info.get(0), new movie(info.get(1), info.get(7), info.get(8), info.get(9), info.get(13), Integer.parseInt(info.get(3)), Integer.parseInt(info.get(6))));
             }
             catch (Exception e) {
+                System.out.println("Error in dataset on line: " + lineNum);
                 System.out.println(e);
-            }          
+                
+            }   
 
         }
     }

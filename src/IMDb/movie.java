@@ -3,9 +3,9 @@ package IMDb;
 public class movie {
 
     private String title, country, language, director, description;
-    private int year, duration, score;
+    private int year, duration;
      
-    public movie (String title, String country, String language, String director, String description, int year, int duration, int score) {
+    public movie (String title, String country, String language, String director, String description, int year, int duration) {
         this.title = title;
         this.country = country;
         this.language = language;
@@ -13,10 +13,9 @@ public class movie {
         this.description = description;
         this.year = year;
         this.duration = duration;
-        this.score = score;
     }
 
     public String toString() {
-        return (this.title + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + this.score + " " + this.description);
+        return (this.title + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + " " + this.description);
     }
 }
