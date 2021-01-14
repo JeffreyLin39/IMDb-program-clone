@@ -55,11 +55,16 @@ public class database {
         String line;
         String[] info;
         line = dataset.readLine();
-        
 
         while (line != null) {
             line = dataset.readLine();
             info = line.split(",");
+            try {
+                allMovies.put(info[0], new movie(info[1], info[7], info[8], info[9], info[13], Integer.parseInt(info[3]), Integer.parseInt(info[6]), Integer.parseInt(info[19])));
+            }
+            catch (Exception e) {
+                System.out.println(e);
+            }          
 
         }
     }
