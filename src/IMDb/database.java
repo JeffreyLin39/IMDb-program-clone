@@ -20,6 +20,7 @@ public class database {
         allMovies = new HashMap<>();
         moviesByGenre = new HashMap<>();
         this.initializeGenreList();
+        this.fillDatabase();
     }
 
  
@@ -48,5 +49,18 @@ public class database {
         this.moviesByGenre.put("War", new ArrayList<String>());
         this.moviesByGenre.put("Western", new ArrayList<String>());
         
+    }
+
+    private void fillDatabase() throws IOException {
+        String line;
+        String[] info;
+        line = dataset.readLine();
+        
+
+        while (line != null) {
+            line = dataset.readLine();
+            info = line.split(",");
+
+        }
     }
 }
