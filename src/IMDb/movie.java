@@ -16,6 +16,24 @@ public class movie {
         this.duration = duration;
     }
 
+    public String getParameter(int num) {
+        switch (num) {
+            case 1:
+                return this.title;
+            case 2:
+                return this.genre;
+            case 3:
+                return this.country;
+            case 4:
+                return this.language;
+            case 5:
+                return String.valueOf(this.year);
+            case 6:
+                return String.valueOf(this.duration);
+        }
+        return "";
+    }
+
     public String toString() {
         return (this.title + " " + this.genre + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + " " + this.description);
     }
