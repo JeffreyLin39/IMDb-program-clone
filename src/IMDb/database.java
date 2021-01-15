@@ -84,10 +84,6 @@ public class database {
         }
     }
 
-    public ArrayList<String> getMovieByGenre(String genre){
-        return this.moviesByGenre.get(genre);
-    }
-
     public Set<String> getGenreList(){
         return this.moviesByGenre.keySet();
     }
@@ -96,23 +92,24 @@ public class database {
         return this.allMovies.size();
     }
 
-    public void sort(int value, int start, int end, ArrayList<String> temp) {
+    public void sort(int value, int start, int end) {
         int middle;
 
         if (start < end) {
             middle = (start + end) / 2;
 
-            sort(value, start, middle, temp);
-            sort(value, middle + 1, end, temp);
-            merge(value, start, middle, end, temp);
+            sort(value, start, middle);
+            sort(value, middle + 1, end);
+            merge(value, start, middle, end);
             
         }
     }
 
-    public void merge(int value, int start, int middle, int end, ArrayList<String> temp) {
+    public void merge(int value, int start, int middle, int end) {
         int pos1;
         int pos2;
         int count;
+        ArrayList<String> temp = new ArrayList<>();
 
         pos1 = start;
         pos2 = middle + 1;
@@ -158,14 +155,31 @@ public class database {
             count++;
         }
 
-        temp.clear();
+    }
+
+    public void addFilter(String filter) {
+        this.filters.add(filter);
     }
 
     public void printMovieList() {
         for (String item: movieList) {
-            System.out.println(this.allMovies.get(item).getParameter(1));
+
+            if(!filters.contains(this.allMovies.get(item).getParameter(2)) && !filters.contains(this.allMovies.get(item).getParameter(3)) && !filters.contains(this.allMovies.get(item).getParameter(4)) && !filters.contains(this.allMovies.get(item).getParameter(5)) && !filters.contains(this.allMovies.get(item).getParameter(6))){
+                System.out.println(this.allMovies.get(item).getParameter(1));
+            }
+            
         }
         System.out.println();
     }
+
+    public void searchMovies(String search) {
+        for (String key: this.allMovies.keySet()) {
+            if (key.contains(search)) {
+                System.out.println(this.allMovies.get(key).getParameter(1));
+            }
+        }
+    }
+
+
 
 }
