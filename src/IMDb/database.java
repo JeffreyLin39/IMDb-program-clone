@@ -92,15 +92,18 @@ public class database {
         return this.moviesByGenre.keySet();
     }
 
+    public int getSize(){
+        return this.allMovies.size();
+    }
+
     public void sort(int value, int start, int end, ArrayList<String> temp) {
         int middle;
 
-        if (end - start > 0) {
+        if (start < end) {
             middle = (start + end) / 2;
 
             sort(value, start, middle, temp);
             sort(value, middle + 1, end, temp);
-
             merge(value, start, middle, end, temp);
             
         }
@@ -109,9 +112,11 @@ public class database {
     public void merge(int value, int start, int middle, int end, ArrayList<String> temp) {
         int pos1;
         int pos2;
+        int count;
 
         pos1 = start;
         pos2 = middle + 1;
+        count = start;
 
         while(pos1 <= middle && pos2 <= end) {
             if(value > 4){
@@ -125,7 +130,7 @@ public class database {
                 }
             } 
             else {
-                if (this.allMovies.get(this.movieList.get(pos1)).getParameter(value).compareTo(this.allMovies.get(this.movieList.get(pos2)).getParameter(value)) < 1) {
+                if (this.allMovies.get(this.movieList.get(pos1)).getParameter(value).compareTo(this.allMovies.get(this.movieList.get(pos2)).getParameter(value)) < 0) {
                     temp.add(this.movieList.get(pos1));
                     pos1++;
                 }
@@ -133,11 +138,13 @@ public class database {
                     temp.add(this.movieList.get(pos2));
                     pos2++;
                 }
+
             }
         }
 
        while (pos1 <= middle) {
            temp.add(this.movieList.get(pos1));
+
            pos1++;
        }
       
@@ -145,11 +152,20 @@ public class database {
             temp.add(this.movieList.get(pos2));
             pos2++;
         }
-      
-        for(int i = start; start <= end; start++) {
-            this.movieList.set(i, temp.get(i));
+        
+        for (String item: temp) {
+            this.movieList.set(count, item);
+            count++;
         }
 
+        temp.clear();
+    }
+
+    public void printMovieList() {
+        for (String item: movieList) {
+            System.out.println(this.allMovies.get(item).getParameter(1));
+        }
+        System.out.println();
     }
 
 }
