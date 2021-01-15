@@ -9,7 +9,7 @@ public class database {
     private ArrayList<String> movieList;
     private HashSet<String> filters;
     private HashMap<String, movie> allMovies;
-    private HashMap<String, ArrayList<String>> moviesByGenre;
+    //private HashMap<String, ArrayList<String>> moviesByGenre;
 
 
     public database(String fileName) throws IOException{
@@ -17,7 +17,7 @@ public class database {
         try {
             dataset = new BufferedReader(new FileReader(fileName));
             allMovies = new HashMap<>();
-            moviesByGenre = new HashMap<>();
+            //moviesByGenre = new HashMap<>();
             movieList = new ArrayList<>();
             filters = new HashSet<String>();
             this.fillDatabase();
@@ -63,19 +63,19 @@ public class database {
 
             try {
                 movieList.add(info.get(0));
-                allMovies.put(info.get(0), new movie(info.get(1), info.get(5), info.get(7), info.get(8), info.get(9), info.get(13), Integer.parseInt(info.get(3)), Integer.parseInt(info.get(6))));
+                allMovies.put(info.get(0), new movie(info.get(1), info.get(5), info.get(7), info.get(8), info.get(9), info.get(13), Integer.parseInt(info.get(3)), Integer.parseInt(info.get(6)), Double.parseDouble(info.get(14))));
                 
-                marker = 1;
-                for(int i = 1; i < info.get(5).length(); i++) {
-                    if (info.get(5).charAt(i) == ',' || info.get(5).charAt(i) == '"') {
-                        genre = info.get(5).substring(marker, i);
-                        if (!moviesByGenre.containsKey(genre)) {
-                            moviesByGenre.put(genre, new ArrayList<String>());
-                        }
-                        moviesByGenre.get(genre).add(info.get(0));
-                        marker = i + 2;
-                    }
-                }
+                //marker = 1;
+                //for(int i = 1; i < info.get(5).length(); i++) {
+                //    if (info.get(5).charAt(i) == ',' || info.get(5).charAt(i) == '"') {
+                //        genre = info.get(5).substring(marker, i);
+                //        if (!moviesByGenre.containsKey(genre)) {
+                //            moviesByGenre.put(genre, new ArrayList<String>());
+                //        }
+                //        moviesByGenre.get(genre).add(info.get(0));
+                //        marker = i + 2;
+                //    }
+                //}
             }
             catch (Exception e) {
                 System.out.println("Error in dataset on line: " + lineNum);
@@ -84,9 +84,9 @@ public class database {
         }
     }
 
-    public Set<String> getGenreList(){
-        return this.moviesByGenre.keySet();
-    }
+    //public Set<String> getGenreList(){
+    //    return this.moviesByGenre.keySet();
+    //}
 
     public int getSize(){
         return this.allMovies.size();

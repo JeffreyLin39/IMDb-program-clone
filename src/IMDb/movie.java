@@ -1,11 +1,12 @@
 package IMDb;
 
 public class movie {
-
+    
     private String title, genre, country, language, director, description;
     private int year, duration;
+    private double score;
      
-    public movie (String title, String genre, String country, String language, String director, String description, int year, int duration) {
+    public movie (String title, String genre, String country, String language, String director, String description, int year, int duration, double score) {
         this.title = title;
         this.genre = genre;
         this.country = country;
@@ -14,6 +15,7 @@ public class movie {
         this.description = description;
         this.year = year;
         this.duration = duration;
+        this.score = score;
     }
 
     public String getParameter(int num) {
@@ -30,6 +32,8 @@ public class movie {
                 return String.valueOf(this.year);
             case 6:
                 return String.valueOf(this.duration);
+            case 7:
+                return String.valueOf(this.score);
         }
         return "";
     }
