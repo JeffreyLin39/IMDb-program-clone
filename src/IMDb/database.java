@@ -157,18 +157,35 @@ public class database {
 
     }
 
+    public void getMovie(String id){
+        System.out.println(this.allMovies.get(id).toString());
+    }
+
     public void addFilter(String filter) {
         this.filters.add(filter);
     }
 
     public void printMovieList() {
+        int size;
+        int avgYear;
+        int avgDuration;
+        size = 0;
+        avgYear = 0;
+        avgDuration = 0;
+
         for (String item: movieList) {
 
             if(!filters.contains(this.allMovies.get(item).getParameter(2)) && !filters.contains(this.allMovies.get(item).getParameter(3)) && !filters.contains(this.allMovies.get(item).getParameter(4)) && !filters.contains(this.allMovies.get(item).getParameter(5)) && !filters.contains(this.allMovies.get(item).getParameter(6))){
                 System.out.println(this.allMovies.get(item).getParameter(1));
+                size++;
+                avgYear += Integer.parseInt(this.allMovies.get(item).getParameter(5));
+                avgDuration += Integer.parseInt(this.allMovies.get(item).getParameter(6));
             }
-            
+
         }
+        System.out.println(size + " results");
+        System.out.println("Average year of release: " + avgYear/size);
+        System.out.println("Average year of release: " + avgDuration/size);
         System.out.println();
     }
 
