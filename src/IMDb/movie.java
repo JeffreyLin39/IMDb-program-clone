@@ -38,6 +38,40 @@ public class movie {
         return "";
     }
 
+    public String getTitle(){
+        return this.title;
+    }
+
+    public String getGenre(){
+        return this.genre;
+    }
+
+    public String getCountry(){
+        return this.country;
+    }
+
+    public String getLanguage(){
+        return this.language;
+    }
+
+    public String getDirector(){
+        return this.director;
+    }
+
+    public int getYear(){
+        return this.year;
+    }
+
+    public int getDuration(){
+        return this.duration;
+    }
+
+    public double getScore(){
+        return this.score;
+    }
+
+
+
     public String toString() {
         return (this.title + " " + this.genre + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + " " + this.description);
     }

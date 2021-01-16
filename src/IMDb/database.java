@@ -31,12 +31,13 @@ public class database {
     private void fillDatabase() throws IOException {
         String line;
         int marker;
-        ArrayList<String> info = new ArrayList<>();
-        Boolean shouldIgnore;
-        int lineNum;
-        String genre;
-        lineNum = 1;
         
+        Boolean shouldIgnore;
+        Boolean ignoreLast;
+        int lineNum;
+        //String genre;
+        lineNum = 1;
+        ignoreLast = false;
         
         line = dataset.readLine();
 
@@ -44,19 +45,27 @@ public class database {
             lineNum++;
             marker = 0;
             shouldIgnore = false;
-            info.clear();
+            ArrayList<String> info = new ArrayList<>();
 
             for(int i = 0; i < line.length(); i++) {
                 if (line.charAt(i) == '"') {
                     if (shouldIgnore) {
+                        ignoreLast = true;
                         shouldIgnore = false;
                     }
                     else {
                         shouldIgnore = true;
+                        marker++;
                     }
                 }
                 else if (!shouldIgnore && line.charAt(i) == ',') {
-                    info.add(line.substring(marker, i));
+                    if(ignoreLast) {
+                        info.add(line.substring(marker, i - 1));
+                        ignoreLast = false;
+                    }
+                    else {
+                        info.add(line.substring(marker, i));
+                    }
                     marker = i + 1;
                 }
             }
@@ -157,8 +166,8 @@ public class database {
 
     }
 
-    public void getMovie(String id){
-        System.out.println(this.allMovies.get(id).toString());
+    public movie getMovie(String id){
+        return this.allMovies.get(id);
     }
 
     public void addFilter(String filter) {
@@ -195,6 +204,10 @@ public class database {
                 System.out.println(this.allMovies.get(key).getParameter(1));
             }
         }
+    }
+
+    public ArrayList<String> getMovieList() {
+        return this.movieList;
     }
 
 
