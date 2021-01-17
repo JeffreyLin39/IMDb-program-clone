@@ -1,7 +1,6 @@
 package IMDb.Controllers;
 
 import IMDb.main;
-import IMDb.Classes.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 

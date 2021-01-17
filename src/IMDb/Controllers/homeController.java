@@ -1,9 +1,7 @@
 package IMDb.Controllers;
 
-import IMDb.main;
 import IMDb.Classes.*;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -40,6 +38,7 @@ public class homeController implements Initializable {
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
 
         dataTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, scoreColumn);
+        
     }
 
 

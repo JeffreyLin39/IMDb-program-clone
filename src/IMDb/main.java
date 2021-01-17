@@ -1,7 +1,6 @@
 package IMDb;
 
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
@@ -14,18 +13,16 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ProgressBar;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 public class main extends Application {
 
-    ProgressBar progressBar;
-    Button enterButton;
+    static ProgressBar progressBar;
+    static Button enterButton;
     static Scene home;
     static Stage window;
+    static database data;
     
     public static void main(String[] args) {
         launch(args);
@@ -54,14 +51,18 @@ public class main extends Application {
         window.show();
     }
 
-    public void loadFile() throws IOException{
+    public static database getDatabase(){
+        return data;
+    }
+
+    public static void loadFile() throws IOException{
         new Thread(){
             public void run() {
                 TableView<movie>dataTable = (TableView<movie>)home.lookup("#dataTable");
                 ObservableList<movie> movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;
-                    database data = new database("src/IMDb/Resources/dataset_full.csv");
+                    data = new database("src/IMDb/Resources/dataset_full.csv");
                     final double size = data.getSize() * 1.0;
                     
                     for(String id: data.getMovieList()) {
@@ -85,8 +86,6 @@ public class main extends Application {
             }
             
         }.start();
-        
-        
     }
 
 
