@@ -29,7 +29,8 @@ public class main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+
         window = primaryStage;
         window.setMinHeight(667);
         window.setMinWidth(1000);
@@ -46,7 +47,7 @@ public class main extends Application {
         loadFile();
     }
 
-    public static void loadHome(){
+    public static void loadHome() {
         window.setScene(home);
         window.show();
     }
@@ -87,9 +88,5 @@ public class main extends Application {
             
         }.start();
     }
-
-
-    
-
 
 }
