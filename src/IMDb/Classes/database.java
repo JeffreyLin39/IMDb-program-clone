@@ -1,4 +1,4 @@
-package IMDb;
+package IMDb.Classes;
 
 import java.util.*;
 import java.io.*;

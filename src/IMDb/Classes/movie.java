@@ -1,4 +1,4 @@
-package IMDb;
+package IMDb.Classes;
 
 public class movie {
     

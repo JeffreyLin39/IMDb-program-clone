@@ -2,6 +2,8 @@ package IMDb;
 
 import java.io.IOException;
 
+import IMDb.Classes.database;
+import IMDb.Classes.movie;
 import javafx.scene.control.TableColumn;
 import javafx.application.Application;
 import javafx.scene.Scene;
