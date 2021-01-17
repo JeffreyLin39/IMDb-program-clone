@@ -26,37 +26,7 @@ public class GUI extends Application {
         window = primaryStage;
         primaryStage.setTitle("JMDb");
 
-        TableColumn<movie, String> titleColumn = new TableColumn<>("Title"); 
-        titleColumn.setMinWidth(200);
-        titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-        
-        TableColumn<movie, String> genreColumn = new TableColumn<>("Genre"); 
-        genreColumn.setMinWidth(200);
-        genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
-        
-        TableColumn<movie, String> countryColumn = new TableColumn<>("Country"); 
-        countryColumn.setMinWidth(200);
-        countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
-        
-        TableColumn<movie, String> languageColumn = new TableColumn<>("Language"); 
-        languageColumn.setMinWidth(200);
-        languageColumn.setCellValueFactory(new PropertyValueFactory<>("language"));
-        
-        TableColumn<movie, String> directorColumn = new TableColumn<>("Director"); 
-        directorColumn.setMinWidth(200);
-        directorColumn.setCellValueFactory(new PropertyValueFactory<>("director"));
-        
-        TableColumn<movie, Integer> yearColumn = new TableColumn<>("Year"); 
-        yearColumn.setMinWidth(100);
-        yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
-        
-        TableColumn<movie, Double> scoreColumn = new TableColumn<>("Score"); 
-        scoreColumn.setMinWidth(100);
-        scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
-        
-        table = new TableView();
-        table.setItems(getMovie());
-        table.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, scoreColumn);
+
 
         VBox layout = new VBox(table);
         layout.getChildren().addAll();
