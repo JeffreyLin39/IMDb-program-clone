@@ -21,6 +21,7 @@ public class main extends Application {
 
     static ProgressBar progressBar;
     static Scene home;
+    static Scene browse;
     static Stage window;
     static database data;
     
@@ -43,11 +44,20 @@ public class main extends Application {
 
         root = FXMLLoader.load(getClass().getResource("FXML/home.fxml"));
         home = new Scene(root, 1000, 667);
+
+        root = FXMLLoader.load(getClass().getResource("FXML/browse.fxml"));
+        browse = new Scene(root, 1000, 667);
+
         loadFile();
     }
 
     public static void loadHome() {
         window.setScene(home);
+        window.show();
+    }
+
+    public static void loadBrowse() {
+        window.setScene(browse);
         window.show();
     }
 
@@ -59,7 +69,7 @@ public class main extends Application {
 
         Thread loadDataset = new Thread(){
             public void run() {
-                TableView<movie>dataTable = (TableView<movie>)home.lookup("#dataTable");
+                TableView<movie>dataTable = (TableView<movie>)browse.lookup("#dataTable");
                 ObservableList<movie> movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;
