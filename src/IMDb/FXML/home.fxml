@@ -10,9 +10,64 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.homeController">
    <center>
-      <TableView fx:id="dataTable" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="dataTable" prefHeight="200.0" prefWidth="200.0" style="-fx-focus-color: transparent; fx-faint-focus-color: transparent; -fx-background-color: grey;" BorderPane.alignment="CENTER">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy></TableView>
+         </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </BorderPane.margin></TableView>
    </center>
+   <top>
+      <HBox prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="56.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/logo.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: white;" text="Home">
+               <HBox.margin>
+                  <Insets left="-3.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Browse">
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My Profile">
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Advanced Search">
+               <font>
+                  <Font name="BellGothicStd-Bold" size="14.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/search_icon.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="4.0" top="7.0" />
+               </HBox.margin>
+            </ImageView>
+            <TextField prefHeight="34.0" prefWidth="221.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+               <HBox.margin>
+                  <Insets top="8.0" />
+               </HBox.margin>
+            </TextField>
+         </children>
+      </HBox>
+   </top>
 </BorderPane>

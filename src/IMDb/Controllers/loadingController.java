@@ -16,10 +16,4 @@ public class loadingController implements Initializable {
 
     }
 
-    public void enterHome(){
-        main.loadHome();
-    }
-
-
-
 }
