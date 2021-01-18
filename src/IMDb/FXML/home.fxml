@@ -49,11 +49,6 @@
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Advanced Search">
-               <font>
-                  <Font name="BellGothicStd-Bold" size="14.0" />
-               </font>
-            </Button>
             <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Resources/search_icon.png" />
@@ -62,7 +57,7 @@
                   <Insets left="4.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <TextField prefHeight="34.0" prefWidth="221.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+            <TextField prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
                <HBox.margin>
                   <Insets top="8.0" />
                </HBox.margin>
@@ -70,4 +65,114 @@
          </children>
       </HBox>
    </top>
+   <right>
+      <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Genre Filter" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="-5.0" top="20.0" />
+               </VBox.margin></Label>
+            <ChoiceBox prefHeight="25.0" prefWidth="94.0">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin></ChoiceBox>
+            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Language" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <ChoiceBox prefHeight="25.0" prefWidth="94.0">
+               <VBox.margin>
+                  <Insets top="5.0" />
+               </VBox.margin>
+            </ChoiceBox>
+            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Year" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField promptText="Min Year">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin></TextField>
+            <Slider>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin></Slider>
+            <TextField promptText="Max Year">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Slider value="100.0">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin></Slider>
+            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Duration (min)" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField promptText="Min Length">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Slider>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </Slider>
+            <TextField promptText="Max Length">
+               <VBox.margin>
+                  <Insets right="10.0" top="10.0" />
+               </VBox.margin>
+            </TextField>
+            <Slider value="100.0">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </Slider>
+            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Score" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField promptText="Min Length">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Slider>
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </Slider>
+            <TextField promptText="Max Length">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </TextField>
+            <Slider value="100.0">
+               <VBox.margin>
+                  <Insets right="10.0" top="5.0" />
+               </VBox.margin>
+            </Slider>
+            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Sort By" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="-5.0" top="10.0" />
+               </VBox.margin>
+            </Label>
+            <ChoiceBox prefHeight="11.0" prefWidth="93.0">
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin></ChoiceBox>
+            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-alignment: CENTER;" text="Search" textAlignment="CENTER">
+               <VBox.margin>
+                  <Insets left="20.0" top="15.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </right>
 </BorderPane>
