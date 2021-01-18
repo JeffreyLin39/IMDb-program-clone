@@ -1,5 +1,6 @@
 package IMDb.Controllers;
 
+import IMDb.main;
 import IMDb.Classes.*;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -42,7 +43,7 @@ public class browseController implements Initializable {
     }
 
     public void loadHome(){
-        
+        main.loadHome();
     }
 
 }

@@ -26,7 +26,7 @@
                   <Image url="@../Resources/logo.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
+            <Button onAction = "#loadHome" mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
                <HBox.margin>
                   <Insets left="-3.0" />
                </HBox.margin>
