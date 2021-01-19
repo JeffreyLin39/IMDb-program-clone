@@ -61,6 +61,10 @@ public class main extends Application {
         window.show();
     }
 
+    public static Scene getBrowse(){
+        return browse;
+    }
+
     public static database getDatabase(){
         return data;
     }
@@ -69,7 +73,7 @@ public class main extends Application {
 
         Thread loadDataset = new Thread(){
             public void run() {
-                TableView<movie>dataTable = (TableView<movie>)browse.lookup("#dataTable");
+                TableView<movie> dataTable = (TableView<movie>)browse.lookup("#dataTable");
                 ObservableList<movie> movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;

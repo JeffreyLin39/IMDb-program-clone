@@ -10,7 +10,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.browseController">
    <center>
-      <TableView fx:id="dataTable" prefHeight="200.0" prefWidth="200.0" style="-fx-focus-color: transparent; fx-faint-focus-color: transparent; -fx-background-color: grey;" BorderPane.alignment="CENTER">
+      <TableView fx:id="dataTable" prefHeight="200.0" prefWidth="200.0" style="-fx-focus-color: transparent; fx-faint-focus-color: transparent; -fx-background-color: transparent; -fx-control-inner-background: #a1a1a1; -fx-control-inner-background-alt: #858585;" BorderPane.alignment="CENTER">
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
@@ -26,7 +26,7 @@
                   <Image url="@../Resources/logo.png" />
                </image>
             </ImageView>
-            <Button onAction = "#loadHome" mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
+            <Button mnemonicParsing="false" onAction="#loadHome" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
                <HBox.margin>
                   <Insets left="-3.0" />
                </HBox.margin>
@@ -34,7 +34,7 @@
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: white;" text="Browse">
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #b0b0b0;" text="Browse">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
@@ -57,10 +57,13 @@
                   <Insets left="4.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <TextField prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+            <TextField fx:id="searchBar" onAction="#onEnter" prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
                <HBox.margin>
                   <Insets top="8.0" />
                </HBox.margin>
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
             </TextField>
          </children>
       </HBox>
