@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -19,8 +20,8 @@ import javafx.stage.Stage;
 public class main extends Application {
 
     static ProgressBar progressBar;
-    static Button enterButton;
     static Scene home;
+    static Scene browse;
     static Stage window;
     static database data;
     
@@ -29,7 +30,8 @@ public class main extends Application {
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception{
+    public void start(Stage primaryStage) throws Exception {
+
         window = primaryStage;
         window.setMinHeight(667);
         window.setMinWidth(1000);
@@ -38,16 +40,24 @@ public class main extends Application {
         window.setTitle("Jeffrey's Movie Database");
         window.setScene(loadingScreen);
         progressBar = (ProgressBar)loadingScreen.lookup("#progressBar");
-        enterButton = (Button)loadingScreen.lookup("#enterButton");
         window.show();
 
         root = FXMLLoader.load(getClass().getResource("FXML/home.fxml"));
         home = new Scene(root, 1000, 667);
+
+        root = FXMLLoader.load(getClass().getResource("FXML/browse.fxml"));
+        browse = new Scene(root, 1000, 667);
+
         loadFile();
     }
 
-    public static void loadHome(){
+    public static void loadHome() {
         window.setScene(home);
+        window.show();
+    }
+
+    public static void loadBrowse() {
+        window.setScene(browse);
         window.show();
     }
 
@@ -56,9 +66,10 @@ public class main extends Application {
     }
 
     public static void loadFile() throws IOException{
-        new Thread(){
+
+        Thread loadDataset = new Thread(){
             public void run() {
-                TableView<movie>dataTable = (TableView<movie>)home.lookup("#dataTable");
+                TableView<movie>dataTable = (TableView<movie>)browse.lookup("#dataTable");
                 ObservableList<movie> movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;
@@ -70,26 +81,24 @@ public class main extends Application {
                         final double done = num;
                         if(num % (size/10) == 0){
                             Platform.runLater(() -> progressBar.setProgress( done/size ));
-                            Thread.sleep(100);
+                            Thread.sleep(50);
                         }
                         movies.add(data.getMovie(id));
                     }
     
                     dataTable.setItems(movies);
-                    Thread.sleep(200);
-                    enterButton.setVisible(true);
-                    enterButton.setDisable(false);
+                    Platform.runLater(()-> {
+                        loadHome();
+                    });
+
                 }catch(Exception e){
                     System.out.println(e);
                 }
 
             }
             
-        }.start();
+        };
+        loadDataset.start();
     }
-
-
-    
-
 
 }

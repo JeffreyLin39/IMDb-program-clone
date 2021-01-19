@@ -27,10 +27,5 @@
          <VBox.margin>
             <Insets top="-3.0" />
          </VBox.margin></Rectangle>
-      <Button fx:id="enterButton" disable="true" minHeight="10.0" minWidth="10.0" mnemonicParsing="false" onAction="#enterHome" prefHeight="27.0" prefWidth="104.0" style="-fx-background-color: linear-gradient(to right top, #fdbe25, #fec928, #ffd42b, #ffdf31, #ffea37); -fx-border-width: 0; -fx-border-radius: 100; -fx-background-radius: 100; -fx-effect: dropshadow(three-pass-box, #cbff00, 10, 0, 0, 0);" text="Enter" visible="false">
-         <font>
-            <Font size="13.0" />
-         </font>
-      </Button>
    </children>
 </VBox>
