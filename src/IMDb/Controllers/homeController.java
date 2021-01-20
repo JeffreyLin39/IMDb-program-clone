@@ -20,7 +20,7 @@ public class homeController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-           
+         return;  
     }
 
     public void loadBrowse(){
@@ -28,9 +28,16 @@ public class homeController implements Initializable {
     }
 
     public void onEnter(ActionEvent event) {
-        dataTable = (TableView<movie>)main.getBrowse().lookup("#dataTable");
-        ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
-        dataTable.setItems(searchResults);
+
+        dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
+        if(searchBar.getText().equals("")){
+            main.resetTable();
+        }
+        else{
+            ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
+            dataTable.setItems(searchResults);
+            
+        }
         loadBrowse();
     }
 

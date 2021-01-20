@@ -6,6 +6,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
@@ -50,6 +51,17 @@ public class browseController implements Initializable {
         scoreColumn.setSortable(false);
 
         dataTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, scoreColumn);
+
+        dataTable.setRowFactory( tableView -> {
+            TableRow<movie> row = new TableRow<>();
+            row.setOnMouseClicked(e -> {
+               if (e.getClickCount() == 2 && (!row.isEmpty()) ) {
+                movie rowData = row.getItem();
+                System.out.println(rowData);               }
+            });
+            return row;
+         });
+         
         
     }
 
@@ -58,8 +70,14 @@ public class browseController implements Initializable {
     }
 
     public void onEnter(ActionEvent event) {
-        ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
-        dataTable.setItems(searchResults);
+        if(searchBar.getText().equals("")){
+            main.resetTable();
+        }
+        else{
+            ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
+            dataTable.setItems(searchResults);
+        }
+
     }
 
 }
