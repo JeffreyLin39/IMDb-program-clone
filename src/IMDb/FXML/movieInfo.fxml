@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.movieViewerController">
+   <top>
+      <HBox prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fitHeight="56.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/logo.png" />
+               </image>
+            </ImageView>
+            <Button mnemonicParsing="false" onAction="#loadHome" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
+               <HBox.margin>
+                  <Insets left="-3.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#loadBrowse" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Browse">
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My Profile">
+               <font>
+                  <Font name="BellGothicStd-Bold" size="20.0" />
+               </font>
+            </Button>
+            <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../Resources/search_icon.png" />
+               </image>
+               <HBox.margin>
+                  <Insets left="4.0" top="7.0" />
+               </HBox.margin>
+            </ImageView>
+            <TextField fx:id="searchBar" onAction="#onEnter" prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+               <HBox.margin>
+                  <Insets top="8.0" />
+               </HBox.margin>
+               <padding>
+                  <Insets left="14.0" />
+               </padding>
+            </TextField>
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <GridPane BorderPane.alignment="CENTER">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="406.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="666.0" minWidth="10.0" prefWidth="477.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="0.0" prefWidth="0.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="movieTitle" prefHeight="39.0" prefWidth="317.0" text="Movie Title">
+                     <VBox.margin>
+                        <Insets left="40.0" top="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="ArnoPro-SmbdDisplay" size="30.0" />
+                     </font></Label>
+                  <Label fx:id="movieGenre" text="Genre:">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="movieScore" text="Score: ">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="movieDuration" text="Duration: ">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="movieYear" text="Year:">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="movieCountry" text="Country: ">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+                  <Label fx:id="movieLanguage" text="Language: ">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="movieDirector" text="Director: ">
+                     <VBox.margin>
+                        <Insets left="40.0" top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
+               </children>
+            </VBox>
+            <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#loadBrowse" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-width: 4; -fx-border-radius: 10;" text="X" textAlignment="RIGHT" textFill="#eb0000" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+               <font>
+                  <Font name="ArnoPro-BoldSmText" size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets right="10.0" top="10.0" />
+               </GridPane.margin></Button>
+            <Label text="Description:" GridPane.columnIndex="1" GridPane.valignment="TOP">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" top="10.0" />
+               </GridPane.margin>
+            </Label>
+            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="Plan to Watch" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="40.0" />
+               </GridPane.margin>
+            </Button>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="Completed" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <font>
+                  <Font name="Century Gothic Bold" size="20.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" />
+               </GridPane.margin>
+            </Button>
+            <Label fx:id="movieDescription" alignment="TOP_LEFT" prefHeight="264.0" prefWidth="474.0" text="Description:" GridPane.columnIndex="1">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <GridPane.margin>
+                  <Insets left="20.0" top="45.0" />
+               </GridPane.margin>
+            </Label>
+         </children>
+      </GridPane>
+   </center>
+</BorderPane>

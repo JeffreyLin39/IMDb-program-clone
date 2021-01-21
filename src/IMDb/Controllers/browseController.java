@@ -55,14 +55,14 @@ public class browseController implements Initializable {
         dataTable.setRowFactory( tableView -> {
             TableRow<movie> row = new TableRow<>();
             row.setOnMouseClicked(e -> {
-               if (e.getClickCount() == 2 && (!row.isEmpty()) ) {
-                movie rowData = row.getItem();
-                System.out.println(rowData);               }
+                if (e.getClickCount() == 2 && (!row.isEmpty()) ) {
+                    movie rowData = row.getItem();
+                    main.setMovie(rowData);     
+                    main.loadMovieInfo();       
+                }
             });
             return row;
          });
-         
-        
     }
 
     public void loadHome(){
@@ -70,6 +70,7 @@ public class browseController implements Initializable {
     }
 
     public void onEnter(ActionEvent event) {
+        
         if(searchBar.getText().equals("")){
             main.resetTable();
         }
