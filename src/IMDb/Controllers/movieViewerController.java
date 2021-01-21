@@ -3,7 +3,6 @@ package IMDb.Controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -15,11 +14,6 @@ import IMDb.Classes.movie;
 
 public class movieViewerController implements Initializable {
 
-    private String title, genre, country, language, director, description;
-    private int year, duration;
-    private double score;
-
-    private movie mov;
     public TableView<movie> dataTable;
     public TextField searchBar;
 

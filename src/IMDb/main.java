@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class main extends Application {
@@ -71,15 +72,15 @@ public class main extends Application {
 
     public static void loadMovieInfo() {
 
-        Label movieTitle = (Label)movieInfo.lookup("#movieTitle");
-        Label movieGenre = (Label)movieInfo.lookup("#movieGenre");
-        Label movieCountry = (Label)movieInfo.lookup("#movieCountry");
-        Label movieLanguage = (Label)movieInfo.lookup("#movieLanguage");
-        Label movieDirector = (Label)movieInfo.lookup("#movieDirector");
-        Label movieDescription = (Label)movieInfo.lookup("#movieDescription");
-        Label movieYear = (Label)movieInfo.lookup("#movieYear");
-        Label movieDuration = (Label)movieInfo.lookup("#movieDuration");
-        Label movieScore = (Label)movieInfo.lookup("#movieScore");
+        Text  movieTitle = (Text)movieInfo.lookup("#movieTitle");
+        Text  movieGenre = (Text)movieInfo.lookup("#movieGenre");
+        Text movieCountry = (Text)movieInfo.lookup("#movieCountry");
+        Text movieLanguage = (Text)movieInfo.lookup("#movieLanguage");
+        Text movieDirector = (Text)movieInfo.lookup("#movieDirector");
+        Text movieDescription = (Text)movieInfo.lookup("#movieDescription");
+        Text movieYear = (Text)movieInfo.lookup("#movieYear");
+        Text movieDuration = (Text)movieInfo.lookup("#movieDuration");
+        Text movieScore = (Text)movieInfo.lookup("#movieScore");
 
         movieTitle.setText(currentMovie.getTitle());
         movieGenre.setText("Genre: " + currentMovie.getGenre());

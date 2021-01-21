@@ -60,76 +60,76 @@
       </HBox>
    </top>
    <center>
-      <GridPane BorderPane.alignment="CENTER">
+      <GridPane prefHeight="617.0" prefWidth="1006.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="406.0" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="666.0" minWidth="10.0" prefWidth="477.0" />
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="0.0" prefWidth="0.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="537.0" minHeight="10.0" prefHeight="448.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <VBox prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <Label fx:id="movieTitle" prefHeight="39.0" prefWidth="317.0" text="Movie Title">
+                  <Text fx:id="movieTitle" text="Movie Title">
                      <VBox.margin>
                         <Insets left="40.0" top="40.0" />
                      </VBox.margin>
                      <font>
                         <Font name="ArnoPro-SmbdDisplay" size="30.0" />
-                     </font></Label>
-                  <Label fx:id="movieGenre" text="Genre:">
+                     </font></Text>
+                  <Text fx:id="movieGenre" text="Genre:">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="20.0" />
-                     </font></Label>
-                  <Label fx:id="movieScore" text="Score: ">
+                     </font></Text>
+                  <Text fx:id="movieScore" text="Score: ">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="20.0" />
-                     </font></Label>
-                  <Label fx:id="movieDuration" text="Duration: ">
+                     </font></Text>
+                  <Text fx:id="movieDuration" text="Duration: ">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="20.0" />
-                     </font></Label>
-                  <Label fx:id="movieYear" text="Year:">
+                     </font></Text>
+                  <Text fx:id="movieYear" text="Year:">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="20.0" />
-                     </font></Label>
-                  <Label fx:id="movieCountry" text="Country: ">
+                     </font></Text>
+                  <Text fx:id="movieCountry" text="Country: ">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="20.0" />
-                     </font></Label>
-                  <Label fx:id="movieLanguage" text="Language: ">
+                     </font></Text>
+                  <Text fx:id="movieLanguage" text="Language: ">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="20.0" />
                      </font>
-                  </Label>
-                  <Label fx:id="movieDirector" text="Director: ">
+                  </Text>
+                  <Text fx:id="movieDirector" text="Director: ">
                      <VBox.margin>
-                        <Insets left="40.0" top="10.0" />
+                        <Insets left="40.0" top="25.0" />
                      </VBox.margin>
                      <font>
                         <Font size="20.0" />
-                     </font></Label>
+                     </font></Text>
                </children>
             </VBox>
             <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#loadBrowse" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-width: 4; -fx-border-radius: 10;" text="X" textAlignment="RIGHT" textFill="#eb0000" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
@@ -144,7 +144,7 @@
                   <Font size="20.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="20.0" top="10.0" />
+                  <Insets left="20.0" top="40.0" />
                </GridPane.margin>
             </Label>
             <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="Plan to Watch" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1">
@@ -163,14 +163,14 @@
                   <Insets left="20.0" />
                </GridPane.margin>
             </Button>
-            <Label fx:id="movieDescription" alignment="TOP_LEFT" prefHeight="264.0" prefWidth="474.0" text="Description:" GridPane.columnIndex="1">
+            <Text fx:id="movieDescription" text="Description:" wrappingWidth="484.8046875" GridPane.columnIndex="1" GridPane.valignment="TOP">
                <font>
                   <Font size="16.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="20.0" top="45.0" />
+                  <Insets left="20.0" top="90.0" />
                </GridPane.margin>
-            </Label>
+            </Text>
          </children>
       </GridPane>
    </center>
