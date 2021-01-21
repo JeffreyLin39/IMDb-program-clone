@@ -67,13 +67,13 @@
           <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="0.0" prefWidth="0.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="537.0" minHeight="10.0" prefHeight="448.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="537.0" minHeight="10.0" prefHeight="473.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="144.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight="490.0" prefWidth="446.0">
                <children>
-                  <Text fx:id="movieTitle" text="Movie Title">
+                  <Text fx:id="movieTitle" text="Movie Title" wrappingWidth="386.92999267578125">
                      <VBox.margin>
                         <Insets left="40.0" top="40.0" />
                      </VBox.margin>
@@ -147,7 +147,7 @@
                   <Insets left="20.0" top="40.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="Plan to Watch" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Plan to Watch" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
@@ -155,7 +155,7 @@
                   <Insets left="40.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="Completed" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Completed" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>

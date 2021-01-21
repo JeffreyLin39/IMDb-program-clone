@@ -83,13 +83,13 @@ public class main extends Application {
         Text movieScore = (Text)movieInfo.lookup("#movieScore");
 
         movieTitle.setText(currentMovie.getTitle());
-        movieGenre.setText("Genre: " + currentMovie.getGenre());
+        movieGenre.setText("Genre(s): " + currentMovie.getGenre());
         movieCountry.setText("Country: " + currentMovie.getCountry());
         movieLanguage.setText("Language: " + currentMovie.getLanguage());
         movieDirector.setText("Director: " + currentMovie.getDirector());
         movieDescription.setText(currentMovie.getDescription());
         movieYear.setText("Year: " + String.valueOf(currentMovie.getYear()));
-        movieDuration.setText("Duration: " + String.valueOf(currentMovie.getDuration()));
+        movieDuration.setText("Duration: " + String.valueOf(currentMovie.getDuration()) + " minutes");
         movieScore.setText("Score: " + String.valueOf(currentMovie.getScore()));       
         window.setScene(movieInfo);
         window.show();
