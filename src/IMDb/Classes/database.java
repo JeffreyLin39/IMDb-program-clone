@@ -23,6 +23,31 @@ public class database {
             movieList = new ArrayList<>();
             filters = new HashSet<String>();
             this.fillDatabase();
+
+            this.addFilter("Action");
+            this.addFilter("Adult");
+            this.addFilter("Adventure");
+            this.addFilter("Animation");
+            this.addFilter("Biography");
+            this.addFilter("Comedy");
+            this.addFilter("Crime");
+            this.addFilter("Drama");
+            this.addFilter("Documentary");
+            this.addFilter("Family");
+            this.addFilter("Fantasy");
+            this.addFilter("Film-Noir");
+            this.addFilter("History");
+            this.addFilter("Horror");
+            this.addFilter("Music");
+            this.addFilter("Musical");
+            this.addFilter("Mystery");
+            this.addFilter("News");
+            this.addFilter("Romance");
+            this.addFilter("Sci-Fi");        
+            this.addFilter("Sport");
+            this.addFilter("Thriller");
+            this.addFilter("War");
+            this.addFilter("Western");
         }
         catch (Exception e) {
             System.out.println(e);
@@ -158,6 +183,10 @@ public class database {
 
     public void addFilter(String filter) {
         this.filters.add(filter);
+    }
+
+    public void removeFilter(String filter) {
+        this.filters.remove(filter);
     }
 
     public void printMovieList() {

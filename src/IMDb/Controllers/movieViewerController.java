@@ -19,8 +19,7 @@ public class movieViewerController implements Initializable {
 
     
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    }
+    public void initialize(URL location, ResourceBundle resources) {}
 
     public void onEnter(ActionEvent event) {
 
