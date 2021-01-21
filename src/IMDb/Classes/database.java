@@ -136,27 +136,17 @@ public class database {
         count = start;
 
         while(pos1 <= middle && pos2 <= end) {
-            if(value > 4){
-                if (Integer.parseInt(this.allMovies.get(this.movieList.get(pos1)).getParameter(value)) < Integer.parseInt(this.allMovies.get(this.movieList.get(pos2)).getParameter(value))) {
-                    temp.add(this.movieList.get(pos1));
-                    pos1++;
-                }
-                else {
-                    temp.add(this.movieList.get(pos2));
-                    pos2++;
-                }
-            } 
-            else {
-                if (this.allMovies.get(this.movieList.get(pos1)).getParameter(value).compareTo(this.allMovies.get(this.movieList.get(pos2)).getParameter(value)) < 0) {
-                    temp.add(this.movieList.get(pos1));
-                    pos1++;
-                }
-                else {
-                    temp.add(this.movieList.get(pos2));
-                    pos2++;
-                }
 
+            if (this.allMovies.get(this.movieList.get(pos1)).getParameter(value).compareTo(this.allMovies.get(this.movieList.get(pos2)).getParameter(value)) < 0) {
+                temp.add(this.movieList.get(pos1));
+                pos1++;
             }
+            else {
+                temp.add(this.movieList.get(pos2));
+                pos2++;
+            }
+
+            
         }
 
        while (pos1 <= middle) {
@@ -224,6 +214,34 @@ public class database {
         }
 
         return searchResults;
+    }
+
+    public ObservableList<movie> searchFiltered(boolean isInverse) {
+
+        ObservableList<movie> filterResults = FXCollections.observableArrayList();
+        String[] genres;
+        boolean isFiltered;
+        
+        
+        for (String key: this.movieList) {
+            genres = this.allMovies.get(key).getGenre().split(", ");
+            isFiltered = false;
+            
+            for(String genre: genres) {
+                if (filters.contains(genre)) {
+                    isFiltered = true;
+                }
+            }
+            if (!isFiltered) {
+                filterResults.add(this.allMovies.get(key));
+            }
+        }
+
+        if(isInverse){
+            FXCollections.reverse(filterResults);
+        }
+
+        return filterResults;
     }
 
     public ArrayList<String> getMovieList() {

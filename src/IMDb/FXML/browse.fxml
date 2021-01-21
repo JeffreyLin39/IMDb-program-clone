@@ -79,45 +79,16 @@
                <VBox.margin>
                   <Insets right="10.0" top="5.0" />
                </VBox.margin></ChoiceBox>
-            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Year" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField promptText="Min Year (1900)">
-               <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
-               </VBox.margin></TextField>
-            <TextField promptText="Max Year (2020)">
-               <VBox.margin>
-                  <Insets right="10.0" top="10.0" />
-               </VBox.margin>
-            </TextField>
-            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Score" textAlignment="CENTER">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField promptText="Min Score (0)">
-               <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <TextField promptText="Max Score (10)">
-               <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
             <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Sort By" textAlignment="CENTER">
                <VBox.margin>
                   <Insets left="-5.0" top="10.0" />
                </VBox.margin>
             </Label>
-            <ChoiceBox prefHeight="25.0" prefWidth="201.0">
+            <ChoiceBox fx:id="sortOptions" prefHeight="25.0" prefWidth="201.0">
                <VBox.margin>
                   <Insets right="10.0" />
                </VBox.margin></ChoiceBox>
-            <Button alignment="CENTER" mnemonicParsing="false" style="-fx-alignment: CENTER;" text="Search" textAlignment="CENTER">
+            <Button onAction = "#filterTable" alignment="CENTER" mnemonicParsing="false" style="-fx-alignment: CENTER;" text="Search" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>

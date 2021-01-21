@@ -19,11 +19,10 @@ import java.util.ResourceBundle;
 
 public class browseController implements Initializable {
 
-   public TableView<movie> dataTable;
-   public TextField searchBar;
-   public ChoiceBox<String> genreFilter;
-   //public ChoiceBox<String> langaugeFilter;
-   //public ChoiceBox<String> countryFilter;
+    public TableView<movie> dataTable;
+    public TextField searchBar;
+    public ChoiceBox<String> genreFilter;
+    public ChoiceBox<String> sortOptions;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -51,12 +50,16 @@ public class browseController implements Initializable {
         TableColumn<movie, Integer> yearColumn = new TableColumn<>("Year"); 
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
         yearColumn.setSortable(false);
+
+        TableColumn<movie, Integer> durationColumn = new TableColumn<>("Duration"); 
+        durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
+        durationColumn.setSortable(false);
         
         TableColumn<movie, Double> scoreColumn = new TableColumn<>("Score"); 
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
         scoreColumn.setSortable(false);
 
-        dataTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, scoreColumn);
+        dataTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, durationColumn, scoreColumn);
 
         dataTable.setRowFactory( tableView -> {
             TableRow<movie> row = new TableRow<>();
@@ -95,53 +98,36 @@ public class browseController implements Initializable {
          genreFilter.getItems().add("War");
          genreFilter.getItems().add("Western");
 
+         sortOptions.getItems().add("Title - Ascending");
+         sortOptions.getItems().add("Title - Descending");
+         sortOptions.getItems().add("Genre - Ascending");
+         sortOptions.getItems().add("Genre - Descending");
+         sortOptions.getItems().add("Country - Ascending");
+         sortOptions.getItems().add("Country - Descending");
+         sortOptions.getItems().add("Language - Ascending");
+         sortOptions.getItems().add("Language - Descending");
+         sortOptions.getItems().add("Year - Ascending");
+         sortOptions.getItems().add("Year - Descending");
+         sortOptions.getItems().add("Duration - Ascending");
+         sortOptions.getItems().add("Duration - Descending");
+         sortOptions.getItems().add("Score - Ascending");
+         sortOptions.getItems().add("Score - Descending");
     }
 
     public void addGenre(){
         int selectedIndex = genreFilter.getSelectionModel().getSelectedIndex();
         String selectedGenre = genreFilter.getSelectionModel().getSelectedItem();
         if(selectedGenre.charAt(0) != 'X'){
-            main.getDatabase().removeFilter(selectedGenre.substring(2));
+            main.getDatabase().removeFilter(selectedGenre);
             genreFilter.getItems().remove(selectedIndex);
             genreFilter.getItems().add(selectedIndex, "X " + selectedGenre);            
         }
         else {
-            main.getDatabase().addFilter(selectedGenre);
+            main.getDatabase().addFilter(selectedGenre.substring(2));
             genreFilter.getItems().remove(selectedIndex);
             genreFilter.getItems().add(selectedIndex, selectedGenre.substring(2));
         }
     }
-    /*
-    public void addLanguage(){
-        int selectedIndex = langaugeFilter.getSelectionModel().getSelectedIndex();
-        String selectedGenre = langaugeFilter.getSelectionModel().getSelectedItem();
-        if(selectedGenre.charAt(0) == 'X'){
-            main.getDatabase().removeFilter(selectedGenre.substring(2));
-            langaugeFilter.getItems().remove(selectedIndex);
-            langaugeFilter.getItems().add(selectedIndex, selectedGenre.substring(2));                
-        }
-        else {
-            main.getDatabase().addFilter(selectedGenre);
-            langaugeFilter.getItems().remove(selectedIndex);
-            langaugeFilter.getItems().add(selectedIndex, "X " + selectedGenre);
-        }
-    }
-
-    public void addCountry(){
-        int selectedIndex = countryFilter.getSelectionModel().getSelectedIndex();
-        String selectedGenre = countryFilter.getSelectionModel().getSelectedItem();
-        if(selectedGenre.charAt(0) == 'X'){
-            main.getDatabase().removeFilter(selectedGenre.substring(2));
-            countryFilter.getItems().remove(selectedIndex);
-            countryFilter.getItems().add(selectedIndex, selectedGenre.substring(2));                
-        }
-        else {
-            main.getDatabase().addFilter(selectedGenre);
-            countryFilter.getItems().remove(selectedIndex);
-            countryFilter.getItems().add(selectedIndex, "X " + selectedGenre);
-        }
-    }
-    */
 
     public void loadHome(){
         main.loadHome();
@@ -157,6 +143,29 @@ public class browseController implements Initializable {
             dataTable.setItems(searchResults);
         }
 
+    }
+
+    public void filterTable(){
+
+        boolean isInverse;
+        isInverse = false;
+
+        int selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
+        
+        if(selectedIndex != -1){
+            if(selectedIndex % 2 != 0) {
+                selectedIndex -= 1;
+                isInverse = true;
+            }
+    
+            selectedIndex /= 2;
+            selectedIndex += 1;
+    
+            main.getDatabase().sort(selectedIndex, 0, main.getDatabase().getSize() - 1);
+        }
+
+        dataTable.setItems(main.getDatabase().searchFiltered(isInverse));
+        
     }
 
 }
