@@ -23,6 +23,12 @@ public class browseController implements Initializable {
     public TextField searchBar;
     public ChoiceBox<String> genreFilter;
     public ChoiceBox<String> sortOptions;
+    public TextField minScore;
+    public TextField maxScore;
+    public TextField minDur;
+    public TextField maxDur;
+    public TextField minYear;
+    public TextField maxYear;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -116,12 +122,12 @@ public class browseController implements Initializable {
         int selectedIndex = genreFilter.getSelectionModel().getSelectedIndex();
         String selectedGenre = genreFilter.getSelectionModel().getSelectedItem();
         if(selectedGenre.charAt(0) != 'X'){
-            main.getDatabase().removeFilter(selectedGenre);
+            main.getDatabase().removeGenreFilter(selectedGenre);
             genreFilter.getItems().remove(selectedIndex);
             genreFilter.getItems().add(selectedIndex, "X " + selectedGenre);            
         }
         else {
-            main.getDatabase().addFilter(selectedGenre.substring(2));
+            main.getDatabase().addGenreFilter(selectedGenre.substring(2));
             genreFilter.getItems().remove(selectedIndex);
             genreFilter.getItems().add(selectedIndex, selectedGenre.substring(2));
         }
@@ -147,7 +153,53 @@ public class browseController implements Initializable {
 
         boolean isInverse;
         isInverse = false;
+        double curMinScore, curMaxScore;
+        int curMinDur, curMaxDur, curMinYear, curMaxYear;
+        
+        try {
 
+            if(minScore.getText().equals("")){
+                curMinScore = -1;
+            }
+            else{
+                curMinScore = Double.parseDouble(minScore.getText());
+            }
+            if(maxScore.getText().equals("")){
+                curMaxScore = 11;
+            }
+            else {
+                curMaxScore = Double.parseDouble(maxScore.getText());
+            }
+            if(minDur.getText().equals("")){
+                curMinDur = 0;
+            }
+            else {
+                curMinDur = Integer.parseInt(minDur.getText());
+            }
+            if(maxDur.getText().equals("")){
+                curMaxDur = 1000;
+            }
+            else {
+                curMaxDur = Integer.parseInt(maxDur.getText());
+            }
+            if(minYear.getText().equals("")){
+                curMinYear = 0;
+            }
+            else {
+                curMinYear = Integer.parseInt(minYear.getText());
+            }
+            if(maxYear.getText().equals("")){
+                curMaxYear = 3000;
+            }
+            else {
+                curMaxYear = Integer.parseInt(maxYear.getText());
+            }
+            main.getDatabase().setIntegerFilters(curMinScore, curMaxScore, curMinYear, curMaxYear, curMinDur, curMaxDur);
+        }
+        catch(Exception e){
+            System.out.println(e);
+        }
+        
         int selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
         
         if(selectedIndex != -1){

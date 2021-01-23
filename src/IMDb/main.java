@@ -121,7 +121,7 @@ public class main extends Application {
                 movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;
-                    data = new database("src/IMDb/Resources/dataset_full.csv");
+                    data = new database("src/IMDb/Resources/dataset_full.csv", -99999999, 99999999, -99999999, 99999999, -99999999.9, 99999999.9);
                     final double size = data.getSize() * 1.0;
                     
                     for(String id: data.getMovieList()) {

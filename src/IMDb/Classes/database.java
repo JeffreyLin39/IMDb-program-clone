@@ -11,23 +11,29 @@ public class database {
     
     private BufferedReader dataset;
     private ArrayList<String> movieList;
-    private HashSet<String> filters;
+    private HashSet<String> genreFilters;
     private HashMap<String, movie> allMovies;
-    private int minDur;
-    private int maxDur;
+    private int minDur, maxDur, minYear, maxYear;
     private double minScore;
     private double maxScore;
 
 
-    public database(String fileName) throws IOException{
+    public database(String fileName, int minDur, int maxDur, int minYear, int maxYear, double minScore, double maxScore) throws IOException{
         
         try {
             dataset = new BufferedReader(new FileReader(fileName));
             allMovies = new HashMap<>();
             movieList = new ArrayList<>();
-            filters = new HashSet<String>();
+            genreFilters = new HashSet<String>();
+            this.minDur = minDur;
+            this.maxDur = maxDur;
+            this.minYear = minYear;
+            this.maxYear = maxYear;
+            this.minScore = minScore;
+            this.maxScore = maxScore;
             this.fillDatabase();
         }
+
         catch (Exception e) {
             System.out.println(e);
         }
@@ -78,7 +84,6 @@ public class database {
             try {
                 movieList.add(info.get(0));
                 allMovies.put(info.get(0), new movie(info.get(2), info.get(5), info.get(7), info.get(8), info.get(9), info.get(13), Integer.parseInt(info.get(3)), Integer.parseInt(info.get(6)), Double.parseDouble(info.get(14))));
-            
             }
             catch (Exception e) {
                 System.out.println("Error in dataset on line: " + lineNum);
@@ -89,6 +94,15 @@ public class database {
 
     public int getSize(){
         return this.allMovies.size();
+    }
+
+    public void setIntegerFilters(double minScore, double maxScore, int minYear, int maxYear, int minDur, int maxDur){
+        this.minScore = minScore;
+        this.maxScore = maxScore;
+        this.minYear = minYear;
+        this.maxYear = maxYear;
+        this.minDur = minDur;
+        this.maxDur = maxDur;
     }
 
     public void sort(int value, int start, int end) {
@@ -150,36 +164,12 @@ public class database {
         return this.allMovies.get(id);
     }
 
-    public void addFilter(String filter) {
-        this.filters.add(filter);
+    public void addGenreFilter(String filter) {
+        this.genreFilters.add(filter);
     }
 
-    public void removeFilter(String filter) {
-        this.filters.remove(filter);
-    }
-
-    public void printMovieList() {
-        int size;
-        int avgYear;
-        int avgDuration;
-        size = 0;
-        avgYear = 0;
-        avgDuration = 0;
-
-        for (String item: movieList) {
-
-            if(!filters.contains(this.allMovies.get(item).getParameter(2)) && !filters.contains(this.allMovies.get(item).getParameter(3)) && !filters.contains(this.allMovies.get(item).getParameter(4)) && !filters.contains(this.allMovies.get(item).getParameter(5)) && !filters.contains(this.allMovies.get(item).getParameter(6))){
-                System.out.println(this.allMovies.get(item).getParameter(1));
-                size++;
-                avgYear += Integer.parseInt(this.allMovies.get(item).getParameter(5));
-                avgDuration += Integer.parseInt(this.allMovies.get(item).getParameter(6));
-            }
-
-        }
-        System.out.println(size + " results");
-        System.out.println("Average year of release: " + avgYear/size);
-        System.out.println("Average year of release: " + avgDuration/size);
-        System.out.println();
+    public void removeGenreFilter(String filter) {
+        this.genreFilters.remove(filter);
     }
 
     public ObservableList<movie> searchMovies(String search) {
@@ -207,11 +197,15 @@ public class database {
             isFiltered = false;
 
             for(String genre: genres) {
-                if (filters.contains(genre)) {
+                if (genreFilters.contains(genre)) {
                     isFiltered = true;
                 }
             }
-            if (!isFiltered) {
+            int curDur = this.allMovies.get(key).getDuration();
+            int curYear = this.allMovies.get(key).getYear();
+            double curScore = this.allMovies.get(key).getScore();
+
+            if (!isFiltered && (this.minDur <= curDur  && curDur <= this.maxDur) && (this.minScore <= curScore && curScore <= this.maxScore ) && (this.minYear <= curYear && curYear <= this.maxYear)) {
                 filterResults.add(this.allMovies.get(key));
             }
         }
