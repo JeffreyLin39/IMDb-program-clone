@@ -23,11 +23,9 @@ public class browseController implements Initializable {
     public TextField searchBar;
     public ChoiceBox<String> genreFilter;
     public ChoiceBox<String> sortOptions;
-    public boolean isInitialized;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        isInitialized = false;
 
         TableColumn<movie, String> titleColumn = new TableColumn<>("Title"); 
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
@@ -75,27 +73,27 @@ public class browseController implements Initializable {
             return row;
          });
 
-         genreFilter.getItems().add("Action");
-         genreFilter.getItems().add("Adventure");
-         genreFilter.getItems().add("Animation");
-         genreFilter.getItems().add("Biography");
-         genreFilter.getItems().add("Comedy");
-         genreFilter.getItems().add("Crime");
-         genreFilter.getItems().add("Drama");
-         genreFilter.getItems().add("Documentary");
-         genreFilter.getItems().add("Family");
-         genreFilter.getItems().add("Fantasy");
-         genreFilter.getItems().add("History");
-         genreFilter.getItems().add("Horror");
-         genreFilter.getItems().add("Music");
-         genreFilter.getItems().add("Musical");
-         genreFilter.getItems().add("Mystery");
-         genreFilter.getItems().add("Romance");
-         genreFilter.getItems().add("Sci-Fi");
-         genreFilter.getItems().add("Sport");
-         genreFilter.getItems().add("Thriller");
-         genreFilter.getItems().add("War");
-         genreFilter.getItems().add("Western");
+         genreFilter.getItems().add("X Action");
+         genreFilter.getItems().add("X Adventure");
+         genreFilter.getItems().add("X Animation");
+         genreFilter.getItems().add("X Biography");
+         genreFilter.getItems().add("X Comedy");
+         genreFilter.getItems().add("X Crime");
+         genreFilter.getItems().add("X Drama");
+         genreFilter.getItems().add("X Documentary");
+         genreFilter.getItems().add("X Family");
+         genreFilter.getItems().add("X Fantasy");
+         genreFilter.getItems().add("X History");
+         genreFilter.getItems().add("X Horror");
+         genreFilter.getItems().add("X Music");
+         genreFilter.getItems().add("X Musical");
+         genreFilter.getItems().add("X Mystery");
+         genreFilter.getItems().add("X Romance");
+         genreFilter.getItems().add("X Sci-Fi");
+         genreFilter.getItems().add("X Sport");
+         genreFilter.getItems().add("X Thriller");
+         genreFilter.getItems().add("X War");
+         genreFilter.getItems().add("X Western");
 
          sortOptions.getItems().add("Title - Ascending");
          sortOptions.getItems().add("Title - Descending");
@@ -113,37 +111,7 @@ public class browseController implements Initializable {
          sortOptions.getItems().add("Score - Descending");
     }
 
-    public void loadFilters(){
-        isInitialized = true;
-
-        main.getDatabase().addFilter("Action");
-        main.getDatabase().addFilter("Adventure");
-        main.getDatabase().addFilter("Animation");
-        main.getDatabase().addFilter("Biography");
-        main.getDatabase().addFilter("Comedy");
-        main.getDatabase().addFilter("Crime");
-        main.getDatabase().addFilter("Drama");
-        main.getDatabase().addFilter("Documentary");
-        main.getDatabase().addFilter("Family");
-        main.getDatabase().addFilter("Fantasy");
-        main.getDatabase().addFilter("History");
-        main.getDatabase().addFilter("Horror");
-        main.getDatabase().addFilter("Music");
-        main.getDatabase().addFilter("Musical");
-        main.getDatabase().addFilter("Mystery");
-        main.getDatabase().addFilter("Romance");
-        main.getDatabase().addFilter("Sci-Fi");        
-        main.getDatabase().addFilter("Sport");
-        main.getDatabase().addFilter("Thriller");
-        main.getDatabase().addFilter("War");
-        main.getDatabase().addFilter("Western");
-    }
-
     public void addGenre(){
-
-        if(!isInitialized){
-            loadFilters();
-        }
 
         int selectedIndex = genreFilter.getSelectionModel().getSelectedIndex();
         String selectedGenre = genreFilter.getSelectionModel().getSelectedItem();
@@ -159,7 +127,7 @@ public class browseController implements Initializable {
         }
     }
 
-    public void loadHome(){
+    public void loadHome() {
         main.loadHome();
     }
 
