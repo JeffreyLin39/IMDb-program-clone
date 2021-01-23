@@ -1,6 +1,10 @@
 package IMDb.Classes;
 
 import java.util.*;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.io.*;
 
 public class database {
@@ -9,7 +13,6 @@ public class database {
     private ArrayList<String> movieList;
     private HashSet<String> filters;
     private HashMap<String, movie> allMovies;
-    //private HashMap<String, ArrayList<String>> moviesByGenre;
 
 
     public database(String fileName) throws IOException{
@@ -17,7 +20,6 @@ public class database {
         try {
             dataset = new BufferedReader(new FileReader(fileName));
             allMovies = new HashMap<>();
-            //moviesByGenre = new HashMap<>();
             movieList = new ArrayList<>();
             filters = new HashSet<String>();
             this.fillDatabase();
@@ -35,7 +37,6 @@ public class database {
         Boolean shouldIgnore;
         Boolean ignoreLast;
         int lineNum;
-        //String genre;
         lineNum = 1;
         ignoreLast = false;
         
@@ -72,19 +73,8 @@ public class database {
 
             try {
                 movieList.add(info.get(0));
-                allMovies.put(info.get(0), new movie(info.get(1), info.get(5), info.get(7), info.get(8), info.get(9), info.get(13), Integer.parseInt(info.get(3)), Integer.parseInt(info.get(6)), Double.parseDouble(info.get(14))));
-                
-                //marker = 1;
-                //for(int i = 1; i < info.get(5).length(); i++) {
-                //    if (info.get(5).charAt(i) == ',' || info.get(5).charAt(i) == '"') {
-                //        genre = info.get(5).substring(marker, i);
-                //        if (!moviesByGenre.containsKey(genre)) {
-                //            moviesByGenre.put(genre, new ArrayList<String>());
-                //        }
-                //        moviesByGenre.get(genre).add(info.get(0));
-                //        marker = i + 2;
-                //    }
-                //}
+                allMovies.put(info.get(0), new movie(info.get(2), info.get(5), info.get(7), info.get(8), info.get(9), info.get(13), Integer.parseInt(info.get(3)), Integer.parseInt(info.get(6)), Double.parseDouble(info.get(14))));
+            
             }
             catch (Exception e) {
                 System.out.println("Error in dataset on line: " + lineNum);
@@ -92,10 +82,6 @@ public class database {
             }   
         }
     }
-
-    //public Set<String> getGenreList(){
-    //    return this.moviesByGenre.keySet();
-    //}
 
     public int getSize(){
         return this.allMovies.size();
@@ -125,27 +111,17 @@ public class database {
         count = start;
 
         while(pos1 <= middle && pos2 <= end) {
-            if(value > 4){
-                if (Integer.parseInt(this.allMovies.get(this.movieList.get(pos1)).getParameter(value)) < Integer.parseInt(this.allMovies.get(this.movieList.get(pos2)).getParameter(value))) {
-                    temp.add(this.movieList.get(pos1));
-                    pos1++;
-                }
-                else {
-                    temp.add(this.movieList.get(pos2));
-                    pos2++;
-                }
-            } 
-            else {
-                if (this.allMovies.get(this.movieList.get(pos1)).getParameter(value).compareTo(this.allMovies.get(this.movieList.get(pos2)).getParameter(value)) < 0) {
-                    temp.add(this.movieList.get(pos1));
-                    pos1++;
-                }
-                else {
-                    temp.add(this.movieList.get(pos2));
-                    pos2++;
-                }
 
+            if (this.allMovies.get(this.movieList.get(pos1)).getParameter(value).compareTo(this.allMovies.get(this.movieList.get(pos2)).getParameter(value)) < 0) {
+                temp.add(this.movieList.get(pos1));
+                pos1++;
             }
+            else {
+                temp.add(this.movieList.get(pos2));
+                pos2++;
+            }
+
+            
         }
 
        while (pos1 <= middle) {
@@ -174,6 +150,10 @@ public class database {
         this.filters.add(filter);
     }
 
+    public void removeFilter(String filter) {
+        this.filters.remove(filter);
+    }
+
     public void printMovieList() {
         int size;
         int avgYear;
@@ -198,12 +178,45 @@ public class database {
         System.out.println();
     }
 
-    public void searchMovies(String search) {
+    public ObservableList<movie> searchMovies(String search) {
+
+        ObservableList<movie> searchResults = FXCollections.observableArrayList();
+        
         for (String key: this.allMovies.keySet()) {
-            if (key.contains(search)) {
-                System.out.println(this.allMovies.get(key).getParameter(1));
+            if (this.allMovies.get(key).getTitle().toLowerCase().contains(search)) {
+                searchResults.add(this.allMovies.get(key));
             }
         }
+
+        return searchResults;
+    }
+
+    public ObservableList<movie> searchFiltered(boolean isInverse) {
+
+        ObservableList<movie> filterResults = FXCollections.observableArrayList();
+        String[] genres;
+        boolean isFiltered;
+        
+        
+        for (String key: this.movieList) {
+            genres = this.allMovies.get(key).getGenre().split(", ");
+            isFiltered = false;
+
+            for(String genre: genres) {
+                if (filters.contains(genre)) {
+                    isFiltered = true;
+                }
+            }
+            if (!isFiltered) {
+                filterResults.add(this.allMovies.get(key));
+            }
+        }
+
+        if(isInverse){
+            FXCollections.reverse(filterResults);
+        }
+
+        return filterResults;
     }
 
     public ArrayList<String> getMovieList() {

@@ -4,26 +4,31 @@ import java.io.IOException;
 
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
+import IMDb.Controllers.movieViewerController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.concurrent.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class main extends Application {
 
-    static ProgressBar progressBar;
-    static Scene home;
-    static Scene browse;
-    static Stage window;
-    static database data;
+    private static Scene home;
+    private static Scene loadingScreen;
+    private static Scene browse;
+    private static Scene movieInfo;
+    private static Stage window;
+    private static database data;
+    private static TableView<movie> dataTable;
+    private static ObservableList<movie> movies;
+    private static movie currentMovie;
     
     public static void main(String[] args) {
         launch(args);
@@ -35,11 +40,11 @@ public class main extends Application {
         window = primaryStage;
         window.setMinHeight(667);
         window.setMinWidth(1000);
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/loadingScreen.fxml"));
-        Scene loadingScreen = new Scene(root, 1000, 667);
         window.setTitle("Jeffrey's Movie Database");
+
+        Parent root = FXMLLoader.load(getClass().getResource("FXML/loadingScreen.fxml"));
+        loadingScreen = new Scene(root, 1000, 667);
         window.setScene(loadingScreen);
-        progressBar = (ProgressBar)loadingScreen.lookup("#progressBar");
         window.show();
 
         root = FXMLLoader.load(getClass().getResource("FXML/home.fxml"));
@@ -47,6 +52,10 @@ public class main extends Application {
 
         root = FXMLLoader.load(getClass().getResource("FXML/browse.fxml"));
         browse = new Scene(root, 1000, 667);
+        
+        currentMovie = new movie("title", "genre", "country", "language", "director", "description", 0, 0, 0);
+        root = FXMLLoader.load(getClass().getResource("FXML/movieInfo.fxml"));
+        movieInfo = new Scene(root, 1000, 667);
 
         loadFile();
     }
@@ -61,16 +70,55 @@ public class main extends Application {
         window.show();
     }
 
+    public static void loadMovieInfo() {
+
+        Text  movieTitle = (Text)movieInfo.lookup("#movieTitle");
+        Text  movieGenre = (Text)movieInfo.lookup("#movieGenre");
+        Text movieCountry = (Text)movieInfo.lookup("#movieCountry");
+        Text movieLanguage = (Text)movieInfo.lookup("#movieLanguage");
+        Text movieDirector = (Text)movieInfo.lookup("#movieDirector");
+        Text movieDescription = (Text)movieInfo.lookup("#movieDescription");
+        Text movieYear = (Text)movieInfo.lookup("#movieYear");
+        Text movieDuration = (Text)movieInfo.lookup("#movieDuration");
+        Text movieScore = (Text)movieInfo.lookup("#movieScore");
+
+        movieTitle.setText(currentMovie.getTitle());
+        movieGenre.setText("Genre(s): " + currentMovie.getGenre());
+        movieCountry.setText("Country: " + currentMovie.getCountry());
+        movieLanguage.setText("Language: " + currentMovie.getLanguage());
+        movieDirector.setText("Director: " + currentMovie.getDirector());
+        movieDescription.setText(currentMovie.getDescription());
+        movieYear.setText("Year: " + String.valueOf(currentMovie.getYear()));
+        movieDuration.setText("Duration: " + String.valueOf(currentMovie.getDuration()) + " minutes");
+        movieScore.setText("Score: " + String.valueOf(currentMovie.getScore()));       
+        window.setScene(movieInfo);
+        window.show();
+    }
+
+    public static Scene getBrowse(){
+        return browse;
+    }
+
     public static database getDatabase(){
         return data;
     }
 
-    public static void loadFile() throws IOException{
+    public static void resetTable(){
+        dataTable.setItems(movies);
+    }
+
+    public static void setMovie(movie mov){
+        currentMovie = mov;
+    }
+
+    private static void loadFile() throws IOException{
+
+        ProgressBar progressBar = (ProgressBar)loadingScreen.lookup("#progressBar");
 
         Thread loadDataset = new Thread(){
             public void run() {
-                TableView<movie>dataTable = (TableView<movie>)browse.lookup("#dataTable");
-                ObservableList<movie> movies = FXCollections.observableArrayList();
+                dataTable = (TableView<movie>)browse.lookup("#dataTable");
+                movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;
                     data = new database("src/IMDb/Resources/dataset_full.csv");

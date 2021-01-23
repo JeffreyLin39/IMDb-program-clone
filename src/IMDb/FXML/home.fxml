@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controllers = "IMDb.Controllers.homeController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller = "IMDb.Controllers.homeController">
    <top>
       <HBox prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
          <children>
@@ -48,10 +48,13 @@
                   <Insets left="4.0" top="7.0" />
                </HBox.margin>
             </ImageView>
-            <TextField prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+            <TextField fx:id="searchBar" onAction="#onEnter" prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
                <HBox.margin>
                   <Insets top="8.0" />
                </HBox.margin>
+               <padding>
+                  <Insets left="14.0" />
+               </padding>
             </TextField>
          </children>
       </HBox>
@@ -70,7 +73,7 @@
          <children>
             <ImageView fitHeight="203.0" fitWidth="394.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.valignment="CENTER">
                <image>
-                  <Image url="@../Resources/logopng.png" />
+                  <Image url="@../Resources/tape.png" />
                </image>
             </ImageView>
             <Button onAction = "#loadBrowse" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="Browse" textFill="WHITE" GridPane.halignment="CENTER" GridPane.rowIndex="1">

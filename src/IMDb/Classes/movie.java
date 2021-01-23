@@ -70,8 +70,9 @@ public class movie {
         return this.score;
     }
 
-
-
+    public String getDescription(){
+        return this.description;
+    }
     public String toString() {
         return (this.title + " " + this.genre + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + " " + this.description);
     }
