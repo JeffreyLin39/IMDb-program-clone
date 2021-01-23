@@ -36,7 +36,9 @@ public class browseController implements Initializable {
         TableColumn<movie, String> titleColumn = new TableColumn<>("Title"); 
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         titleColumn.setSortable(false);
-        
+        titleColumn.setMinWidth(200);
+        titleColumn.setMaxWidth(200);
+
         TableColumn<movie, String> genreColumn = new TableColumn<>("Genre"); 
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         genreColumn.setSortable(false);
@@ -44,7 +46,7 @@ public class browseController implements Initializable {
         TableColumn<movie, String> countryColumn = new TableColumn<>("Country"); 
         countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
         countryColumn.setSortable(false);
-        
+
         TableColumn<movie, String> languageColumn = new TableColumn<>("Language"); 
         languageColumn.setCellValueFactory(new PropertyValueFactory<>("language"));
         languageColumn.setSortable(false);
@@ -56,14 +58,22 @@ public class browseController implements Initializable {
         TableColumn<movie, Integer> yearColumn = new TableColumn<>("Year"); 
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
         yearColumn.setSortable(false);
+        yearColumn.setMinWidth(70);
+        yearColumn.setMaxWidth(70);
 
         TableColumn<movie, Integer> durationColumn = new TableColumn<>("Duration"); 
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         durationColumn.setSortable(false);
+        durationColumn.setMinWidth(60);
+        durationColumn.setMaxWidth(60);
         
         TableColumn<movie, Double> scoreColumn = new TableColumn<>("Score"); 
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
         scoreColumn.setSortable(false);
+        scoreColumn.setMinWidth(50);
+        scoreColumn.setMaxWidth(50);
+        
+
 
         dataTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, durationColumn, scoreColumn);
 
@@ -199,7 +209,7 @@ public class browseController implements Initializable {
         catch(Exception e){
             System.out.println(e);
         }
-        
+
         int selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
         
         if(selectedIndex != -1){
