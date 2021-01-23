@@ -13,6 +13,10 @@ public class database {
     private ArrayList<String> movieList;
     private HashSet<String> filters;
     private HashMap<String, movie> allMovies;
+    private int minDur;
+    private int maxDur;
+    private double minScore;
+    private double maxScore;
 
 
     public database(String fileName) throws IOException{
