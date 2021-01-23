@@ -74,7 +74,10 @@
             <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Genre Filter" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="-40.0" />
-               </VBox.margin></Label>
+               </VBox.margin>
+               <font>
+                  <Font name="Euclid Math Two" size="15.0" />
+               </font></Label>
             <ChoiceBox fx:id="genreFilter" onAction="#addGenre" prefHeight="25.0" prefWidth="159.0">
                <VBox.margin>
                   <Insets right="10.0" top="5.0" />
@@ -83,6 +86,9 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Euclid Math Two" size="15.0" />
+               </font>
             </Label>
             <TextField fx:id="minYear" promptText="Min Year">
                <VBox.margin>
@@ -98,6 +104,9 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Euclid Math Two" size="15.0" />
+               </font>
             </Label>
             <TextField fx:id="minDur" promptText="Min Duration">
                <VBox.margin>
@@ -113,6 +122,9 @@
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Euclid Math Two" size="15.0" />
+               </font>
             </Label>
             <TextField fx:id="minScore" promptText="Min Score">
                <VBox.margin>
@@ -128,12 +140,15 @@
                <VBox.margin>
                   <Insets left="-5.0" top="10.0" />
                </VBox.margin>
+               <font>
+                  <Font name="Euclid Math Two" size="15.0" />
+               </font>
             </Label>
             <ChoiceBox fx:id="sortOptions" prefHeight="25.0" prefWidth="201.0">
                <VBox.margin>
                   <Insets right="10.0" />
                </VBox.margin></ChoiceBox>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#filterTable" style="-fx-alignment: CENTER;" text="Search" textAlignment="CENTER">
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#filterTable" style="-fx-alignment: CENTER; -fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 2;" text="Search" textAlignment="CENTER">
                <VBox.margin>
                   <Insets top="40.0" />
                </VBox.margin>
