@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
+import IMDb.Classes.myList;
 import IMDb.Controllers.movieViewerController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -12,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
@@ -24,8 +26,10 @@ public class main extends Application {
     private static Scene loadingScreen;
     private static Scene browse;
     private static Scene movieInfo;
+    private static Scene list;
     private static Stage window;
     private static database data;
+    private static myList userList;
     private static TableView<movie> dataTable;
     private static ObservableList<movie> movies;
     private static movie currentMovie;
@@ -57,6 +61,9 @@ public class main extends Application {
         root = FXMLLoader.load(getClass().getResource("FXML/movieInfo.fxml"));
         movieInfo = new Scene(root, 1000, 667);
 
+        root = FXMLLoader.load(getClass().getResource("FXML/list.fxml"));
+        list = new Scene(root, 1000, 667);
+
         loadFile();
     }
 
@@ -70,8 +77,15 @@ public class main extends Application {
         window.show();
     }
 
+    public static void loadList(){
+        window.setScene(list);
+        window.show();
+    }
+
     public static void loadMovieInfo() {
 
+        Button completed = (Button)movieInfo.lookup("#planToWatch");
+        Button planToWatch = (Button)movieInfo.lookup("#planToWatch");
         Text  movieTitle = (Text)movieInfo.lookup("#movieTitle");
         Text  movieGenre = (Text)movieInfo.lookup("#movieGenre");
         Text movieCountry = (Text)movieInfo.lookup("#movieCountry");
@@ -81,6 +95,19 @@ public class main extends Application {
         Text movieYear = (Text)movieInfo.lookup("#movieYear");
         Text movieDuration = (Text)movieInfo.lookup("#movieDuration");
         Text movieScore = (Text)movieInfo.lookup("#movieScore");
+
+        if(userList.hasCompleted(currentMovie)){
+            completed.setText("Remove");
+        }
+        else{
+            completed.setText("Completed");
+        }
+        if(userList.hasPlanned(currentMovie)){
+            planToWatch.setText("Remove");
+        }
+        else{
+            planToWatch.setText("Plan to Watch");
+        }
 
         movieTitle.setText(currentMovie.getTitle());
         movieGenre.setText("Genre(s): " + currentMovie.getGenre());
@@ -111,6 +138,23 @@ public class main extends Application {
         currentMovie = mov;
     }
 
+    public static movie getCurMovie(){
+        return currentMovie;
+    }
+
+    public static myList getList(){
+        return userList;
+    }
+
+    public static void updateList(){
+
+        TableView<movie> completedTable = (TableView<movie>)list.lookup("#completedTable");
+        completedTable.setItems(userList.getCompleted());
+        TableView<movie> planTable = (TableView<movie>)list.lookup("#planTable");
+        planTable.setItems(userList.getPlanToWatch());
+
+    }
+
     private static void loadFile() throws IOException{
 
         ProgressBar progressBar = (ProgressBar)loadingScreen.lookup("#progressBar");
@@ -118,10 +162,11 @@ public class main extends Application {
         Thread loadDataset = new Thread(){
             public void run() {
                 dataTable = (TableView<movie>)browse.lookup("#dataTable");
+                userList = new myList();
                 movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;
-                    data = new database("src/IMDb/Resources/dataset_full.csv");
+                    data = new database("src/IMDb/Resources/dataset_full.csv", -99999999, 99999999, -99999999, 99999999, -99999999.9, 99999999.9);
                     final double size = data.getSize() * 1.0;
                     
                     for(String id: data.getMovieList()) {

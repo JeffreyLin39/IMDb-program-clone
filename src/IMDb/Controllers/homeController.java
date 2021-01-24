@@ -27,6 +27,10 @@ public class homeController implements Initializable {
         main.loadBrowse();
     }
 
+    public void loadList(){
+        main.loadList();
+    }
+
     public void onEnter(ActionEvent event) {
 
         dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
