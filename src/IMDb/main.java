@@ -113,6 +113,14 @@ public class main extends Application {
         currentMovie = mov;
     }
 
+    public static movie getCurMovie(){
+        return currentMovie;
+    }
+    
+    public static myList getList(){
+        return userList;
+    }
+
     private static void loadFile() throws IOException{
 
         ProgressBar progressBar = (ProgressBar)loadingScreen.lookup("#progressBar");

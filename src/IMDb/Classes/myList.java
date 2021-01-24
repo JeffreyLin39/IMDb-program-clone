@@ -21,18 +21,22 @@ public class myList {
 
     public void addCompleted(movie mov){
         completed.add(mov);
+        completedList.add(mov);
     }
 
     public void addPlanToWatch(movie mov){
         planToWatch.add(mov);
+        planToWatchList.add(mov);
     }
 
-    public void removeCompleted(int index){
-        completed.remove(index);
+    public void removeCompleted(movie mov){
+        completed.remove(mov);
+        completedList.remove(mov);
     }
 
-    public void removePlanToWatch(int index){
-        planToWatch.remove(index);
+    public void removePlanToWatch(movie mov){
+        planToWatch.remove(mov);
+        planToWatchList.remove(mov);
     }
 
     public ObservableList<movie> getPlanToWatch(){

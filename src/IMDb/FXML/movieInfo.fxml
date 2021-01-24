@@ -147,7 +147,7 @@
                   <Insets left="20.0" top="40.0" />
                </GridPane.margin>
             </Label>
-            <Button mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Plan to Watch" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Button fx:id = "planToWatch" onAction = "#addToPlan" mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Plan to Watch" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
@@ -155,7 +155,7 @@
                   <Insets left="40.0" />
                </GridPane.margin>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Completed" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <Button fx:id = "completed" onAction = "#addToCompleted" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Completed" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>

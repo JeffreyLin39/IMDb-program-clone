@@ -3,6 +3,7 @@ package IMDb.Controllers;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
@@ -16,7 +17,8 @@ public class movieViewerController implements Initializable {
 
     public TableView<movie> dataTable;
     public TextField searchBar;
-
+    public Button planToWatch;
+    public Button completed;
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
@@ -33,6 +35,34 @@ public class movieViewerController implements Initializable {
             
         }
         main.loadBrowse();
+    }
+
+    public void addToCompleted(){
+        if(!main.getList().hasCompleted(main.getCurMovie())){
+            main.getList().addCompleted(main.getCurMovie());
+            completed.setText("Remove");
+            if(main.getList().hasPlanned(main.getCurMovie())){
+                addToPlan();
+            }
+        }
+        else {
+            main.getList().removeCompleted(main.getCurMovie());
+            completed.setText("Completed");
+        }
+    }
+
+    public void addToPlan(){
+        if(!main.getList().hasPlanned(main.getCurMovie())){
+            main.getList().addPlanToWatch(main.getCurMovie());
+            planToWatch.setText("Remove");
+            if(main.getList().hasCompleted(main.getCurMovie())){
+                addToCompleted();
+            }
+        }
+        else {
+            main.getList().removePlanToWatch(main.getCurMovie());
+            planToWatch.setText("Plan To Watch");
+        }
     }
 
     public void loadBrowse(){
