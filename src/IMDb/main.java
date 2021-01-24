@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
+import IMDb.Classes.myList;
 import IMDb.Controllers.movieViewerController;
 import javafx.application.Application;
 import javafx.application.Platform;
@@ -26,6 +27,7 @@ public class main extends Application {
     private static Scene movieInfo;
     private static Stage window;
     private static database data;
+    private static myList userList;
     private static TableView<movie> dataTable;
     private static ObservableList<movie> movies;
     private static movie currentMovie;
@@ -118,6 +120,7 @@ public class main extends Application {
         Thread loadDataset = new Thread(){
             public void run() {
                 dataTable = (TableView<movie>)browse.lookup("#dataTable");
+                userList = new myList();
                 movies = FXCollections.observableArrayList();
                 try {
                     int num = 0;
