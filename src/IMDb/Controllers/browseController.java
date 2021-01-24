@@ -147,6 +147,10 @@ public class browseController implements Initializable {
         main.loadHome();
     }
 
+    public void loadList(){
+        main.loadList();
+    }
+
     public void onEnter(ActionEvent event) {
         
         if(searchBar.getText().equals("")){

@@ -30,7 +30,7 @@
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+            <Button onAction = "#loadList" mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
@@ -80,7 +80,7 @@
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font></Button>
-            <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="My List" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+            <Button onAction = "#loadList" mnemonicParsing="false" prefHeight="60.0" prefWidth="250.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-border-color: white; -fx-background-color: #333333; -fx-border-width: 3;" text="My List" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font></Button>

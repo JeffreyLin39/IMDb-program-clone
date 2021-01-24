@@ -25,6 +25,7 @@ public class main extends Application {
     private static Scene loadingScreen;
     private static Scene browse;
     private static Scene movieInfo;
+    private static Scene list;
     private static Stage window;
     private static database data;
     private static myList userList;
@@ -59,6 +60,9 @@ public class main extends Application {
         root = FXMLLoader.load(getClass().getResource("FXML/movieInfo.fxml"));
         movieInfo = new Scene(root, 1000, 667);
 
+        root = FXMLLoader.load(getClass().getResource("FXML/list.fxml"));
+        list = new Scene(root, 1000, 667);
+
         loadFile();
     }
 
@@ -69,6 +73,12 @@ public class main extends Application {
 
     public static void loadBrowse() {
         window.setScene(browse);
+        window.show();
+    }
+
+    public static void loadList(){
+        System.out.println("loaded");
+        window.setScene(list);
         window.show();
     }
 
@@ -116,7 +126,7 @@ public class main extends Application {
     public static movie getCurMovie(){
         return currentMovie;
     }
-    
+
     public static myList getList(){
         return userList;
     }

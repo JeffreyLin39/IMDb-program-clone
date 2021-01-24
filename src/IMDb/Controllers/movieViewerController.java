@@ -73,6 +73,10 @@ public class movieViewerController implements Initializable {
         main.loadHome();
     }
 
+    public void loadList(){
+        main.loadList();
+    }
+
 }
 
      

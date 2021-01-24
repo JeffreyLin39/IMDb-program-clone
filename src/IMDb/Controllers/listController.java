@@ -13,7 +13,7 @@ import java.util.ResourceBundle;
 import IMDb.main;
 import IMDb.Classes.movie;
 
-public class homeController implements Initializable {
+public class listController implements Initializable {
 
     public TableView<movie> dataTable;
     public TextField searchBar;
@@ -27,10 +27,9 @@ public class homeController implements Initializable {
         main.loadBrowse();
     }
 
-    public void loadList(){
-        main.loadList();
+    public void loadHome(){
+        main.loadHome();
     }
-
     public void onEnter(ActionEvent event) {
 
         dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
