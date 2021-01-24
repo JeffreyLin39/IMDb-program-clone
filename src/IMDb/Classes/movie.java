@@ -19,7 +19,7 @@ public class movie {
         this.year = year;
         this.duration = duration;
         this.score = score;
-        this.userScore = new TextField();
+        this.userScore = new TextField("");
     }
 
     public String getParameter(int num) {

@@ -55,7 +55,6 @@ public class movieViewerController implements Initializable {
             completed.setText("Completed");
         }
         main.updateList();
-        main.loadPieChart();
     }
 
     public void addToPlan(){
@@ -71,7 +70,6 @@ public class movieViewerController implements Initializable {
             planToWatch.setText("Plan To Watch");
         }
         main.updateList();
-        main.loadPieChart();
     }
 
     public void loadBrowse(){

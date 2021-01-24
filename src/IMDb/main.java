@@ -13,7 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -88,6 +90,8 @@ public class main extends Application {
     }
 
     public static void loadProfile(){
+        loadPieChart();
+        loadBarChart();
         window.setScene(profile);
         window.show();
     }
@@ -101,6 +105,25 @@ public class main extends Application {
         }
 
         chart.setData(list);
+    }
+
+    public static void loadBarChart(){
+        BarChart<String, Number> chart = (BarChart)profile.lookup("#barGraph");
+        XYChart.Series list = new XYChart.Series<>();
+        int[] score = new int[11];
+
+        for(movie mov: userList.getCompleted()){
+            if(!mov.getUserScore().getText().equals("")){
+                score[Math.round(Long.parseLong(mov.getUserScore().getText()))] += 1;
+            }
+        }   
+
+        for(int a = 0; a < 11; a++){
+            list.getData().add(new XYChart.Data(String.valueOf(a), score[a]));
+        }
+
+        chart.getData().clear();
+        chart.getData().addAll(list);
     }
 
     public static void loadMovieInfo() {
