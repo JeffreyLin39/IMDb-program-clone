@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -27,6 +28,7 @@ public class main extends Application {
     private static Scene browse;
     private static Scene movieInfo;
     private static Scene list;
+    private static Scene profile;
     private static Stage window;
     private static database data;
     private static myList userList;
@@ -64,6 +66,9 @@ public class main extends Application {
         root = FXMLLoader.load(getClass().getResource("FXML/list.fxml"));
         list = new Scene(root, 1000, 667);
 
+        root = FXMLLoader.load(getClass().getResource("FXML/profile.fxml"));
+        profile = new Scene(root, 1000, 667);
+
         loadFile();
     }
 
@@ -80,6 +85,22 @@ public class main extends Application {
     public static void loadList(){
         window.setScene(list);
         window.show();
+    }
+
+    public static void loadProfile(){
+        window.setScene(profile);
+        window.show();
+    }
+
+    public static void loadPieChart(){
+        PieChart chart = (PieChart)profile.lookup("#pieGraph");
+        ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
+
+        for(String genre: userList.getGenres().keySet()){
+            list.add(new PieChart.Data(genre, userList.getGenres().get(genre)));
+        }
+
+        chart.setData(list);
     }
 
     public static void loadMovieInfo() {

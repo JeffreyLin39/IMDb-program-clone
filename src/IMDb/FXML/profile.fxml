@@ -9,7 +9,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.listController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.profileController">
    <top>
       <HBox prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
          <children>
@@ -31,7 +31,7 @@
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+            <Button onAction = "#loadList" mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
@@ -108,8 +108,8 @@
                   </Label>
                </children>
             </VBox>
-            <PieChart GridPane.columnIndex="1" />
-            <BarChart GridPane.columnIndex="2">
+            <PieChart fx:id="pieGraph" title="Most Viewed Genres" GridPane.columnIndex="1" />
+            <BarChart fx:id="barGraph" title="Score Distrubution" GridPane.columnIndex="2">
               <xAxis>
                 <CategoryAxis side="BOTTOM" />
               </xAxis>

@@ -159,6 +159,11 @@ public class listController implements Initializable {
     public void loadHome(){
         main.loadHome();
     }
+
+    public void loadProfile(){
+        main.loadProfile();
+    }
+    
     public void onEnter(ActionEvent event) {
 
         TableView dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");

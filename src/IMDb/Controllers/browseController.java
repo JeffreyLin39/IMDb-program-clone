@@ -152,6 +152,10 @@ public class browseController implements Initializable {
         main.loadList();
     }
 
+    public void loadProfile(){
+        main.loadProfile();
+    }
+
     public void onEnter(ActionEvent event) {
         
         if(searchBar.getText().equals("")){
