@@ -15,6 +15,7 @@ import IMDb.Classes.movie;
 
 public class movieViewerController implements Initializable {
 
+    public static int previousScene;
     public TableView<movie> dataTable;
     public TextField searchBar;
     public Button planToWatch;
@@ -22,6 +23,10 @@ public class movieViewerController implements Initializable {
     
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
+
+    public static void setScene(int scene){
+        previousScene = scene;
+    }
 
     public void onEnter(ActionEvent event) {
 
@@ -77,6 +82,15 @@ public class movieViewerController implements Initializable {
 
     public void loadList(){
         main.loadList();
+    }
+
+    public void loadPrevious(){
+        if(previousScene == 1){
+            main.loadBrowse();
+        }
+        else{
+            main.loadList();
+        }
     }
 
 }

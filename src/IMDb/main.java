@@ -84,7 +84,7 @@ public class main extends Application {
 
     public static void loadMovieInfo() {
 
-        Button completed = (Button)movieInfo.lookup("#planToWatch");
+        Button completed = (Button)movieInfo.lookup("#completed");
         Button planToWatch = (Button)movieInfo.lookup("#planToWatch");
         Text  movieTitle = (Text)movieInfo.lookup("#movieTitle");
         Text  movieGenre = (Text)movieInfo.lookup("#movieGenre");
@@ -102,6 +102,7 @@ public class main extends Application {
         else{
             completed.setText("Completed");
         }
+
         if(userList.hasPlanned(currentMovie)){
             planToWatch.setText("Remove");
         }

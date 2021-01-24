@@ -8,6 +8,9 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.util.converter.DoubleStringConverter;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -103,20 +106,34 @@ public class listController implements Initializable {
         scoreColumn2.setSortable(false);
         scoreColumn2.setMinWidth(50);
         scoreColumn2.setMaxWidth(50);
+
+        TableColumn<movie, TextField> userScoreColumn2 = new TableColumn<>("Your Score"); 
+        userScoreColumn2.setCellValueFactory(new PropertyValueFactory<>("userScore"));
+        userScoreColumn2.setSortable(false);
         
         planTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, durationColumn, scoreColumn);
-        completedTable.getColumns().addAll(titleColumn2, genreColumn2, countryColumn2, languageColumn2, directorColumn2, yearColumn2, durationColumn2, scoreColumn2);
+        completedTable.getColumns().addAll(titleColumn2, genreColumn2, countryColumn2, languageColumn2, directorColumn2, yearColumn2, durationColumn2, scoreColumn2, userScoreColumn2);
 
         completedTable.setRowFactory( tableView -> {
             TableRow<movie> row = new TableRow<>();
             row.setOnMouseClicked(e -> {
                 if (e.getClickCount() == 2 && (!row.isEmpty()) ) {
                     movie rowData = row.getItem();
+                    movieViewerController.setScene(2);
                     main.setMovie(rowData);     
                     main.loadMovieInfo();       
                 }
             });
+            
+            row.setOnKeyPressed(ke -> {
+                KeyCode keyCode = ke.getCode();
+                if (keyCode.equals(KeyCode.ENTER)) {
+                    TextField text = row.getItem().getUserScore();
+                    row.getItem().setUserScore(text);
+                } 
+            });
             return row;
+        
          });    
 
         planTable.setRowFactory( tableView -> {
@@ -124,6 +141,7 @@ public class listController implements Initializable {
             row.setOnMouseClicked(e -> {
                 if (e.getClickCount() == 2 && (!row.isEmpty()) ) {
                     movie rowData = row.getItem();
+                    movieViewerController.setScene(2);
                     main.setMovie(rowData);     
                     main.loadMovieInfo();       
                 }

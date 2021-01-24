@@ -1,10 +1,13 @@
 package IMDb.Classes;
 
+import javafx.scene.control.TextField;
+
 public class movie {
     
     private String title, genre, country, language, director, description;
     private int year, duration;
     private double score;
+    private TextField userScore;
      
     public movie (String title, String genre, String country, String language, String director, String description, int year, int duration, double score) {
         this.title = title;
@@ -16,6 +19,7 @@ public class movie {
         this.year = year;
         this.duration = duration;
         this.score = score;
+        this.userScore = new TextField();
     }
 
     public String getParameter(int num) {
@@ -73,6 +77,27 @@ public class movie {
     public String getDescription(){
         return this.description;
     }
+
+    public void setUserScore(TextField score){
+        try {
+            if(Double.parseDouble(score.getText()) < 0){
+                score.setText("0.0");
+            }
+            else if(Double.parseDouble(score.getText()) > 10){
+                score.setText("10.0");
+            }
+            this.userScore = score;
+        }
+        catch (Exception e){
+            this.userScore.setText("");
+        }
+
+    }
+
+    public TextField getUserScore(){
+        return this.userScore;
+    }
+
     public String toString() {
         return (this.title + " " + this.genre + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + " " + this.description);
     }

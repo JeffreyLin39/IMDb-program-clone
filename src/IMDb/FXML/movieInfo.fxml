@@ -132,7 +132,7 @@
                      </font></Text>
                </children>
             </VBox>
-            <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#loadBrowse" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-width: 4; -fx-border-radius: 10;" text="X" textAlignment="RIGHT" textFill="#eb0000" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+            <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#loadPrevious" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-width: 4; -fx-border-radius: 10;" text="X" textAlignment="RIGHT" textFill="#eb0000" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
                <font>
                   <Font name="ArnoPro-BoldSmText" size="16.0" />
                </font>
