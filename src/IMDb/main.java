@@ -32,6 +32,7 @@ public class main extends Application {
     private static Scene list;
     private static Scene profile;
     private static Stage window;
+    private static double userRating;
     private static database data;
     private static myList userList;
     private static TableView<movie> dataTable;
@@ -92,6 +93,7 @@ public class main extends Application {
     public static void loadProfile(){
         loadPieChart();
         loadBarChart();
+        loadStats();
         window.setScene(profile);
         window.show();
     }
@@ -108,12 +110,14 @@ public class main extends Application {
     }
 
     public static void loadBarChart(){
+        userRating = 0;
         BarChart<String, Number> chart = (BarChart)profile.lookup("#barGraph");
         XYChart.Series list = new XYChart.Series<>();
         int[] score = new int[11];
 
         for(movie mov: userList.getCompleted()){
             if(!mov.getUserScore().getText().equals("")){
+                userRating += Long.parseLong(mov.getUserScore().getText());
                 score[Math.round(Long.parseLong(mov.getUserScore().getText()))] += 1;
             }
         }   
@@ -124,6 +128,29 @@ public class main extends Application {
 
         chart.getData().clear();
         chart.getData().addAll(list);
+    }
+
+    public static void loadStats(){
+        Label watchTime = (Label)profile.lookup("#watchTime");
+        Label numCompleted = (Label)profile.lookup("#numCompleted");
+        Label numToWatch = (Label)profile.lookup("#numToWatch");
+        Label avgUserRating = (Label)profile.lookup("#avgUserRating");
+        Label avgRating = (Label)profile.lookup("#avgRating");
+
+        watchTime.setText("Total Watch Time: " + (int)((userList.getWatchTime()/1440.0) * 100)/100.0 + " days");
+        numCompleted.setText("Completed: " + userList.getNumCompleted() + " movies");
+        numToWatch.setText("Planned: " + userList.getNumPlanned() + " movies");
+
+        if(userList.getNumCompleted() != 0){
+            avgRating.setText("Platform Average Rating: " + (int)(userList.getAvgScore()/(userList.getNumCompleted()*1.0)) * 10 / 10.0);
+
+            if(userRating != 0){
+                avgUserRating.setText("Platform Average Rating: " + (int)(userRating/(userList.getNumCompleted()*1.0)) * 10 / 10.0);
+            }
+            
+        }
+
+
     }
 
     public static void loadMovieInfo() {

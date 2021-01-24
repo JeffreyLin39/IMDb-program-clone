@@ -31,7 +31,7 @@
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button onAction = "#loadList" mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+            <Button mnemonicParsing="false" onAction="#loadList" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
@@ -77,34 +77,64 @@
                      <VBox.margin>
                         <Insets left="20.0" top="20.0" />
                      </VBox.margin>
+                     <font>
+                        <Font name="Franklin Gothic Medium" size="37.0" />
+                     </font>
                   </Label>
-                  <Label text="Total Watch Time">
+                  <Label fx:id="watchTime" text="Total Watch Time:">
                      <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="Franklin Gothic Book" size="17.0" />
+                     </font>
+                     <padding>
                         <Insets left="20.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="numCompleted" text="Completed Movies:">
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Franklin Gothic Book" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="numToWatch" text="Plan to Watch:">
+                     <padding>
+                        <Insets left="20.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Franklin Gothic Book" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="40.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Completed Movies">
+                  <Label fx:id="avgUserRating" text="Your Average Rating:">
+                     <padding>
+                        <Insets left="20.0" top="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="Franklin Gothic Book" size="17.0" />
+                     </font>
                      <VBox.margin>
-                        <Insets />
+                        <Insets top="40.0" />
                      </VBox.margin>
-                     <padding>
-                        <Insets left="20.0" top="10.0" />
-                     </padding>
                   </Label>
-                  <Label text="Plan to Watch">
+                  <Label fx:id="avgRating" text="Platform Average Rating:">
                      <padding>
                         <Insets left="20.0" top="10.0" />
                      </padding>
-                  </Label>
-                  <Label text="Your Average Rating">
-                     <padding>
-                        <Insets left="20.0" top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Platform Average Rating">
-                     <padding>
-                        <Insets left="20.0" top="10.0" />
-                     </padding>
+                     <font>
+                        <Font name="Franklin Gothic Book" size="17.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets top="40.0" />
+                     </VBox.margin>
                   </Label>
                </children>
             </VBox>
