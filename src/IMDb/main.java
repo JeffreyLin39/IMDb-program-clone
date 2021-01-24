@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TableView;
@@ -77,13 +78,14 @@ public class main extends Application {
     }
 
     public static void loadList(){
-        System.out.println("loaded");
         window.setScene(list);
         window.show();
     }
 
     public static void loadMovieInfo() {
 
+        Button completed = (Button)movieInfo.lookup("#planToWatch");
+        Button planToWatch = (Button)movieInfo.lookup("#planToWatch");
         Text  movieTitle = (Text)movieInfo.lookup("#movieTitle");
         Text  movieGenre = (Text)movieInfo.lookup("#movieGenre");
         Text movieCountry = (Text)movieInfo.lookup("#movieCountry");
@@ -93,6 +95,19 @@ public class main extends Application {
         Text movieYear = (Text)movieInfo.lookup("#movieYear");
         Text movieDuration = (Text)movieInfo.lookup("#movieDuration");
         Text movieScore = (Text)movieInfo.lookup("#movieScore");
+
+        if(userList.hasCompleted(currentMovie)){
+            completed.setText("Remove");
+        }
+        else{
+            completed.setText("Completed");
+        }
+        if(userList.hasPlanned(currentMovie)){
+            planToWatch.setText("Remove");
+        }
+        else{
+            planToWatch.setText("Plan to Watch");
+        }
 
         movieTitle.setText(currentMovie.getTitle());
         movieGenre.setText("Genre(s): " + currentMovie.getGenre());
@@ -129,6 +144,15 @@ public class main extends Application {
 
     public static myList getList(){
         return userList;
+    }
+
+    public static void updateList(){
+
+        TableView<movie> completedTable = (TableView<movie>)list.lookup("#completedTable");
+        completedTable.setItems(userList.getCompleted());
+        TableView<movie> planTable = (TableView<movie>)list.lookup("#planTable");
+        planTable.setItems(userList.getPlanToWatch());
+
     }
 
     private static void loadFile() throws IOException{

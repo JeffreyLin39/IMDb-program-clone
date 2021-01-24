@@ -66,7 +66,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" />
+                        <TableView fx:id = "planTable" layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" />
                      </children>
                   </AnchorPane>
             </content>
@@ -75,7 +75,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" />
+                        <TableView fx:id = "completedTable" layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" />
                      </children>
                   </AnchorPane>
             </content>

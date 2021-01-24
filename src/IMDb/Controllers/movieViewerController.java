@@ -49,6 +49,7 @@ public class movieViewerController implements Initializable {
             main.getList().removeCompleted(main.getCurMovie());
             completed.setText("Completed");
         }
+        main.updateList();
     }
 
     public void addToPlan(){
@@ -63,6 +64,7 @@ public class movieViewerController implements Initializable {
             main.getList().removePlanToWatch(main.getCurMovie());
             planToWatch.setText("Plan To Watch");
         }
+        main.updateList();
     }
 
     public void loadBrowse(){
