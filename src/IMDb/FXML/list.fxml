@@ -25,7 +25,7 @@
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button onAction = "#loadBrowse" mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Browse">
+            <Button mnemonicParsing="false" onAction="#loadBrowse" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Browse">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
@@ -35,7 +35,7 @@
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My Profile">
+            <Button onAction = "#loadProfile" mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My Profile">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
@@ -62,20 +62,32 @@
    <center>
       <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
-          <Tab style="-fx-pref-width: 492;" text="Plan To Watch">
+          <Tab style="-fx-pref-width: 492; -fx-font-size: 17;" text="Plan To Watch">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id = "planTable" layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" />
+                        <TableView fx:id="planTable" layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" style="-fx-control-inner-background: white; -fx-control-inner-background-alt: white;">
+                            <placeholder>
+                              <Label text="" />
+                           </placeholder>
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy></TableView>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab style="-fx-pref-width: 492;" text="Completed">
+          <Tab style="-fx-pref-width: 492; -fx-font-size: 17;" text="Completed">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <TableView fx:id = "completedTable" layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" />
+                        <TableView fx:id="completedTable" layoutX="14.0" layoutY="14.0" prefHeight="561.0" prefWidth="973.0" style="-fx-control-inner-background-alt: white; -fx-control-inner-background: white;">
+                           <placeholder>
+                              <Label text="" />
+                           </placeholder>                       
+                           <columnResizePolicy>
+                              <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                           </columnResizePolicy></TableView>
                      </children>
                   </AnchorPane>
             </content>

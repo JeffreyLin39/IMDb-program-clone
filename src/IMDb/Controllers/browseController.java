@@ -83,6 +83,7 @@ public class browseController implements Initializable {
                 if (e.getClickCount() == 2 && (!row.isEmpty()) ) {
                     movie rowData = row.getItem();
                     main.setMovie(rowData);     
+                    movieViewerController.setScene(1);
                     main.loadMovieInfo();       
                 }
             });
@@ -149,6 +150,10 @@ public class browseController implements Initializable {
 
     public void loadList(){
         main.loadList();
+    }
+
+    public void loadProfile(){
+        main.loadProfile();
     }
 
     public void onEnter(ActionEvent event) {

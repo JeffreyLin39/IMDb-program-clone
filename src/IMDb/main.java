@@ -13,6 +13,9 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.chart.BarChart;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -27,6 +30,7 @@ public class main extends Application {
     private static Scene browse;
     private static Scene movieInfo;
     private static Scene list;
+    private static Scene profile;
     private static Stage window;
     private static database data;
     private static myList userList;
@@ -64,6 +68,9 @@ public class main extends Application {
         root = FXMLLoader.load(getClass().getResource("FXML/list.fxml"));
         list = new Scene(root, 1000, 667);
 
+        root = FXMLLoader.load(getClass().getResource("FXML/profile.fxml"));
+        profile = new Scene(root, 1000, 667);
+
         loadFile();
     }
 
@@ -82,9 +89,46 @@ public class main extends Application {
         window.show();
     }
 
+    public static void loadProfile(){
+        loadPieChart();
+        loadBarChart();
+        window.setScene(profile);
+        window.show();
+    }
+
+    public static void loadPieChart(){
+        PieChart chart = (PieChart)profile.lookup("#pieGraph");
+        ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
+
+        for(String genre: userList.getGenres().keySet()){
+            list.add(new PieChart.Data(genre, userList.getGenres().get(genre)));
+        }
+
+        chart.setData(list);
+    }
+
+    public static void loadBarChart(){
+        BarChart<String, Number> chart = (BarChart)profile.lookup("#barGraph");
+        XYChart.Series list = new XYChart.Series<>();
+        int[] score = new int[11];
+
+        for(movie mov: userList.getCompleted()){
+            if(!mov.getUserScore().getText().equals("")){
+                score[Math.round(Long.parseLong(mov.getUserScore().getText()))] += 1;
+            }
+        }   
+
+        for(int a = 0; a < 11; a++){
+            list.getData().add(new XYChart.Data(String.valueOf(a), score[a]));
+        }
+
+        chart.getData().clear();
+        chart.getData().addAll(list);
+    }
+
     public static void loadMovieInfo() {
 
-        Button completed = (Button)movieInfo.lookup("#planToWatch");
+        Button completed = (Button)movieInfo.lookup("#completed");
         Button planToWatch = (Button)movieInfo.lookup("#planToWatch");
         Text  movieTitle = (Text)movieInfo.lookup("#movieTitle");
         Text  movieGenre = (Text)movieInfo.lookup("#movieGenre");
@@ -102,6 +146,7 @@ public class main extends Application {
         else{
             completed.setText("Completed");
         }
+
         if(userList.hasPlanned(currentMovie)){
             planToWatch.setText("Remove");
         }
