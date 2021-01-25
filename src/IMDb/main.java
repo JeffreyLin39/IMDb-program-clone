@@ -117,8 +117,8 @@ public class main extends Application {
 
         for(movie mov: userList.getCompleted()){
             if(!mov.getUserScore().getText().equals("")){
-                userRating += Long.parseLong(mov.getUserScore().getText());
-                score[Math.round(Long.parseLong(mov.getUserScore().getText()))] += 1;
+                userRating += Double.parseDouble(mov.getUserScore().getText());
+                score[(int)Math.round(Double.parseDouble(mov.getUserScore().getText()))] += 1;
             }
         }   
 
