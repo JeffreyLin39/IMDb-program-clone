@@ -23,29 +23,29 @@ public class homeController implements Initializable {
          return;  
     }
 
-    public void loadBrowse(){
+    public void loadBrowse() {
         main.loadBrowse();
     }
 
-    public void loadList(){
+    public void loadList() {
         main.loadList();
     }
 
-    public void loadProfile(){
+    public void loadProfile() {
         main.loadProfile();
     }
     
     public void onEnter(ActionEvent event) {
 
         dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
-        if(searchBar.getText().equals("")){
+        if (searchBar.getText().equals("")) {
             main.resetTable();
         }
         else{
             ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
             dataTable.setItems(searchResults);
-            
         }
+        
         loadBrowse();
     }
 

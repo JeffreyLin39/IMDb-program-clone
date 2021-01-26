@@ -9,145 +9,168 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.profileController">
+<BorderPane maxHeight = "-Infinity" maxWidth = "-Infinity" minHeight = "667.0" minWidth = "1000.0" prefHeight = "667.0" prefWidth = "1000.0" xmlns = "http://javafx.com/javafx/8" xmlns:fx = "http://javafx.com/fxml/1" fx:controller = "IMDb.Controllers.profileController">
+   
    <top>
-      <HBox prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
+      <HBox prefHeight = "42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
          <children>
-            <ImageView fitHeight="56.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+
+            <ImageView fitHeight = "56.0" fitWidth = "101.0" pickOnBounds = "true" preserveRatio = "true">
                <image>
-                  <Image url="@../Resources/logo.png" />
+                  <Image url = "@../Resources/logo.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#loadHome" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
+
+            <Button mnemonicParsing = "false" onAction = "#loadHome" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "Home">
                <HBox.margin>
-                  <Insets left="-3.0" />
+                  <Insets left = "-3.0" />
                </HBox.margin>
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#loadBrowse" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Browse">
+
+            <Button mnemonicParsing = "false" onAction = "#loadBrowse" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "Browse">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#loadList" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+
+            <Button mnemonicParsing = "false" onAction = "#loadList" prefHeight = "48.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "My List">
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #b0b0b0;" text="My Profile">
+
+            <Button mnemonicParsing = "false" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #b0b0b0;" text = "My Profile">
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+
+            <ImageView fitHeight = "39.0" fitWidth = "46.0" pickOnBounds = "true" preserveRatio = "true">
                <image>
-                  <Image url="@../Resources/search_icon.png" />
+                  <Image url = "@../Resources/search_icon.png" />
                </image>
                <HBox.margin>
-                  <Insets left="4.0" top="7.0" />
+                  <Insets left = "4.0" top = "7.0" />
                </HBox.margin>
             </ImageView>
-            <TextField fx:id="searchBar" onAction="#onEnter" prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+
+            <TextField fx:id = "searchBar" onAction = "#onEnter" prefHeight = "34.0" prefWidth = "355.0" promptText = "Search by Title" style = "-fx-background-radius: 100; -fx-border-radius: 100;">
                <HBox.margin>
-                  <Insets top="8.0" />
+                  <Insets top = "8.0" />
                </HBox.margin>
                <padding>
-                  <Insets left="14.0" />
+                  <Insets left = "14.0" />
                </padding>
             </TextField>
+
          </children>
       </HBox>
    </top>
+
    <center>
-      <GridPane BorderPane.alignment="CENTER">
-        <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
+      <GridPane BorderPane.alignment = "CENTER">
+      
+         <columnConstraints>
+            <ColumnConstraints hgrow = "SOMETIMES" minWidth = "10.0" prefWidth = "100.0" />
+            <ColumnConstraints hgrow = "SOMETIMES" minWidth = "10.0" prefWidth = "100.0" />
+            <ColumnConstraints hgrow = "SOMETIMES" minWidth = "10.0" prefWidth = "100.0" />
+         </columnConstraints>
+
+         <rowConstraints>
+            <RowConstraints minHeight = "10.0" prefHeight = "30.0" vgrow = "SOMETIMES" />
+         </rowConstraints>
+
          <children>
-            <VBox prefHeight="200.0" prefWidth="100.0">
+            <VBox prefHeight = "200.0" prefWidth = "100.0">
                <children>
-                  <Label text="Your Profile">
+
+                  <Label text = "Your Profile">
                      <VBox.margin>
-                        <Insets left="20.0" top="20.0" />
+                        <Insets left = "20.0" top = "20.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="Franklin Gothic Medium" size="37.0" />
+                        <Font name = "Franklin Gothic Medium" size = "37.0" />
                      </font>
                   </Label>
-                  <Label fx:id="watchTime" text="Total Watch Time:">
+
+                  <Label fx:id = "watchTime" text = "Total Watch Time:">
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top = "40.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="Franklin Gothic Book" size="17.0" />
+                        <Font name = "Franklin Gothic Book" size = "17.0" />
                      </font>
                      <padding>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets left = "20.0" top = "10.0" />
                      </padding>
                   </Label>
-                  <Label fx:id="numCompleted" text="Completed Movies:">
+
+                  <Label fx:id = "numCompleted" text = "Completed Movies:">
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top = "40.0" />
                      </VBox.margin>
                      <padding>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets left = "20.0" top = "10.0" />
                      </padding>
                      <font>
-                        <Font name="Franklin Gothic Book" size="17.0" />
+                        <Font name = "Franklin Gothic Book" size = "17.0" />
                      </font>
                   </Label>
-                  <Label fx:id="numToWatch" text="Plan to Watch:">
+
+                  <Label fx:id = "numToWatch" text = "Plan to Watch:">
                      <padding>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets left = "20.0" top = "10.0" />
                      </padding>
                      <font>
-                        <Font name="Franklin Gothic Book" size="17.0" />
+                        <Font name = "Franklin Gothic Book" size = "17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top = "40.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="avgUserRating" text="Your Average Rating:">
+
+                  <Label fx:id = "avgUserRating" text = "Your Average Rating:">
                      <padding>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets left = "20.0" top = "10.0" />
                      </padding>
                      <font>
-                        <Font name="Franklin Gothic Book" size="17.0" />
+                        <Font name = "Franklin Gothic Book" size = "17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top = "40.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="avgRating" text="Platform Average Rating:">
+
+                  <Label fx:id = "avgRating" text = "Platform Average Rating:">
                      <padding>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets left = "20.0" top = "10.0" />
                      </padding>
                      <font>
-                        <Font name="Franklin Gothic Book" size="17.0" />
+                        <Font name = "Franklin Gothic Book" size = "17.0" />
                      </font>
                      <VBox.margin>
-                        <Insets top="40.0" />
+                        <Insets top = "40.0" />
                      </VBox.margin>
                   </Label>
+
                </children>
             </VBox>
-            <PieChart fx:id="pieGraph" title="Most Viewed Genres" GridPane.columnIndex="1" />
-            <BarChart fx:id="barGraph" title="Score Distrubution" GridPane.columnIndex="2">
+
+            <PieChart fx:id = "pieGraph" title = "Most Viewed Genres" GridPane.columnIndex = "1" />
+            <BarChart fx:id = "barGraph" title = "Score Distrubution" GridPane.columnIndex = "2">
               <xAxis>
-                <CategoryAxis side="BOTTOM" />
+                <CategoryAxis side = "BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side="LEFT" />
+                <NumberAxis side = "LEFT" />
               </yAxis>
             </BarChart>
+
          </children>
       </GridPane>
    </center>
+
 </BorderPane>

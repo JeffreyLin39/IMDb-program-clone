@@ -8,14 +8,9 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.KeyCode;
-import javafx.util.converter.DoubleStringConverter;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
-
 import IMDb.main;
 import IMDb.Classes.movie;
 
@@ -152,25 +147,25 @@ public class listController implements Initializable {
     
     }
 
-    public void loadBrowse(){
+    public void loadBrowse() {
         main.loadBrowse();
     }
 
-    public void loadHome(){
+    public void loadHome() {
         main.loadHome();
     }
 
-    public void loadProfile(){
+    public void loadProfile() {
         main.loadProfile();
     }
     
     public void onEnter(ActionEvent event) {
 
         TableView dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
-        if(searchBar.getText().equals("")){
+        if (searchBar.getText().equals("")) {
             main.resetTable();
         }
-        else{
+        else {
             ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
             dataTable.setItems(searchResults);
             

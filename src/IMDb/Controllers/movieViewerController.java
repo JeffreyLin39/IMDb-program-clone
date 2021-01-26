@@ -6,10 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import IMDb.main;
 import IMDb.Classes.movie;
 
@@ -24,17 +22,17 @@ public class movieViewerController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {}
 
-    public static void setScene(int scene){
+    public static void setScene(int scene) {
         previousScene = scene;
     }
 
     public void onEnter(ActionEvent event) {
 
         dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
-        if(searchBar.getText().equals("")){
+        if(searchBar.getText().equals("")) {
             main.resetTable();
         }
-        else{
+        else {
             ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
             dataTable.setItems(searchResults);
             
@@ -42,11 +40,12 @@ public class movieViewerController implements Initializable {
         main.loadBrowse();
     }
 
-    public void addToCompleted(){
-        if(!main.getList().hasCompleted(main.getCurMovie())){
+    public void addToCompleted() {
+
+        if(!main.getList().hasCompleted(main.getCurMovie())) {
             main.getList().addCompleted(main.getCurMovie());
             completed.setText("Remove");
-            if(main.getList().hasPlanned(main.getCurMovie())){
+            if(main.getList().hasPlanned(main.getCurMovie())) {
                 addToPlan();
             }
         }
@@ -57,11 +56,11 @@ public class movieViewerController implements Initializable {
         main.updateList();
     }
 
-    public void addToPlan(){
-        if(!main.getList().hasPlanned(main.getCurMovie())){
+    public void addToPlan() {
+        if(!main.getList().hasPlanned(main.getCurMovie())) {
             main.getList().addPlanToWatch(main.getCurMovie());
             planToWatch.setText("Remove");
-            if(main.getList().hasCompleted(main.getCurMovie())){
+            if(main.getList().hasCompleted(main.getCurMovie())) {
                 addToCompleted();
             }
         }
@@ -72,24 +71,24 @@ public class movieViewerController implements Initializable {
         main.updateList();
     }
 
-    public void loadBrowse(){
+    public void loadBrowse() {
         main.loadBrowse();
     }
 
-    public void loadHome(){
+    public void loadHome() {
         main.loadHome();
     }
 
-    public void loadList(){
+    public void loadList() {
         main.loadList();
     }
 
-    public void loadProfile(){
+    public void loadProfile() {
         main.loadProfile();
     }
 
-    public void loadPrevious(){
-        if(previousScene == 1){
+    public void loadPrevious() {
+        if(previousScene == 1) {
             main.loadBrowse();
         }
         else{

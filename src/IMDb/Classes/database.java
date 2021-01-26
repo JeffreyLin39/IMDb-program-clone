@@ -1,10 +1,8 @@
 package IMDb.Classes;
 
 import java.util.*;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
 import java.io.*;
 
 public class database {
@@ -18,7 +16,7 @@ public class database {
     private double maxScore;
 
 
-    public database(String fileName, int minDur, int maxDur, int minYear, int maxYear, double minScore, double maxScore) throws IOException{
+    public database(String fileName, int minDur, int maxDur, int minYear, int maxYear, double minScore, double maxScore) {
         
         try {
             dataset = new BufferedReader(new FileReader(fileName));
@@ -41,9 +39,9 @@ public class database {
     }
 
     private void fillDatabase() throws IOException {
+
         String line;
         int marker;
-        
         Boolean shouldIgnore;
         Boolean ignoreLast;
         int lineNum;
@@ -53,12 +51,14 @@ public class database {
         line = dataset.readLine();
 
         while ((line = dataset.readLine()) != null) {
+
             lineNum++;
             marker = 0;
             shouldIgnore = false;
             ArrayList<String> info = new ArrayList<>();
 
-            for(int i = 0; i < line.length(); i++) {
+            for (int i = 0; i < line.length(); i++) {
+
                 if (line.charAt(i) == '"') {
                     if (shouldIgnore) {
                         ignoreLast = true;
@@ -70,7 +70,7 @@ public class database {
                     }
                 }
                 else if (!shouldIgnore && line.charAt(i) == ',') {
-                    if(ignoreLast) {
+                    if (ignoreLast) {
                         info.add(line.substring(marker, i - 1));
                         ignoreLast = false;
                     }
@@ -92,11 +92,11 @@ public class database {
         }
     }
 
-    public int getSize(){
+    public int getSize() {
         return this.allMovies.size();
     }
 
-    public void setIntegerFilters(double minScore, double maxScore, int minYear, int maxYear, int minDur, int maxDur){
+    public void setIntegerFilters(double minScore, double maxScore, int minYear, int maxYear, int minDur, int maxDur) {
         this.minScore = minScore;
         this.maxScore = maxScore;
         this.minYear = minYear;
@@ -119,6 +119,7 @@ public class database {
     }
 
     public void merge(int value, int start, int middle, int end) {
+
         int pos1;
         int pos2;
         int count;
@@ -128,7 +129,7 @@ public class database {
         pos2 = middle + 1;
         count = start;
 
-        while(pos1 <= middle && pos2 <= end) {
+        while (pos1 <= middle && pos2 <= end) {
 
             if (this.allMovies.get(this.movieList.get(pos1)).getParameter(value).compareTo(this.allMovies.get(this.movieList.get(pos2)).getParameter(value)) < 0) {
                 temp.add(this.movieList.get(pos1));
@@ -138,13 +139,11 @@ public class database {
                 temp.add(this.movieList.get(pos2));
                 pos2++;
             }
-
             
         }
 
        while (pos1 <= middle) {
            temp.add(this.movieList.get(pos1));
-
            pos1++;
        }
       
@@ -160,7 +159,7 @@ public class database {
 
     }
 
-    public movie getMovie(String id){
+    public movie getMovie(String id) {
         return this.allMovies.get(id);
     }
 
@@ -191,12 +190,12 @@ public class database {
         String[] genres;
         boolean isFiltered;
         
-        
         for (String key: this.movieList) {
+
             genres = this.allMovies.get(key).getGenre().split(", ");
             isFiltered = false;
 
-            for(String genre: genres) {
+            for (String genre: genres) {
                 if (genreFilters.contains(genre)) {
                     isFiltered = true;
                 }
@@ -210,7 +209,7 @@ public class database {
             }
         }
 
-        if(isInverse){
+        if (isInverse) {
             FXCollections.reverse(filterResults);
         }
 
@@ -220,7 +219,5 @@ public class database {
     public ArrayList<String> getMovieList() {
         return this.movieList;
     }
-
-
 
 }

@@ -42,63 +42,65 @@ public class movie {
         return "";
     }
 
-    public String getTitle(){
+    public String getTitle() {
         return this.title;
     }
 
-    public String getGenre(){
+    public String getGenre() {
         return this.genre;
     }
 
-    public String getCountry(){
+    public String getCountry() {
         return this.country;
     }
 
-    public String getLanguage(){
+    public String getLanguage() {
         return this.language;
     }
 
-    public String getDirector(){
+    public String getDirector() {
         return this.director;
     }
 
-    public int getYear(){
+    public int getYear() {
         return this.year;
     }
 
-    public int getDuration(){
+    public int getDuration() {
         return this.duration;
     }
 
-    public double getScore(){
+    public double getScore() {
         return this.score;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return this.description;
     }
 
-    public void setUserScore(TextField score){
+    public void setUserScore(TextField score) {
+        
         try {
-            if(Double.parseDouble(score.getText()) < 0){
+            if (Double.parseDouble(score.getText()) < 0) {
                 score.setText("0.0");
             }
-            else if(Double.parseDouble(score.getText()) > 10){
+            else if (Double.parseDouble(score.getText()) > 10) {
                 score.setText("10.0");
             }
             this.userScore = score;
         }
-        catch (Exception e){
+        catch (Exception e) {
             this.userScore.setText("");
         }
 
     }
 
-    public TextField getUserScore(){
+    public TextField getUserScore() {
         return this.userScore;
     }
 
     public String toString() {
-        return (this.title + " " + this.genre + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + " " + this.description);
+        return (this.title + " " + this.genre + " " + this.country + " " + this.language + " " + this.director + " " + this.year + " " + this.duration + " " + this.description);
     }
+
 }

@@ -8,152 +8,183 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.browseController">
+<BorderPane maxHeight = "-Infinity" maxWidth = "-Infinity" minHeight = "667.0" minWidth = "1000.0" prefHeight = "667.0" prefWidth = "1000.0" xmlns = "http://javafx.com/javafx/8" xmlns:fx = "http://javafx.com/fxml/1" fx:controller = "IMDb.Controllers.browseController">
+   
    <center>
-      <TableView fx:id="dataTable" prefHeight="200.0" prefWidth="200.0" style="-fx-focus-color: transparent; fx-faint-focus-color: transparent; -fx-background-color: transparent; -fx-control-inner-background: white; -fx-control-inner-background-alt: white;" BorderPane.alignment="CENTER">
+      <TableView fx:id = "dataTable" prefHeight = "200.0" prefWidth = "200.0" style = "-fx-focus-color: transparent; fx-faint-focus-color: transparent; -fx-background-color: transparent; -fx-control-inner-background: white; -fx-control-inner-background-alt: white;" BorderPane.alignment = "CENTER">
          <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            <TableView fx:constant = "CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
          <BorderPane.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </BorderPane.margin></TableView>
+            <Insets bottom = "10.0" left = "10.0" right = "10.0" top = "10.0" />
+         </BorderPane.margin>
+      </TableView>
    </center>
+
    <top>
-      <HBox prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
+      <HBox prefHeight = "42.0" prefWidth = "1000.0" style = "-fx-background-color: #8a8a8a;" BorderPane.alignment = "CENTER">
          <children>
-            <ImageView fitHeight="56.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+
+            <ImageView fitHeight = "56.0" fitWidth = "101.0" pickOnBounds = "true" preserveRatio = "true">
                <image>
-                  <Image url="@../Resources/logo.png" />
+                  <Image url = "@../Resources/logo.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#loadHome" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
+
+            <Button mnemonicParsing = "false" onAction = "#loadHome" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "Home">
                <HBox.margin>
-                  <Insets left="-3.0" />
+                  <Insets left = "-3.0" />
                </HBox.margin>
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #b0b0b0;" text="Browse">
+
+            <Button mnemonicParsing = "false" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #b0b0b0;" text = "Browse">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button onAction = "#loadList" mnemonicParsing="false" prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+
+            <Button onAction = "#loadList" mnemonicParsing = "false" prefHeight = "48.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "My List">
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <Button onAction = "#loadProfile" mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My Profile">
+
+            <Button onAction = "#loadProfile" mnemonicParsing = "false" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "My Profile">
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+
+            <ImageView fitHeight = "39.0" fitWidth = "46.0" pickOnBounds = "true" preserveRatio = "true">
                <image>
-                  <Image url="@../Resources/search_icon.png" />
+                  <Image url = "@../Resources/search_icon.png" />
                </image>
                <HBox.margin>
-                  <Insets left="4.0" top="7.0" />
+                  <Insets left = "4.0" top = "7.0" />
                </HBox.margin>
             </ImageView>
-            <TextField fx:id="searchBar" onAction="#onEnter" prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+
+            <TextField fx:id = "searchBar" onAction = "#onEnter" prefHeight = "34.0" prefWidth = "355.0" promptText = "Search by Title" style = "-fx-background-radius: 100; -fx-border-radius: 100;">
                <HBox.margin>
-                  <Insets top="8.0" />
+                  <Insets top = "8.0" />
                </HBox.margin>
                <padding>
-                  <Insets left="14.0" />
+                  <Insets left = "14.0" />
                </padding>
             </TextField>
+
          </children>
       </HBox>
    </top>
+
    <right>
-      <VBox alignment="CENTER" minWidth="0.0" prefHeight="617.0" prefWidth="157.0" BorderPane.alignment="CENTER">
+      <VBox alignment = "CENTER" minWidth = "0.0" prefHeight = "617.0" prefWidth = "157.0" BorderPane.alignment = "CENTER">
          <children>
-            <Label alignment="CENTER" prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Genre Filter" textAlignment="CENTER">
+
+            <Label alignment = "CENTER" prefHeight = "17.0" prefWidth = "102.0" style = "-fx-alignment: CENTER;" text = "Genre Filter" textAlignment = "CENTER">
                <VBox.margin>
-                  <Insets top="-40.0" />
+                  <Insets top = "-40.0" />
                </VBox.margin>
                <font>
-                  <Font name="Euclid Math Two" size="15.0" />
-               </font></Label>
-            <ChoiceBox fx:id="genreFilter" onAction="#addGenre" prefHeight="25.0" prefWidth="159.0">
-               <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
-               </VBox.margin></ChoiceBox>
-            <Label text="Year">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
-               <font>
-                  <Font name="Euclid Math Two" size="15.0" />
+                  <Font name = "Euclid Math Two" size = "15.0" />
                </font>
             </Label>
-            <TextField fx:id="minYear" promptText="Min Year">
+
+            <ChoiceBox fx:id = "genreFilter" onAction = "#addGenre" prefHeight = "25.0" prefWidth = "159.0">
                <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
+                  <Insets right = "10.0" top = "5.0" />
                </VBox.margin>
-            </TextField>
-            <TextField fx:id="maxYear" promptText="Max Year">
+            </ChoiceBox>
+
+            <Label text = "Year">
                <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Duration (min)">
-               <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top = "10.0" />
                </VBox.margin>
                <font>
-                  <Font name="Euclid Math Two" size="15.0" />
+                  <Font name = "Euclid Math Two" size = "15.0" />
                </font>
             </Label>
-            <TextField fx:id="minDur" promptText="Min Duration">
+
+            <TextField fx:id = "minYear" promptText = "Min Year">
                <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
+                  <Insets right = "10.0" top = "5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="maxDur" promptText="Max Duration">
+
+            <TextField fx:id = "maxYear" promptText = "Max Year">
                <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
+                  <Insets right = "10.0" top = "5.0" />
                </VBox.margin>
             </TextField>
-            <Label text="Score (0.0 - 10.0)">
+
+            <Label text = "Duration (min)">
                <VBox.margin>
-                  <Insets top="10.0" />
+                  <Insets top = "10.0" />
                </VBox.margin>
                <font>
-                  <Font name="Euclid Math Two" size="15.0" />
+                  <Font name = "Euclid Math Two" size = "15.0" />
                </font>
             </Label>
-            <TextField fx:id="minScore" promptText="Min Score">
+
+            <TextField fx:id = "minDur" promptText = "Min Duration">
                <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
+                  <Insets right = "10.0" top = "5.0" />
                </VBox.margin>
             </TextField>
-            <TextField fx:id="maxScore" promptText="Max Score:">
+
+            <TextField fx:id = "maxDur" promptText = "Max Duration">
                <VBox.margin>
-                  <Insets right="10.0" top="5.0" />
+                  <Insets right = "10.0" top = "5.0" />
                </VBox.margin>
             </TextField>
-            <Label prefHeight="17.0" prefWidth="102.0" style="-fx-alignment: CENTER;" text="Sort By" textAlignment="CENTER">
+
+            <Label text = "Score (0.0 - 10.0)">
                <VBox.margin>
-                  <Insets left="-5.0" top="10.0" />
+                  <Insets top = "10.0" />
                </VBox.margin>
                <font>
-                  <Font name="Euclid Math Two" size="15.0" />
+                  <Font name = "Euclid Math Two" size = "15.0" />
                </font>
             </Label>
-            <ChoiceBox fx:id="sortOptions" prefHeight="25.0" prefWidth="201.0">
+
+            <TextField fx:id = "minScore" promptText = "Min Score">
                <VBox.margin>
-                  <Insets right="10.0" />
-               </VBox.margin></ChoiceBox>
-            <Button alignment="CENTER" mnemonicParsing="false" onAction="#filterTable" style="-fx-alignment: CENTER; -fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 2;" text="Search" textAlignment="CENTER">
+                  <Insets right = "10.0" top = "5.0" />
+               </VBox.margin>
+            </TextField>
+
+            <TextField fx:id = "maxScore" promptText = "Max Score:">
                <VBox.margin>
-                  <Insets top="40.0" />
+                  <Insets right = "10.0" top = "5.0" />
+               </VBox.margin>
+            </TextField>
+
+            <Label prefHeight = "17.0" prefWidth = "102.0" style = "-fx-alignment: CENTER;" text = "Sort By" textAlignment = "CENTER">
+               <VBox.margin>
+                  <Insets left = "-5.0" top = "10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name = "Euclid Math Two" size = "15.0" />
+               </font>
+            </Label>
+
+            <ChoiceBox fx:id = "sortOptions" prefHeight = "25.0" prefWidth = "201.0">
+               <VBox.margin>
+                  <Insets right = "10.0" />
+               </VBox.margin>
+            </ChoiceBox>
+
+            <Button alignment = "CENTER" mnemonicParsing = "false" onAction = "#filterTable" style = "-fx-alignment: CENTER; -fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 2;" text = "Search" textAlignment = "CENTER">
+               <VBox.margin>
+                  <Insets top = "40.0" />
                </VBox.margin>
             </Button>
+
          </children>
       </VBox>
    </right>
+
 </BorderPane>

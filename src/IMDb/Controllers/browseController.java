@@ -11,9 +11,6 @@ import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -73,8 +70,6 @@ public class browseController implements Initializable {
         scoreColumn.setMinWidth(50);
         scoreColumn.setMaxWidth(50);
         
-
-
         dataTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, durationColumn, scoreColumn);
 
         dataTable.setRowFactory( tableView -> {
@@ -88,51 +83,53 @@ public class browseController implements Initializable {
                 }
             });
             return row;
-         });
+        });
 
-         genreFilter.getItems().add("X Action");
-         genreFilter.getItems().add("X Adventure");
-         genreFilter.getItems().add("X Animation");
-         genreFilter.getItems().add("X Biography");
-         genreFilter.getItems().add("X Comedy");
-         genreFilter.getItems().add("X Crime");
-         genreFilter.getItems().add("X Drama");
-         genreFilter.getItems().add("X Documentary");
-         genreFilter.getItems().add("X Family");
-         genreFilter.getItems().add("X Fantasy");
-         genreFilter.getItems().add("X History");
-         genreFilter.getItems().add("X Horror");
-         genreFilter.getItems().add("X Music");
-         genreFilter.getItems().add("X Musical");
-         genreFilter.getItems().add("X Mystery");
-         genreFilter.getItems().add("X Romance");
-         genreFilter.getItems().add("X Sci-Fi");
-         genreFilter.getItems().add("X Sport");
-         genreFilter.getItems().add("X Thriller");
-         genreFilter.getItems().add("X War");
-         genreFilter.getItems().add("X Western");
+        genreFilter.getItems().add("X Action");
+        genreFilter.getItems().add("X Adventure");
+        genreFilter.getItems().add("X Animation");
+        genreFilter.getItems().add("X Biography");
+        genreFilter.getItems().add("X Comedy");
+        genreFilter.getItems().add("X Crime");
+        genreFilter.getItems().add("X Drama");
+        genreFilter.getItems().add("X Documentary");
+        genreFilter.getItems().add("X Family");
+        genreFilter.getItems().add("X Fantasy");
+        genreFilter.getItems().add("X History");
+        genreFilter.getItems().add("X Horror");
+        genreFilter.getItems().add("X Music");
+        genreFilter.getItems().add("X Musical");
+        genreFilter.getItems().add("X Mystery");
+        genreFilter.getItems().add("X Romance");
+        genreFilter.getItems().add("X Sci-Fi");
+        genreFilter.getItems().add("X Sport");
+        genreFilter.getItems().add("X Thriller");
+        genreFilter.getItems().add("X War");
+        genreFilter.getItems().add("X Western");
 
-         sortOptions.getItems().add("Title - Ascending");
-         sortOptions.getItems().add("Title - Descending");
-         sortOptions.getItems().add("Genre - Ascending");
-         sortOptions.getItems().add("Genre - Descending");
-         sortOptions.getItems().add("Country - Ascending");
-         sortOptions.getItems().add("Country - Descending");
-         sortOptions.getItems().add("Language - Ascending");
-         sortOptions.getItems().add("Language - Descending");
-         sortOptions.getItems().add("Year - Ascending");
-         sortOptions.getItems().add("Year - Descending");
-         sortOptions.getItems().add("Duration - Ascending");
-         sortOptions.getItems().add("Duration - Descending");
-         sortOptions.getItems().add("Score - Ascending");
-         sortOptions.getItems().add("Score - Descending");
+        sortOptions.getItems().add("Title - Ascending");
+        sortOptions.getItems().add("Title - Descending");
+        sortOptions.getItems().add("Genre - Ascending");
+        sortOptions.getItems().add("Genre - Descending");
+        sortOptions.getItems().add("Country - Ascending");
+        sortOptions.getItems().add("Country - Descending");
+        sortOptions.getItems().add("Language - Ascending");
+        sortOptions.getItems().add("Language - Descending");
+        sortOptions.getItems().add("Year - Ascending");
+        sortOptions.getItems().add("Year - Descending");
+        sortOptions.getItems().add("Duration - Ascending");
+        sortOptions.getItems().add("Duration - Descending");
+        sortOptions.getItems().add("Score - Ascending");
+        sortOptions.getItems().add("Score - Descending");
+
     }
 
-    public void addGenre(){
+    public void addGenre() {
 
         int selectedIndex = genreFilter.getSelectionModel().getSelectedIndex();
         String selectedGenre = genreFilter.getSelectionModel().getSelectedItem();
-        if(selectedGenre.charAt(0) != 'X'){
+
+        if (selectedGenre.charAt(0) != 'X') {
             main.getDatabase().removeGenreFilter(selectedGenre);
             genreFilter.getItems().remove(selectedIndex);
             genreFilter.getItems().add(selectedIndex, "X " + selectedGenre);            
@@ -142,33 +139,34 @@ public class browseController implements Initializable {
             genreFilter.getItems().remove(selectedIndex);
             genreFilter.getItems().add(selectedIndex, selectedGenre.substring(2));
         }
+
     }
 
     public void loadHome() {
         main.loadHome();
     }
 
-    public void loadList(){
+    public void loadList() {
         main.loadList();
     }
 
-    public void loadProfile(){
+    public void loadProfile() {
         main.loadProfile();
     }
 
     public void onEnter(ActionEvent event) {
         
-        if(searchBar.getText().equals("")){
+        if(searchBar.getText().equals("")) {
             main.resetTable();
         }
-        else{
+        else {
             ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
             dataTable.setItems(searchResults);
         }
 
     }
 
-    public void filterTable(){
+    public void filterTable() {
 
         boolean isInverse;
         isInverse = false;
@@ -177,37 +175,37 @@ public class browseController implements Initializable {
         
         try {
 
-            if(minScore.getText().equals("")){
+            if (minScore.getText().equals("")) {
                 curMinScore = -1;
             }
-            else{
+            else {
                 curMinScore = Double.parseDouble(minScore.getText());
             }
-            if(maxScore.getText().equals("")){
+            if (maxScore.getText().equals("")) {
                 curMaxScore = 11;
             }
             else {
                 curMaxScore = Double.parseDouble(maxScore.getText());
             }
-            if(minDur.getText().equals("")){
+            if (minDur.getText().equals("")) {
                 curMinDur = 0;
             }
             else {
                 curMinDur = Integer.parseInt(minDur.getText());
             }
-            if(maxDur.getText().equals("")){
+            if (maxDur.getText().equals("")) {
                 curMaxDur = 1000;
             }
             else {
                 curMaxDur = Integer.parseInt(maxDur.getText());
             }
-            if(minYear.getText().equals("")){
+            if (minYear.getText().equals("")) {
                 curMinYear = 0;
             }
             else {
                 curMinYear = Integer.parseInt(minYear.getText());
             }
-            if(maxYear.getText().equals("")){
+            if (maxYear.getText().equals("")) {
                 curMaxYear = 3000;
             }
             else {
@@ -215,13 +213,14 @@ public class browseController implements Initializable {
             }
             main.getDatabase().setIntegerFilters(curMinScore, curMaxScore, curMinYear, curMaxYear, curMinDur, curMaxDur);
         }
-        catch(Exception e){
+        catch(Exception e) {
             System.out.println(e);
         }
 
         int selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
         
-        if(selectedIndex != -1){
+        if(selectedIndex != -1) {
+            
             if(selectedIndex % 2 != 0) {
                 selectedIndex -= 1;
                 isInverse = true;

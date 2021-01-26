@@ -5,7 +5,6 @@ import java.io.IOException;
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
 import IMDb.Classes.myList;
-import IMDb.Controllers.movieViewerController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -73,6 +72,7 @@ public class main extends Application {
         profile = new Scene(root, 1000, 667);
 
         loadFile();
+
     }
 
     public static void loadHome() {
@@ -85,12 +85,12 @@ public class main extends Application {
         window.show();
     }
 
-    public static void loadList(){
+    public static void loadList() {
         window.setScene(list);
         window.show();
     }
 
-    public static void loadProfile(){
+    public static void loadProfile() {
         loadPieChart();
         loadBarChart();
         loadStats();
@@ -98,86 +98,91 @@ public class main extends Application {
         window.show();
     }
 
-    public static void loadPieChart(){
-        PieChart chart = (PieChart)profile.lookup("#pieGraph");
+    public static void loadPieChart() {
+
+        PieChart chart = (PieChart) profile.lookup("#pieGraph");
         ObservableList<PieChart.Data> list = FXCollections.observableArrayList();
 
-        for(String genre: userList.getGenres().keySet()){
+        for (String genre: userList.getGenres().keySet()) {
             list.add(new PieChart.Data(genre, userList.getGenres().get(genre)));
         }
 
         chart.setData(list);
+
     }
 
     public static void loadBarChart(){
+
         userRating = 0;
-        BarChart<String, Number> chart = (BarChart)profile.lookup("#barGraph");
+        BarChart<String, Number> chart = (BarChart) profile.lookup("#barGraph");
         XYChart.Series list = new XYChart.Series<>();
         int[] score = new int[11];
 
-        for(movie mov: userList.getCompleted()){
-            if(!mov.getUserScore().getText().equals("")){
+        for (movie mov: userList.getCompleted()) {
+            if (!mov.getUserScore().getText().equals("")) {
                 userRating += Double.parseDouble(mov.getUserScore().getText());
-                score[(int)Math.round(Double.parseDouble(mov.getUserScore().getText()))] += 1;
+                score[(int) Math.round(Double.parseDouble(mov.getUserScore().getText()))] += 1;
             }
         }   
 
-        for(int a = 0; a < 11; a++){
+        for (int a = 0; a < 11; a++) {
             list.getData().add(new XYChart.Data(String.valueOf(a), score[a]));
         }
 
         chart.getData().clear();
         chart.getData().addAll(list);
+
     }
 
     public static void loadStats(){
-        Label watchTime = (Label)profile.lookup("#watchTime");
-        Label numCompleted = (Label)profile.lookup("#numCompleted");
-        Label numToWatch = (Label)profile.lookup("#numToWatch");
-        Label avgUserRating = (Label)profile.lookup("#avgUserRating");
-        Label avgRating = (Label)profile.lookup("#avgRating");
 
-        watchTime.setText("Total Watch Time: " + (int)((userList.getWatchTime()/1440.0) * 100)/100.0 + " days");
+        Label watchTime = (Label) profile.lookup("#watchTime");
+        Label numCompleted = (Label) profile.lookup("#numCompleted");
+        Label numToWatch = (Label) profile.lookup("#numToWatch");
+        Label avgUserRating = (Label) profile.lookup("#avgUserRating");
+        Label avgRating = (Label) profile.lookup("#avgRating");
+
+        watchTime.setText("Total Watch Time: " + (int) ((userList.getWatchTime() / 1440.0) * 100) / 100.0 + " days");
         numCompleted.setText("Completed: " + userList.getNumCompleted() + " movies");
         numToWatch.setText("Planned: " + userList.getNumPlanned() + " movies");
 
-        if(userList.getNumCompleted() != 0){
-            avgRating.setText("Platform Average Rating: " + (int)(userList.getAvgScore()/(userList.getNumCompleted()*1.0)) * 10 / 10.0);
+        if (userList.getNumCompleted() != 0) {
 
-            if(userRating != 0){
-                avgUserRating.setText("Platform Average Rating: " + (int)(userRating/(userList.getNumCompleted()*1.0)) * 10 / 10.0);
+            avgRating.setText("Platform Average Rating: " + (int) (userList.getAvgScore()/(userList.getNumCompleted() * 1.0)) * 10 / 10.0);
+
+            if (userRating != 0) {
+                avgUserRating.setText("Platform Average Rating: " + (int) (userRating/(userList.getNumCompleted() * 1.0)) * 10 / 10.0);
             }
             
         }
-
 
     }
 
     public static void loadMovieInfo() {
 
-        Button completed = (Button)movieInfo.lookup("#completed");
-        Button planToWatch = (Button)movieInfo.lookup("#planToWatch");
-        Text  movieTitle = (Text)movieInfo.lookup("#movieTitle");
-        Text  movieGenre = (Text)movieInfo.lookup("#movieGenre");
-        Text movieCountry = (Text)movieInfo.lookup("#movieCountry");
-        Text movieLanguage = (Text)movieInfo.lookup("#movieLanguage");
-        Text movieDirector = (Text)movieInfo.lookup("#movieDirector");
-        Text movieDescription = (Text)movieInfo.lookup("#movieDescription");
-        Text movieYear = (Text)movieInfo.lookup("#movieYear");
-        Text movieDuration = (Text)movieInfo.lookup("#movieDuration");
-        Text movieScore = (Text)movieInfo.lookup("#movieScore");
+        Button completed = (Button) movieInfo.lookup("#completed");
+        Button planToWatch = (Button) movieInfo.lookup("#planToWatch");
+        Text  movieTitle = (Text) movieInfo.lookup("#movieTitle");
+        Text  movieGenre = (Text) movieInfo.lookup("#movieGenre");
+        Text movieCountry = (Text) movieInfo.lookup("#movieCountry");
+        Text movieLanguage = (Text) movieInfo.lookup("#movieLanguage");
+        Text movieDirector = (Text) movieInfo.lookup("#movieDirector");
+        Text movieDescription = (Text) movieInfo.lookup("#movieDescription");
+        Text movieYear = (Text) movieInfo.lookup("#movieYear");
+        Text movieDuration = (Text) movieInfo.lookup("#movieDuration");
+        Text movieScore = (Text) movieInfo.lookup("#movieScore");
 
-        if(userList.hasCompleted(currentMovie)){
+        if (userList.hasCompleted(currentMovie)) {
             completed.setText("Remove");
         }
-        else{
+        else {
             completed.setText("Completed");
         }
 
-        if(userList.hasPlanned(currentMovie)){
+        if (userList.hasPlanned(currentMovie)) {
             planToWatch.setText("Remove");
         }
-        else{
+        else {
             planToWatch.setText("Plan to Watch");
         }
 
@@ -192,33 +197,34 @@ public class main extends Application {
         movieScore.setText("Score: " + String.valueOf(currentMovie.getScore()));       
         window.setScene(movieInfo);
         window.show();
+
     }
 
-    public static Scene getBrowse(){
+    public static Scene getBrowse() {
         return browse;
     }
 
-    public static database getDatabase(){
+    public static database getDatabase() {
         return data;
     }
 
-    public static void resetTable(){
+    public static void resetTable() {
         dataTable.setItems(movies);
     }
 
-    public static void setMovie(movie mov){
+    public static void setMovie(movie mov) {
         currentMovie = mov;
     }
 
-    public static movie getCurMovie(){
+    public static movie getCurMovie() {
         return currentMovie;
     }
 
-    public static myList getList(){
+    public static myList getList() {
         return userList;
     }
 
-    public static void updateList(){
+    public static void updateList() {
 
         TableView<movie> completedTable = (TableView<movie>)list.lookup("#completedTable");
         completedTable.setItems(userList.getCompleted());
@@ -227,28 +233,34 @@ public class main extends Application {
 
     }
 
-    private static void loadFile() throws IOException{
+    private static void loadFile() throws IOException {
 
-        ProgressBar progressBar = (ProgressBar)loadingScreen.lookup("#progressBar");
+        ProgressBar progressBar = (ProgressBar) loadingScreen.lookup("#progressBar");
 
         Thread loadDataset = new Thread(){
+
             public void run() {
+
                 dataTable = (TableView<movie>)browse.lookup("#dataTable");
                 userList = new myList();
                 movies = FXCollections.observableArrayList();
+
                 try {
+
                     int num = 0;
                     data = new database("src/IMDb/Resources/dataset_full.csv", -99999999, 99999999, -99999999, 99999999, -99999999.9, 99999999.9);
                     final double size = data.getSize() * 1.0;
                     
-                    for(String id: data.getMovieList()) {
+                    for (String id: data.getMovieList()) {
+
                         num++;  
                         final double done = num;
-                        if(num % (size/10) == 0){
-                            Platform.runLater(() -> progressBar.setProgress( done/size ));
+                        if (num % (size / 10) == 0) {
+                            Platform.runLater(() -> progressBar.setProgress(done / size));
                             Thread.sleep(50);
                         }
                         movies.add(data.getMovie(id));
+
                     }
     
                     dataTable.setItems(movies);
@@ -256,14 +268,17 @@ public class main extends Application {
                         loadHome();
                     });
 
-                }catch(Exception e){
+                }
+                catch (Exception e) {
                     System.out.println(e);
                 }
 
             }
             
         };
+
         loadDataset.start();
+        
     }
 
 }
