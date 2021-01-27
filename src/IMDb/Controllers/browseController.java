@@ -303,7 +303,7 @@ public class browseController implements Initializable {
         }
 
         // find the entries in the sorted list that match the filters and the text in the search bar and replace the current table with this new data
-        dataTable.setItems(main.getDatabase().searchFiltered(isInverse, searchBar.getText()));
+        dataTable.setItems(main.getDatabase().searchFiltered(isInverse, searchBar.getText().toLowerCase()));
         
     }
 
