@@ -232,7 +232,7 @@ public class browseController implements Initializable {
             main.getDatabase().sort(selectedIndex, 0, main.getDatabase().getSize() - 1);
         }
 
-        dataTable.setItems(main.getDatabase().searchFiltered(isInverse));
+        dataTable.setItems(main.getDatabase().searchFiltered(isInverse, searchBar.getText()));
         
     }
 

@@ -18,7 +18,6 @@ public class database {
     private ArrayList<String> movieList;
     private HashSet<String> genreFilters;
     private HashMap<String, movie> allMovies;
-    private ObservableList<movie> searchResults;
     private int minDur, maxDur, minYear, maxYear;
     private double minScore;
     private double maxScore;
@@ -43,7 +42,6 @@ public class database {
             allMovies = new HashMap<>();
             movieList = new ArrayList<>();
             genreFilters = new HashSet<String>();
-            searchResults = FXCollections.observableArrayList();
             this.minDur = minDur;
             this.maxDur = maxDur;
             this.minYear = minYear;
@@ -272,7 +270,10 @@ public class database {
     *
     * @return ObservableList<movie> of the list of movies that include the provided string in their title
     */
-    public ObservableList<movie> searchMovies(String search) {        
+    public ObservableList<movie> searchMovies(String search) {
+
+        // list declaration and initialization
+        ObservableList<movie> searchResults = FXCollections.observableArrayList();
         
         // go through each movie and see if the title contains the given string
         for (String key: this.allMovies.keySet()) {
@@ -292,7 +293,7 @@ public class database {
     *
     * @return ObservableList<movie> of the list of movies that fit the given filters
     */
-    public ObservableList<movie> searchFiltered(boolean isInverse) {
+    public ObservableList<movie> searchFiltered(boolean isInverse, String search) {
 
         // variable declaration
         ObservableList<movie> filterResults = FXCollections.observableArrayList();
@@ -300,10 +301,10 @@ public class database {
         boolean isFiltered;
         
         // go through each movie in the data base
-        for (movie current: this.searchResults) {
+        for (String key: this.movieList) {
 
             // split the genre property by commas
-            genres = current.getGenre().split(", ");
+            genres = this.allMovies.get(key).getGenre().split(", ");
             isFiltered = false;
 
             // check if the genres in the movie match the ones in the filter
@@ -314,13 +315,13 @@ public class database {
             }
 
             // check the numeric stats of the movie
-            int curDur = current.getDuration();
-            int curYear = current.getYear();
-            double curScore = current.getScore();
+            int curDur = this.allMovies.get(key).getDuration();
+            int curYear = this.allMovies.get(key).getYear();
+            double curScore = this.allMovies.get(key).getScore();
 
             // if the movie doesn't match/violate any of the filters, than add it to the search list
-            if (!isFiltered && (this.minDur <= curDur  && curDur <= this.maxDur) && (this.minScore <= curScore && curScore <= this.maxScore ) && (this.minYear <= curYear && curYear <= this.maxYear)) {
-                filterResults.add(current);
+            if (this.allMovies.get(key).getTitle().toLowerCase().contains(search) && (this.minDur <= curDur  && curDur <= this.maxDur) && (this.minScore <= curScore && curScore <= this.maxScore ) && (this.minYear <= curYear && curYear <= this.maxYear)) {
+                filterResults.add(this.allMovies.get(key));
             }
         }
 
