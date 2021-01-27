@@ -1,5 +1,11 @@
 package IMDb.Controllers;
 
+/**
+* Controller for movieInfo fxml page
+* @author: J. Lin
+* 
+*/
+
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
