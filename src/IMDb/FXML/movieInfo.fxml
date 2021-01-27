@@ -8,146 +8,182 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="667.0" minWidth="1000.0" prefHeight="667.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="IMDb.Controllers.movieViewerController">
+<BorderPane maxHeight = "-Infinity" maxWidth = "-Infinity" minHeight = "667.0" minWidth = "1000.0" prefHeight = "667.0" prefWidth = "1000.0" xmlns = "http://javafx.com/javafx/8" xmlns:fx = "http://javafx.com/fxml/1" fx:controller = "IMDb.Controllers.movieViewerController">
+   
+   <!-- Top navagation bar and search bar -->
    <top>
-      <HBox prefHeight="42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
+      <HBox prefHeight = "42.0" prefWidth = "1000.0" style = "-fx-background-color: #8a8a8a;" BorderPane.alignment = "CENTER">
          <children>
-            <ImageView fitHeight="56.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true">
+
+            <ImageView fitHeight = "56.0" fitWidth = "101.0" pickOnBounds = "true" preserveRatio = "true">
                <image>
-                  <Image url="@../Resources/logo.png" />
+                  <Image url = "@../Resources/logo.png" />
                </image>
             </ImageView>
-            <Button mnemonicParsing="false" onAction="#loadHome" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Home">
+
+            <Button mnemonicParsing = "false" onAction = "#loadHome" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "Home">
                <HBox.margin>
                   <Insets left="-3.0" />
                </HBox.margin>
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction="#loadBrowse" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="Browse">
+
+            <Button mnemonicParsing = "false" onAction = "#loadBrowse" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "Browse">
+               <font>
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
+               </font>
+            </Button>
+
+            <Button mnemonicParsing = "false" onAction = "#loadList"  prefHeight = "48.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "My List">
                <font>
                   <Font name="BellGothicStd-Bold" size="20.0" />
                </font>
             </Button>
-            <Button mnemonicParsing="false" onAction = "#loadList"  prefHeight="48.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My List">
+
+            <Button onAction = "#loadProfile" mnemonicParsing = "false" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "My Profile">
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
-            <Button onAction = "#loadProfile" mnemonicParsing="false" prefHeight="49.0" prefWidth="125.0" style="-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text="My Profile">
-               <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
-               </font>
-            </Button>
-            <ImageView fitHeight="39.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+
+            <ImageView fitHeight = "39.0" fitWidth = "46.0" pickOnBounds = "true" preserveRatio = "true">
                <image>
-                  <Image url="@../Resources/search_icon.png" />
+                  <Image url = "@../Resources/search_icon.png" />
                </image>
                <HBox.margin>
-                  <Insets left="4.0" top="7.0" />
+                  <Insets left = "4.0" top = "7.0" />
                </HBox.margin>
             </ImageView>
-            <TextField fx:id="searchBar" onAction="#onEnter" prefHeight="34.0" prefWidth="355.0" promptText="Search" style="-fx-background-radius: 100; -fx-border-radius: 100;">
+
+            <TextField fx:id = "searchBar" onAction = "#onEnter" prefHeight = "34.0" prefWidth = "355.0" promptText = "Search by Title" style = "-fx-background-radius: 100; -fx-border-radius: 100;">
                <HBox.margin>
-                  <Insets top="8.0" />
+                  <Insets top = "8.0" />
                </HBox.margin>
                <padding>
-                  <Insets left="14.0" />
+                  <Insets left = "14.0" />
                </padding>
             </TextField>
+
          </children>
       </HBox>
    </top>
+
+   <!-- Info on movie, add to plan to watch/completed, and exit button -->
    <center>
-      <GridPane prefHeight="617.0" prefWidth="1006.0" BorderPane.alignment="CENTER">
+      <GridPane prefHeight = "617.0" prefWidth = "1006.0" BorderPane.alignment = "CENTER">
+
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="450.0" minWidth="10.0" prefWidth="406.0" />
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="666.0" minWidth="10.0" prefWidth="477.0" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="502.0" minWidth="0.0" prefWidth="0.0" />
+          <ColumnConstraints hgrow = "SOMETIMES" maxWidth = "450.0" minWidth = "10.0" prefWidth = "406.0" />
+            <ColumnConstraints hgrow = "SOMETIMES" maxWidth = "666.0" minWidth = "10.0" prefWidth = "477.0" />
+          <ColumnConstraints hgrow = "SOMETIMES" maxWidth = "502.0" minWidth = "0.0" prefWidth = "0.0" />
         </columnConstraints>
+
         <rowConstraints>
-          <RowConstraints maxHeight="537.0" minHeight="10.0" prefHeight="473.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="303.0" minHeight="10.0" prefHeight="144.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight = "537.0" minHeight = "10.0" prefHeight = "473.0" vgrow = "SOMETIMES" />
+          <RowConstraints maxHeight = "303.0" minHeight = "10.0" prefHeight = "144.0" vgrow = "SOMETIMES" />
         </rowConstraints>
+
          <children>
-            <VBox prefHeight="490.0" prefWidth="446.0">
+
+            <VBox prefHeight = "490.0" prefWidth = "446.0">
                <children>
-                  <Text fx:id="movieTitle" text="Movie Title" wrappingWidth="386.92999267578125">
+               
+                  <Text fx:id = "movieTitle" text = "Movie Title" wrappingWidth = "386.92999267578125">
                      <VBox.margin>
-                        <Insets left="40.0" top="40.0" />
+                        <Insets left = "40.0" top = "40.0" />
                      </VBox.margin>
                      <font>
-                        <Font name="ArnoPro-SmbdDisplay" size="30.0" />
-                     </font></Text>
-                  <Text fx:id="movieGenre" text="Genre:">
-                     <VBox.margin>
-                        <Insets left="40.0" top="25.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="20.0" />
-                     </font></Text>
-                  <Text fx:id="movieScore" text="Score: ">
-                     <VBox.margin>
-                        <Insets left="40.0" top="25.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="20.0" />
-                     </font></Text>
-                  <Text fx:id="movieDuration" text="Duration: ">
-                     <VBox.margin>
-                        <Insets left="40.0" top="25.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="20.0" />
-                     </font></Text>
-                  <Text fx:id="movieYear" text="Year:">
-                     <VBox.margin>
-                        <Insets left="40.0" top="25.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="20.0" />
-                     </font></Text>
-                  <Text fx:id="movieCountry" text="Country: ">
-                     <VBox.margin>
-                        <Insets left="40.0" top="25.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="20.0" />
-                     </font></Text>
-                  <Text fx:id="movieLanguage" text="Language: ">
-                     <VBox.margin>
-                        <Insets left="40.0" top="25.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font size="20.0" />
+                        <Font name = "ArnoPro-SmbdDisplay" size = "30.0" />
                      </font>
                   </Text>
-                  <Text fx:id="movieDirector" text="Director: ">
+
+                  <Text fx:id = "movieGenre" text = "Genre:">
                      <VBox.margin>
-                        <Insets left="40.0" top="25.0" />
+                        <Insets left = "40.0" top = "25.0" />
                      </VBox.margin>
                      <font>
-                        <Font size="20.0" />
-                     </font></Text>
+                        <Font size = "20.0" />
+                     </font>
+                  </Text>
+
+                  <Text fx:id = "movieScore" text = "Score: ">
+                     <VBox.margin>
+                        <Insets left = "40.0" top = "25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size = "20.0" />
+                     </font>
+                  </Text>
+
+                  <Text fx:id = "movieDuration" text = "Duration: ">
+                     <VBox.margin>
+                        <Insets left = "40.0" top = "25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size = "20.0" />
+                     </font>
+                  </Text>
+
+                  <Text fx:id = "movieYear" text = "Year:">
+                     <VBox.margin>
+                        <Insets left = "40.0" top = "25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size = "20.0" />
+                     </font>
+                  </Text>
+
+                  <Text fx:id = "movieCountry" text = "Country: ">
+                     <VBox.margin>
+                        <Insets left = "40.0" top = "25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size = "20.0" />
+                     </font>
+                  </Text>
+
+                  <Text fx:id = "movieLanguage" text = "Language: ">
+                     <VBox.margin>
+                        <Insets left = "40.0" top = "25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size = "20.0" />
+                     </font>
+                  </Text>
+
+                  <Text fx:id = "movieDirector" text = "Director: ">
+                     <VBox.margin>
+                        <Insets left = "40.0" top = "25.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font size = "20.0" />
+                     </font>
+                  </Text>
+
                </children>
             </VBox>
-            <Button alignment="TOP_RIGHT" mnemonicParsing="false" onAction="#loadPrevious" style="-fx-background-color: white; -fx-border-color: grey; -fx-border-width: 4; -fx-border-radius: 10;" text="X" textAlignment="RIGHT" textFill="#eb0000" GridPane.columnIndex="2" GridPane.halignment="RIGHT" GridPane.valignment="TOP">
+
+            <Button alignment = "TOP_RIGHT" mnemonicParsing = "false" onAction = "#loadPrevious" style = "-fx-background-color: white; -fx-border-color: grey; -fx-border-width: 4; -fx-border-radius: 10;" text = "X" textAlignment = "RIGHT" textFill = "#eb0000" GridPane.columnIndex = "2" GridPane.halignment = "RIGHT" GridPane.valignment = "TOP">
                <font>
-                  <Font name="ArnoPro-BoldSmText" size="16.0" />
+                  <Font name = "ArnoPro-BoldSmText" size = "16.0" />
                </font>
                <GridPane.margin>
-                  <Insets right="10.0" top="10.0" />
-               </GridPane.margin></Button>
-            <Label text="Description:" GridPane.columnIndex="1" GridPane.valignment="TOP">
+                  <Insets right = "10.0" top = "10.0" />
+               </GridPane.margin>
+            </Button>
+
+            <Label text="Description:" GridPane.columnIndex = "1" GridPane.valignment = "TOP">
                <font>
-                  <Font size="20.0" />
+                  <Font size = "20.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="20.0" top="40.0" />
+                  <Insets left = "20.0" top = "40.0" />
                </GridPane.margin>
             </Label>
-            <Button fx:id = "planToWatch" onAction = "#addToPlan" mnemonicParsing="false" prefHeight="38.0" prefWidth="190.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Plan to Watch" textFill="WHITE" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+
+            <Button fx:id = "planToWatch" onAction = "#addToPlan" mnemonicParsing = "false" prefHeight = "38.0" prefWidth = "190.0" style = "-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text = "Plan to Watch" textFill = "WHITE" GridPane.halignment = "LEFT" GridPane.rowIndex = "1">
                <font>
                   <Font name="Century Gothic Bold" size="20.0" />
                </font>
@@ -155,23 +191,27 @@
                   <Insets left="40.0" />
                </GridPane.margin>
             </Button>
-            <Button fx:id = "completed" onAction = "#addToCompleted" mnemonicParsing="false" prefHeight="25.0" prefWidth="182.0" style="-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text="Completed" textFill="WHITE" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+
+            <Button fx:id = "completed" onAction = "#addToCompleted" mnemonicParsing = "false" prefHeight = "25.0" prefWidth = "182.0" style = "-fx-background-radius: 100; -fx-border-radius: 100; -fx-background-color: #333333; -fx-border-width: 3;" text = "Completed" textFill = "WHITE" GridPane.columnIndex = "1" GridPane.halignment = "LEFT" GridPane.rowIndex = "1">
                <font>
-                  <Font name="Century Gothic Bold" size="20.0" />
+                  <Font name = "Century Gothic Bold" size = "20.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="20.0" />
+                  <Insets left = "20.0" />
                </GridPane.margin>
             </Button>
-            <Text fx:id="movieDescription" text="Description:" wrappingWidth="484.8046875" GridPane.columnIndex="1" GridPane.valignment="TOP">
+
+            <Text fx:id = "movieDescription" text = "Description:" wrappingWidth = "484.8046875" GridPane.columnIndex = "1" GridPane.valignment = "TOP">
                <font>
-                  <Font size="16.0" />
+                  <Font size = "16.0" />
                </font>
                <GridPane.margin>
-                  <Insets left="20.0" top="90.0" />
+                  <Insets left = "20.0" top = "90.0" />
                </GridPane.margin>
             </Text>
+
          </children>
       </GridPane>
    </center>
+
 </BorderPane>
