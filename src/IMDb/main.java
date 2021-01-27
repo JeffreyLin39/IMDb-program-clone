@@ -7,6 +7,8 @@ package IMDb;
 */
 
 import java.io.IOException;
+import java.text.DecimalFormat;
+
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
 import IMDb.Classes.myList;
@@ -39,6 +41,7 @@ public class main extends Application {
     private static Stage window;
     private static Parent root;
     private static double userRating;
+    private static double ratedMovies;
     private static database data;
     private static myList userList;
     private static TableView<movie> dataTable;
@@ -159,6 +162,7 @@ public class main extends Application {
 
         // declare and instantiate variables
         userRating = 0;
+        ratedMovies = 0;
         BarChart<String, Number> chart = (BarChart) profile.lookup("#barGraph");
         XYChart.Series list = new XYChart.Series<>();
         int[] score = new int[11];
@@ -167,6 +171,7 @@ public class main extends Application {
         for (movie mov: userList.getCompleted()) {
             // if score isn't empty, round the score and add it to the bar graph
             if (!mov.getUserScore().getText().equals("")) {
+                ratedMovies++;
                 userRating += Double.parseDouble(mov.getUserScore().getText());
                 score[(int) Math.round(Double.parseDouble(mov.getUserScore().getText()))] += 1;
             }
@@ -194,9 +199,10 @@ public class main extends Application {
         Label numToWatch = (Label) profile.lookup("#numToWatch");
         Label avgUserRating = (Label) profile.lookup("#avgUserRating");
         Label avgRating = (Label) profile.lookup("#avgRating");
+        DecimalFormat df = new DecimalFormat("#.##");
 
         // set text for watch time, number of completed movies, and number of movies that are in the plan to watch list
-        watchTime.setText("Total Watch Time: " + (int) ((userList.getWatchTime() / 1440.0) * 100) / 100.0 + " days");
+        watchTime.setText("Total Watch Time: " + df.format((userList.getWatchTime() / 1440.0)) + " days");
         numCompleted.setText("Completed: " + userList.getNumCompleted() + " movies");
         numToWatch.setText("Planned: " + userList.getNumPlanned() + " movies");
 
@@ -204,10 +210,10 @@ public class main extends Application {
         if (userList.getNumCompleted() != 0) {
 
             // calculates the average score from all IMDb users by dividing sum of the scores by the number of movies completed
-            avgRating.setText("Platform Average Rating: " + (int) (userList.getAvgScore()/(userList.getNumCompleted() * 1.0)) * 10 / 10.0);
+            avgRating.setText("Platform Average Rating: " + df.format(userList.getAvgScore()/(userList.getNumCompleted())));
             // perform the same calculation for user score
             if (userRating != 0) {
-                avgUserRating.setText("Platform Average Rating: " + (int) (userRating/(userList.getNumCompleted() * 1.0)) * 10 / 10.0);
+                avgUserRating.setText("Your Average Rating: " + df.format((userRating/ratedMovies)));
             }
             
         }
