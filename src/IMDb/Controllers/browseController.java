@@ -35,7 +35,7 @@ public class browseController implements Initializable {
     public TextField maxYear;
 
     /**
-    * Initialize method, runs when browse file is created
+    * Initialize method, runs when browse scene is created
     *
     * @param location - location of fxml file
     * @param resources - reference to java ResourceBundle

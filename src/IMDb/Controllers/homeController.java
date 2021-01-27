@@ -19,7 +19,6 @@ import IMDb.Classes.movie;
 public class homeController implements Initializable {
 
     // objects in the home.fxml file
-    public TableView<movie> dataTable;
     public TextField searchBar;
 
     /**
@@ -61,6 +60,8 @@ public class homeController implements Initializable {
     */
     public void onEnter(ActionEvent event) {
         
+        TableView dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
+
         // check if search bar is empty
         if(searchBar.getText().equals("")) {
             main.resetTable();
