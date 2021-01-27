@@ -1,7 +1,7 @@
 package IMDb.Classes;
 
 /**
-* Ammo class file
+* Database class file
 * @author: J. Lin
 * 
 */
@@ -23,7 +23,7 @@ public class database {
     private double maxScore;
 
     /**
-    * Constructor - creates new instance of an database object
+    * Constructor - creates new instance of a database object
     *
     * @param fileName - the path of the file that should be loaded into the database
     * @param minDur - minimum duration of movies to show, when searching with filters
@@ -320,7 +320,7 @@ public class database {
             double curScore = this.allMovies.get(key).getScore();
 
             // if the movie doesn't match/violate any of the filters, than add it to the search list
-            if (this.allMovies.get(key).getTitle().toLowerCase().contains(search) && (this.minDur <= curDur  && curDur <= this.maxDur) && (this.minScore <= curScore && curScore <= this.maxScore ) && (this.minYear <= curYear && curYear <= this.maxYear)) {
+            if (this.allMovies.get(key).getTitle().toLowerCase().contains(search) && !isFiltered && (this.minDur <= curDur  && curDur <= this.maxDur) && (this.minScore <= curScore && curScore <= this.maxScore ) && (this.minYear <= curYear && curYear <= this.maxYear)) {
                 filterResults.add(this.allMovies.get(key));
             }
         }
