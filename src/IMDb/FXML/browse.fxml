@@ -177,7 +177,7 @@
                </VBox.margin>
             </ChoiceBox>
 
-            <Button alignment = "CENTER" mnemonicParsing = "false" onAction = "#filterTable" style = "-fx-alignment: CENTER; -fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 2;" text = "Search" textAlignment = "CENTER">
+            <Button alignment = "CENTER" mnemonicParsing = "false" onAction = "#filterTable" style = "-fx-alignment: CENTER; -fx-background-color: white; -fx-border-color: black; -fx-border-radius: 10; -fx-background-radius: 10; -fx-border-width: 2;" text = "Apply" textAlignment = "CENTER">
                <VBox.margin>
                   <Insets top = "40.0" />
                </VBox.margin>
