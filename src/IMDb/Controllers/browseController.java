@@ -1,5 +1,11 @@
 package IMDb.Controllers;
 
+/**
+* Controller for browser fxml page
+* @author: J. Lin
+* 
+*/
+
 import IMDb.main;
 import IMDb.Classes.*;
 import javafx.collections.ObservableList;
@@ -16,6 +22,7 @@ import java.util.ResourceBundle;
 
 public class browseController implements Initializable {
 
+    // objects in browse.fxml
     public TableView<movie> dataTable;
     public TextField searchBar;
     public ChoiceBox<String> genreFilter;
@@ -27,56 +34,77 @@ public class browseController implements Initializable {
     public TextField minYear;
     public TextField maxYear;
 
+    /**
+    * Initialize method, runs when browse file is created
+    *
+    * @param location - location of fxml file
+    * @param resources - reference to java ResourceBundle
+    */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        // create table coloumns for the table in browse
+        // set the width for some of them and make them all not sortable
+        
+        // column for title
         TableColumn<movie, String> titleColumn = new TableColumn<>("Title"); 
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         titleColumn.setSortable(false);
         titleColumn.setMinWidth(200);
         titleColumn.setMaxWidth(200);
 
+        // column for genre
         TableColumn<movie, String> genreColumn = new TableColumn<>("Genre"); 
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         genreColumn.setSortable(false);
         
+        // column for country
         TableColumn<movie, String> countryColumn = new TableColumn<>("Country"); 
         countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
         countryColumn.setSortable(false);
 
+        // column for language
         TableColumn<movie, String> languageColumn = new TableColumn<>("Language"); 
         languageColumn.setCellValueFactory(new PropertyValueFactory<>("language"));
         languageColumn.setSortable(false);
         
+        // column for director
         TableColumn<movie, String> directorColumn = new TableColumn<>("Director"); 
         directorColumn.setCellValueFactory(new PropertyValueFactory<>("director"));
         directorColumn.setSortable(false);
         
+        // column for year
         TableColumn<movie, Integer> yearColumn = new TableColumn<>("Year"); 
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
         yearColumn.setSortable(false);
         yearColumn.setMinWidth(70);
         yearColumn.setMaxWidth(70);
 
+        // column for duration
         TableColumn<movie, Integer> durationColumn = new TableColumn<>("Duration"); 
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         durationColumn.setSortable(false);
         durationColumn.setMinWidth(60);
         durationColumn.setMaxWidth(60);
         
+        // column for score
         TableColumn<movie, Double> scoreColumn = new TableColumn<>("Score"); 
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
         scoreColumn.setSortable(false);
         scoreColumn.setMinWidth(50);
         scoreColumn.setMaxWidth(50);
         
+        // add all columns to table
         dataTable.getColumns().addAll(titleColumn, genreColumn, countryColumn, languageColumn, directorColumn, yearColumn, durationColumn, scoreColumn);
 
+        // listen for double click on table row
         dataTable.setRowFactory( tableView -> {
             TableRow<movie> row = new TableRow<>();
             row.setOnMouseClicked(e -> {
                 if (e.getClickCount() == 2 && (!row.isEmpty()) ) {
+                    // get row item
                     movie rowData = row.getItem();
+                    // set the data in the movieInfo scene to the data of the current movie and load the scene
                     main.setMovie(rowData);     
                     movieViewerController.setScene(1);
                     main.loadMovieInfo();       
@@ -85,6 +113,7 @@ public class browseController implements Initializable {
             return row;
         });
 
+        // add options to genre filter
         genreFilter.getItems().add("X Action");
         genreFilter.getItems().add("X Adventure");
         genreFilter.getItems().add("X Animation");
@@ -107,6 +136,7 @@ public class browseController implements Initializable {
         genreFilter.getItems().add("X War");
         genreFilter.getItems().add("X Western");
 
+        // add options to sort filter
         sortOptions.getItems().add("Title - Ascending");
         sortOptions.getItems().add("Title - Descending");
         sortOptions.getItems().add("Genre - Ascending");
@@ -124,16 +154,23 @@ public class browseController implements Initializable {
 
     }
 
+    /**
+    * Add or remove genre from filter
+    */
     public void addGenre() {
 
+        // check which option was selected
         int selectedIndex = genreFilter.getSelectionModel().getSelectedIndex();
         String selectedGenre = genreFilter.getSelectionModel().getSelectedItem();
 
+        // if option had an x in front of the genre, add it to the filter list so it doesn't show up
         if (selectedGenre.charAt(0) != 'X') {
             main.getDatabase().removeGenreFilter(selectedGenre);
             genreFilter.getItems().remove(selectedIndex);
+            // change the text of the option
             genreFilter.getItems().add(selectedIndex, "X " + selectedGenre);            
         }
+        // otherwise if the option did not have an x, remove it from the filter list
         else {
             main.getDatabase().addGenreFilter(selectedGenre.substring(2));
             genreFilter.getItems().remove(selectedIndex);
@@ -142,23 +179,39 @@ public class browseController implements Initializable {
 
     }
 
+    /**
+    * load the home scene
+    */
     public void loadHome() {
         main.loadHome();
     }
 
+    /**
+    * load the user's list scene
+    */
     public void loadList() {
         main.loadList();
     }
 
+    /**
+    * load the user's profile scene
+    */
     public void loadProfile() {
         main.loadProfile();
     }
 
+    /**
+    * Search for movies based on the text entered in the search bar
+    *
+    * @param event - the event made by the user, i.e hitting enter on the keyboard
+    */
     public void onEnter(ActionEvent event) {
         
+        // check if search bar is empty
         if(searchBar.getText().equals("")) {
             main.resetTable();
         }
+        // otherwise search the database and replace the entries in the table based on the results
         else {
             ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
             dataTable.setItems(searchResults);
@@ -166,15 +219,21 @@ public class browseController implements Initializable {
 
     }
 
+    /**
+    * Filter the entries in the table based on the filter options provided
+    */
     public void filterTable() {
 
+        // variable declaration and initialization
         boolean isInverse;
         isInverse = false;
         double curMinScore, curMaxScore;
         int curMinDur, curMaxDur, curMinYear, curMaxYear;
         
+        // try and catch statement to make sure user entered valid values
         try {
 
+            // check if text fields are empty, and if so replace them with values that do not affect search results
             if (minScore.getText().equals("")) {
                 curMinScore = -1;
             }
@@ -191,34 +250,41 @@ public class browseController implements Initializable {
                 curMinDur = 0;
             }
             else {
-                curMinDur = Integer.parseInt(minDur.getText());
+                // round value in case the user enters in a decimal
+                curMinDur = (int) Math.round(Double.parseDouble(minDur.getText()));
             }
             if (maxDur.getText().equals("")) {
                 curMaxDur = 1000;
             }
             else {
-                curMaxDur = Integer.parseInt(maxDur.getText());
+                // round value in case the user enters in a decimal
+                curMaxDur = (int) Math.round(Double.parseDouble(maxDur.getText()));
             }
             if (minYear.getText().equals("")) {
                 curMinYear = 0;
             }
             else {
-                curMinYear = Integer.parseInt(minYear.getText());
+                // round value in case the user enters in a decimal
+                curMinYear = (int) Math.round(Double.parseDouble(minYear.getText()));
             }
             if (maxYear.getText().equals("")) {
                 curMaxYear = 3000;
             }
             else {
-                curMaxYear = Integer.parseInt(maxYear.getText());
+                // round value in case the user enters in a decimal
+                curMaxYear = (int) Math.round(Double.parseDouble(maxYear.getText()));
             }
+            // set the filters
             main.getDatabase().setNumberFilters(curMinScore, curMaxScore, curMinYear, curMaxYear, curMinDur, curMaxDur);
         }
         catch(Exception e) {
             System.out.println(e);
         }
 
+        // check if user wants to sort list
         int selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
         
+        // find which sorting option they chose
         if(selectedIndex != -1) {
 
             if(selectedIndex % 2 != 0) {
@@ -228,20 +294,18 @@ public class browseController implements Initializable {
     
             selectedIndex /= 2;
             selectedIndex += 1;
-    
+            
+            // sort the options in the list
             main.getDatabase().sort(selectedIndex, 0, main.getDatabase().getSize() - 1);
         }
 
+        // find the entries in the sorted list that match the filters and the text in the search bar and replace the current table with this new data
         dataTable.setItems(main.getDatabase().searchFiltered(isInverse, searchBar.getText()));
         
     }
 
 }
 
-     
-     
-     
-     
      
      
      
