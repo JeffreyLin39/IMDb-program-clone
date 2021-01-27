@@ -67,6 +67,7 @@ public class profileController implements Initializable {
     public void onEnter(ActionEvent event) {
         
         TableView dataTable = (TableView<movie>) main.getBrowse().lookup("#dataTable");
+        ObservableList<movie> searchResults;
 
         // check if search bar is empty
         if(searchBar.getText().equals("")) {
@@ -74,7 +75,7 @@ public class profileController implements Initializable {
         }
         // otherwise search the database and replace the entries in the table based on the results
         else {
-            ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
+            searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
             dataTable.setItems(searchResults);
         }
 

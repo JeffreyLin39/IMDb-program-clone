@@ -44,51 +44,52 @@ public class browseController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
 
         // create table coloumns for the table in browse
-        // set the width for some of them and make them all not sortable
-        
-        // column for title
         TableColumn<movie, String> titleColumn = new TableColumn<>("Title"); 
+        TableColumn<movie, String> genreColumn = new TableColumn<>("Genre"); 
+        TableColumn<movie, String> countryColumn = new TableColumn<>("Country"); 
+        TableColumn<movie, String> languageColumn = new TableColumn<>("Language"); 
+        TableColumn<movie, String> directorColumn = new TableColumn<>("Director"); 
+        TableColumn<movie, Integer> yearColumn = new TableColumn<>("Year");
+        TableColumn<movie, Integer> durationColumn = new TableColumn<>("Duration"); 
+        TableColumn<movie, Double> scoreColumn = new TableColumn<>("Score"); 
+            
+        // set the width for some of them and make them all not sortable
+        // column for title
+        
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         titleColumn.setSortable(false);
         titleColumn.setMinWidth(200);
         titleColumn.setMaxWidth(200);
 
         // column for genre
-        TableColumn<movie, String> genreColumn = new TableColumn<>("Genre"); 
         genreColumn.setCellValueFactory(new PropertyValueFactory<>("genre"));
         genreColumn.setSortable(false);
         
         // column for country
-        TableColumn<movie, String> countryColumn = new TableColumn<>("Country"); 
         countryColumn.setCellValueFactory(new PropertyValueFactory<>("country"));
         countryColumn.setSortable(false);
 
         // column for language
-        TableColumn<movie, String> languageColumn = new TableColumn<>("Language"); 
         languageColumn.setCellValueFactory(new PropertyValueFactory<>("language"));
         languageColumn.setSortable(false);
         
         // column for director
-        TableColumn<movie, String> directorColumn = new TableColumn<>("Director"); 
         directorColumn.setCellValueFactory(new PropertyValueFactory<>("director"));
         directorColumn.setSortable(false);
         
         // column for year
-        TableColumn<movie, Integer> yearColumn = new TableColumn<>("Year"); 
         yearColumn.setCellValueFactory(new PropertyValueFactory<>("year"));
         yearColumn.setSortable(false);
         yearColumn.setMinWidth(70);
         yearColumn.setMaxWidth(70);
 
         // column for duration
-        TableColumn<movie, Integer> durationColumn = new TableColumn<>("Duration"); 
         durationColumn.setCellValueFactory(new PropertyValueFactory<>("duration"));
         durationColumn.setSortable(false);
         durationColumn.setMinWidth(60);
         durationColumn.setMaxWidth(60);
         
         // column for score
-        TableColumn<movie, Double> scoreColumn = new TableColumn<>("Score"); 
         scoreColumn.setCellValueFactory(new PropertyValueFactory<>("score"));
         scoreColumn.setSortable(false);
         scoreColumn.setMinWidth(50);
@@ -206,6 +207,8 @@ public class browseController implements Initializable {
     * @param event - the event made by the user, i.e hitting enter on the keyboard
     */
     public void onEnter(ActionEvent event) {
+
+        ObservableList<movie> searchResults;
         
         // check if search bar is empty
         if(searchBar.getText().equals("")) {
@@ -213,7 +216,7 @@ public class browseController implements Initializable {
         }
         // otherwise search the database and replace the entries in the table based on the results
         else {
-            ObservableList<movie> searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
+            searchResults = main.getDatabase().searchMovies(searchBar.getText().toLowerCase());
             dataTable.setItems(searchResults);
         }
 
@@ -228,7 +231,7 @@ public class browseController implements Initializable {
         boolean isInverse;
         isInverse = false;
         double curMinScore, curMaxScore;
-        int curMinDur, curMaxDur, curMinYear, curMaxYear;
+        int curMinDur, curMaxDur, curMinYear, curMaxYear, selectedIndex;
         
         // try and catch statement to make sure user entered valid values
         try {
@@ -282,7 +285,7 @@ public class browseController implements Initializable {
         }
 
         // check if user wants to sort list
-        int selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
+        selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
         
         // find which sorting option they chose
         if(selectedIndex != -1) {

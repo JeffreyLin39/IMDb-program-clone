@@ -37,6 +37,7 @@ public class main extends Application {
     private static Scene list;
     private static Scene profile;
     private static Stage window;
+    private static Parent root;
     private static double userRating;
     private static database data;
     private static myList userList;
@@ -66,7 +67,7 @@ public class main extends Application {
         window.setTitle("Jeffrey's Movie Database");
 
         // loading screen - create and initialize fxml, controller, and scene
-        Parent root = FXMLLoader.load(getClass().getResource("FXML/loadingScreen.fxml"));
+        root = FXMLLoader.load(getClass().getResource("FXML/loadingScreen.fxml"));
         loadingScreen = new Scene(root, 1000, 667);
         window.setScene(loadingScreen);
         window.show();
@@ -322,8 +323,9 @@ public class main extends Application {
 
         // update table view entries with the current completed and plan to watch lists
         TableView<movie> completedTable = (TableView<movie>)list.lookup("#completedTable");
-        completedTable.setItems(userList.getCompleted());
         TableView<movie> planTable = (TableView<movie>)list.lookup("#planTable");
+
+        completedTable.setItems(userList.getCompleted());
         planTable.setItems(userList.getPlanToWatch());
 
     }
