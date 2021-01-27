@@ -80,7 +80,7 @@
 
         <rowConstraints>
           <RowConstraints maxHeight = "537.0" minHeight = "10.0" prefHeight = "473.0" vgrow = "SOMETIMES" />
-          <RowConstraints maxHeigh = "303.0" minHeight = "10.0" prefHeight = "144.0" vgrow = "SOMETIMES" />
+          <RowConstraints maxHeight = "303.0" minHeight = "10.0" prefHeight = "144.0" vgrow = "SOMETIMES" />
         </rowConstraints>
 
          <children>

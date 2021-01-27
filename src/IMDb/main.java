@@ -1,7 +1,6 @@
 package IMDb;
 
 import java.io.IOException;
-
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
 import IMDb.Classes.myList;
@@ -278,7 +277,7 @@ public class main extends Application {
         };
 
         loadDataset.start();
-        
+
     }
 
 }

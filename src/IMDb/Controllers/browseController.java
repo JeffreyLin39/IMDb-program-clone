@@ -211,7 +211,7 @@ public class browseController implements Initializable {
             else {
                 curMaxYear = Integer.parseInt(maxYear.getText());
             }
-            main.getDatabase().setIntegerFilters(curMinScore, curMaxScore, curMinYear, curMaxYear, curMinDur, curMaxDur);
+            main.getDatabase().setNumberFilters(curMinScore, curMaxScore, curMinYear, curMaxYear, curMinDur, curMaxDur);
         }
         catch(Exception e) {
             System.out.println(e);
@@ -220,7 +220,7 @@ public class browseController implements Initializable {
         int selectedIndex = sortOptions.getSelectionModel().getSelectedIndex();
         
         if(selectedIndex != -1) {
-            
+
             if(selectedIndex % 2 != 0) {
                 selectedIndex -= 1;
                 isInverse = true;
