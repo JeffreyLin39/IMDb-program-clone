@@ -19,8 +19,16 @@ public class movieViewerController implements Initializable {
     public Button planToWatch;
     public Button completed;
     
+    /**
+    * Initialize method, runs when movieInfo scene is created
+    *
+    * @param location - location of fxml file
+    * @param resources - reference to java ResourceBundle
+    */
     @Override
-    public void initialize(URL location, ResourceBundle resources) {}
+    public void initialize(URL location, ResourceBundle resources) {
+         return;  
+    }
 
     public static void setScene(int scene) {
         previousScene = scene;
