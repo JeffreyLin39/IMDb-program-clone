@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane maxHeight = "-Infinity" maxWidth = "-Infinity" minHeight = "667.0" minWidth = "1000.0" prefHeight = "667.0" prefWidth = "1000.0" xmlns = "http://javafx.com/javafx/8" xmlns:fx = "http://javafx.com/fxml/1" fx:controller = "IMDb.Controllers.browseController">
-   
+   <!-- Table for vieweing movies -->
    <center>
       <TableView fx:id = "dataTable" prefHeight = "200.0" prefWidth = "200.0" style = "-fx-focus-color: transparent; fx-faint-focus-color: transparent; -fx-background-color: transparent; -fx-control-inner-background: white; -fx-control-inner-background-alt: white;" BorderPane.alignment = "CENTER">
          <columnResizePolicy>
@@ -21,6 +21,7 @@
       </TableView>
    </center>
 
+   <!-- Top navagation bar and search bar -->
    <top>
       <HBox prefHeight = "42.0" prefWidth = "1000.0" style = "-fx-background-color: #8a8a8a;" BorderPane.alignment = "CENTER">
          <children>
@@ -80,6 +81,7 @@
       </HBox>
    </top>
 
+   <!-- Filter boxes -->
    <right>
       <VBox alignment = "CENTER" minWidth = "0.0" prefHeight = "617.0" prefWidth = "157.0" BorderPane.alignment = "CENTER">
          <children>

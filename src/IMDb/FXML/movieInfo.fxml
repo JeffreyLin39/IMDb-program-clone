@@ -10,6 +10,7 @@
 
 <BorderPane maxHeight = "-Infinity" maxWidth = "-Infinity" minHeight = "667.0" minWidth = "1000.0" prefHeight = "667.0" prefWidth = "1000.0" xmlns = "http://javafx.com/javafx/8" xmlns:fx = "http://javafx.com/fxml/1" fx:controller = "IMDb.Controllers.movieViewerController">
    
+   <!-- Top navagation bar and search bar -->
    <top>
       <HBox prefHeight = "42.0" prefWidth = "1000.0" style = "-fx-background-color: #8a8a8a;" BorderPane.alignment = "CENTER">
          <children>
@@ -69,6 +70,7 @@
       </HBox>
    </top>
 
+   <!-- Info on movie, add to plan to watch/completed, and exit button -->
    <center>
       <GridPane prefHeight = "617.0" prefWidth = "1006.0" BorderPane.alignment = "CENTER">
 
