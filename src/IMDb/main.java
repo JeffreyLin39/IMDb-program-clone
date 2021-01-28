@@ -359,7 +359,7 @@ public class main extends Application {
 
                 try {
 
-                    // instaniate new database object
+                    // instaniate new database object, change link to appropriate data set if desired
                     data = new database("src/IMDb/Resources/dataset_censored.csv", -99999999, 99999999, -99999999, 99999999, -99999999.9, 99999999.9);
                     size = data.getSize() * 1.0;
                     
