@@ -69,7 +69,7 @@ public class database {
         int lineNum;
         lineNum = 1;
         ignoreLast = false;
-        
+        ArrayList<String> info = new ArrayList<>();
         line = dataset.readLine();
 
         // Read each line in the file until it is empty
@@ -79,9 +79,8 @@ public class database {
             lineNum++;
             marker = 0;
             shouldIgnore = false;
-            // seperate each line by commas and add each entry into the arraylist
-            ArrayList<String> info = new ArrayList<>();
 
+            // seperate each line by commas and add each entry into the arraylist
             for (int i = 0; i < line.length(); i++) {
 
                 // If there are quotes, take everything from the current quotes to the next quotes and add it to the arraylist
@@ -299,7 +298,10 @@ public class database {
         ObservableList<movie> filterResults = FXCollections.observableArrayList();
         String[] genres;
         boolean isFiltered;
-        
+        int curDur;
+        int curYear;
+        double curScore;
+
         // go through each movie in the data base
         for (String key: this.movieList) {
 
@@ -315,9 +317,9 @@ public class database {
             }
 
             // check the numeric stats of the movie
-            int curDur = this.allMovies.get(key).getDuration();
-            int curYear = this.allMovies.get(key).getYear();
-            double curScore = this.allMovies.get(key).getScore();
+            curDur = this.allMovies.get(key).getDuration();
+            curYear = this.allMovies.get(key).getYear();
+            curScore = this.allMovies.get(key).getScore();
 
             // if the movie doesn't match/violate any of the filters, than add it to the search list
             if (this.allMovies.get(key).getTitle().toLowerCase().contains(search) && !isFiltered && (this.minDur <= curDur  && curDur <= this.maxDur) && (this.minScore <= curScore && curScore <= this.maxScore ) && (this.minYear <= curYear && curYear <= this.maxYear)) {

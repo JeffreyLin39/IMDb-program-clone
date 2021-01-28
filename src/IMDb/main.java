@@ -359,8 +359,8 @@ public class main extends Application {
 
                 try {
 
-                    // instaniate new database object
-                    data = new database("src/IMDb/Resources/dataset_full.csv", -99999999, 99999999, -99999999, 99999999, -99999999.9, 99999999.9);
+                    // instaniate new database object, change link to appropriate data set if desired
+                    data = new database("src/IMDb/Resources/dataset_censored.csv", -99999999, 99999999, -99999999, 99999999, -99999999.9, 99999999.9);
                     size = data.getSize() * 1.0;
                     
                     // go through movies in database and add tehm to the observable list
