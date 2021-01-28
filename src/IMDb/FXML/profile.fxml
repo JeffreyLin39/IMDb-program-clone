@@ -13,7 +13,7 @@
    
    <!-- Top navagation bar and search bar -->
    <top>
-      <HBox prefHeight = "42.0" prefWidth="1000.0" style="-fx-background-color: #8a8a8a;" BorderPane.alignment="CENTER">
+      <HBox prefHeight = "42.0" prefWidth = "1000.0" style = "-fx-background-color: #8a8a8a;" BorderPane.alignment = "CENTER">
          <children>
 
             <ImageView fitHeight = "56.0" fitWidth = "101.0" pickOnBounds = "true" preserveRatio = "true">
@@ -33,7 +33,7 @@
 
             <Button mnemonicParsing = "false" onAction = "#loadBrowse" prefHeight = "49.0" prefWidth = "125.0" style = "-fx-background-radius: 0; -fx-border-radius: 0; -fx-background-color: #8a8a8a;" text = "Browse">
                <font>
-                  <Font name="BellGothicStd-Bold" size="20.0" />
+                  <Font name = "BellGothicStd-Bold" size = "20.0" />
                </font>
             </Button>
 
@@ -161,13 +161,13 @@
                </children>
             </VBox>
 
-            <PieChart fx:id = "pieGraph" title = "Most Viewed Genres" GridPane.columnIndex = "1" />
-            <BarChart fx:id = "barGraph" title = "Score Distrubution" GridPane.columnIndex = "2">
+            <PieChart fx:id = "pieGraph" title = "Most Viewed Genres" GridPane.columnIndex="1" />
+            <BarChart fx:id = "barGraph" title = "Score Distrubution" GridPane.columnIndex="2">
               <xAxis>
                 <CategoryAxis side = "BOTTOM" />
               </xAxis>
               <yAxis>
-                <NumberAxis side = "LEFT" />
+                <NumberAxis minorTickVisible = "false" side = "LEFT" />
               </yAxis>
             </BarChart>
 

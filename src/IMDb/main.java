@@ -163,8 +163,10 @@ public class main extends Application {
         userRating = 0;
         ratedMovies = 0;
         BarChart<String, Number> chart = (BarChart) profile.lookup("#barGraph");
-        XYChart.Series list = new XYChart.Series<>();
+        XYChart.Series list;
         int[] score = new int[11];
+        // Reset bar graph
+        chart.getData().clear();
 
         // go through the scores set by the user
         for (movie mov: userList.getCompleted()) {
@@ -176,15 +178,13 @@ public class main extends Application {
             }
         }   
 
-        // add data to the list
+        // add data to the chart as seperate categories so the color of each bar is different
         for (int a = 0; a < 11; a++) {
+            list = new XYChart.Series<>();
             list.getData().add(new XYChart.Data(String.valueOf(a), score[a]));
+            chart.getData().addAll(list);
         }   
-
-        // clear previous graph and set the current data to the graph
-        chart.getData().clear();
-        chart.getData().addAll(list);
-
+        
     }
 
     /**

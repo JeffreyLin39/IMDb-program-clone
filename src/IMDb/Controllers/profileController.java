@@ -33,9 +33,10 @@ public class profileController implements Initializable {
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // hide the labels and legend of the graphs to remove clutter
+        // hide the labels and legend of the graphs to remove clutter and decrease gap between bars
         pieGraph.setLabelsVisible(false);
         barGraph.setLegendVisible(false);
+        barGraph.setBarGap(-10);
     }
 
     /**
