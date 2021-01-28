@@ -70,7 +70,7 @@ public class profileController implements Initializable {
         ObservableList<movie> searchResults;
 
         // check if search bar is empty
-        if(searchBar.getText().equals("")) {
+        if (searchBar.getText().equals("")) {
             main.resetTable();
         }
         // otherwise search the database and replace the entries in the table based on the results

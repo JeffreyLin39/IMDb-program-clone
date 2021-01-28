@@ -137,7 +137,7 @@ public class main extends Application {
     /**
     * loads values for pie chart
     */
-    public static void loadPieChart() {
+    private static void loadPieChart() {
 
         // declare and instantiate pie chart
         PieChart chart = (PieChart) profile.lookup("#pieGraph");
@@ -157,7 +157,7 @@ public class main extends Application {
     /**
     * loads values for bar chart
     */
-    public static void loadBarChart() {
+    private static void loadBarChart() {
 
         // declare and instantiate variables
         userRating = 0;
@@ -190,7 +190,7 @@ public class main extends Application {
     /**
     * loads stats for user such as average score, watch time, etc
     */
-    public static void loadStats() {
+    private static void loadStats() {
 
         // variable declaration and initalization from the fxml file
         Label watchTime = (Label) profile.lookup("#watchTime");
@@ -350,7 +350,7 @@ public class main extends Application {
         
 
         // start a new thread so javafx main application thread doesn't freeze and become unresponsive
-        Thread loadDataset = new Thread(){
+        Thread loadDataset = new Thread() {
 
             public void run() {
                 double size;
