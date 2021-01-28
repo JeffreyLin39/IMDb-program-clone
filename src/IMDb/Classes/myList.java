@@ -58,6 +58,8 @@ public class myList {
     */
     public void addCompleted(movie mov) {
 
+        String[] temp;
+
         // add to completed list
         completed.add(mov);
         completedList.add(mov);
@@ -67,7 +69,7 @@ public class myList {
         avgRating += mov.getScore();
 
         // split the genre's by commas and increase the respective values of the map with those genre's as keys by 1
-        String[] temp = mov.getGenre().split(", ");
+        temp = mov.getGenre().split(", ");
 
         for (String genre: temp) {
             // check if key already exists
@@ -89,12 +91,14 @@ public class myList {
     */
     public void addPlanToWatch(movie mov) {
 
+        String[] temp;
+
         // add movie to list and map
         planToWatch.add(mov);
         planToWatchList.add(mov);
 
         // split the genre's by commas and increase the respective values of the map with those genre's as keys by 1
-        String[] temp = mov.getGenre().split(", ");
+        temp = mov.getGenre().split(", ");
 
         // increase number of movies that are planned to watch
         this.numToWatch++;
@@ -118,6 +122,8 @@ public class myList {
     */
     public void removeCompleted(movie mov) {
 
+        String[] temp;
+
         // remove movie from lists and decrease other stats
         completed.remove(mov);
         completedList.remove(mov);
@@ -126,7 +132,7 @@ public class myList {
         avgRating -= mov.getScore();
 
         // split genres by comma and decreases values in genre map by 1
-        String[] temp = mov.getGenre().split(", ");
+        temp = mov.getGenre().split(", ");
 
         for (String genre: temp) {
             genreSize.put(genre, genreSize.get(genre) - 1);
@@ -141,13 +147,15 @@ public class myList {
     */
     public void removePlanToWatch(movie mov) {
 
+        String[] temp;
+
         // remove movie from lists and decrease other stats
         planToWatch.remove(mov);
         planToWatchList.remove(mov);
         this.numToWatch--;
 
         // split genres by commas and decrease values in the genre map by 1
-        String[] temp = mov.getGenre().split(", ");
+        temp = mov.getGenre().split(", ");
 
         for (String genre: temp) {
             genreSize.put(genre, genreSize.get(genre) - 1);
