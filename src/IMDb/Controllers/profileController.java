@@ -33,9 +33,10 @@ public class profileController implements Initializable {
     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // hide the labels and legend of the graphs to remove clutter
+        // hide the labels and legend of the graphs to remove clutter and decrease gap between bars
         pieGraph.setLabelsVisible(false);
         barGraph.setLegendVisible(false);
+        barGraph.setBarGap(-10);
     }
 
     /**
@@ -70,7 +71,7 @@ public class profileController implements Initializable {
         ObservableList<movie> searchResults;
 
         // check if search bar is empty
-        if(searchBar.getText().equals("")) {
+        if (searchBar.getText().equals("")) {
             main.resetTable();
         }
         // otherwise search the database and replace the entries in the table based on the results

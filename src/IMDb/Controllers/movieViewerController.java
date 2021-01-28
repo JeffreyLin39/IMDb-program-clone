@@ -101,7 +101,7 @@ public class movieViewerController implements Initializable {
     public void addToPlan() {
 
         // check if movie is already on the list, add it if so, and remove it if not
-        if(!main.getList().hasPlanned(main.getCurMovie())) {
+        if (!main.getList().hasPlanned(main.getCurMovie())) {
             main.getList().addPlanToWatch(main.getCurMovie());
             planToWatch.setText("Remove");
             // check if movie is on completed list, if so remove it
@@ -150,10 +150,10 @@ public class movieViewerController implements Initializable {
     * load the previous scene
     */
     public void loadPrevious() {
-        if(previousScene == 1) {
+        if (previousScene == 1) {
             main.loadBrowse();
         }
-        else{
+        else {
             main.loadList();
         }
     }

@@ -137,7 +137,7 @@ public class main extends Application {
     /**
     * loads values for pie chart
     */
-    public static void loadPieChart() {
+    private static void loadPieChart() {
 
         // declare and instantiate pie chart
         PieChart chart = (PieChart) profile.lookup("#pieGraph");
@@ -157,14 +157,16 @@ public class main extends Application {
     /**
     * loads values for bar chart
     */
-    public static void loadBarChart() {
+    private static void loadBarChart() {
 
         // declare and instantiate variables
         userRating = 0;
         ratedMovies = 0;
         BarChart<String, Number> chart = (BarChart) profile.lookup("#barGraph");
-        XYChart.Series list = new XYChart.Series<>();
+        XYChart.Series list;
         int[] score = new int[11];
+        // Reset bar graph
+        chart.getData().clear();
 
         // go through the scores set by the user
         for (movie mov: userList.getCompleted()) {
@@ -176,21 +178,19 @@ public class main extends Application {
             }
         }   
 
-        // add data to the list
+        // add data to the chart as seperate categories so the color of each bar is different
         for (int a = 0; a < 11; a++) {
+            list = new XYChart.Series<>();
             list.getData().add(new XYChart.Data(String.valueOf(a), score[a]));
+            chart.getData().addAll(list);
         }   
-
-        // clear previous graph and set the current data to the graph
-        chart.getData().clear();
-        chart.getData().addAll(list);
-
+        
     }
 
     /**
     * loads stats for user such as average score, watch time, etc
     */
-    public static void loadStats() {
+    private static void loadStats() {
 
         // variable declaration and initalization from the fxml file
         Label watchTime = (Label) profile.lookup("#watchTime");
@@ -350,7 +350,7 @@ public class main extends Application {
         
 
         // start a new thread so javafx main application thread doesn't freeze and become unresponsive
-        Thread loadDataset = new Thread(){
+        Thread loadDataset = new Thread() {
 
             public void run() {
                 double size;

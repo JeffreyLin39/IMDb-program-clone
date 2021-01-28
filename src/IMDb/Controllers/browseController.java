@@ -211,7 +211,7 @@ public class browseController implements Initializable {
         ObservableList<movie> searchResults;
         
         // check if search bar is empty
-        if(searchBar.getText().equals("")) {
+        if (searchBar.getText().equals("")) {
             main.resetTable();
         }
         // otherwise search the database and replace the entries in the table based on the results
@@ -280,7 +280,7 @@ public class browseController implements Initializable {
             // set the filters
             main.getDatabase().setNumberFilters(curMinScore, curMaxScore, curMinYear, curMaxYear, curMinDur, curMaxDur);
         }
-        catch(Exception e) {
+        catch (Exception e) {
             System.out.println(e);
         }
 
