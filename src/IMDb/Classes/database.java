@@ -81,6 +81,7 @@ public class database {
             shouldIgnore = false;
 
             // seperate each line by commas and add each entry into the arraylist
+            info.clear();
             for (int i = 0; i < line.length(); i++) {
 
                 // If there are quotes, take everything from the current quotes to the next quotes and add it to the arraylist

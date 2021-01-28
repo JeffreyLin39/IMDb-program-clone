@@ -8,7 +8,6 @@ package IMDb;
 
 import java.io.IOException;
 import java.text.DecimalFormat;
-
 import IMDb.Classes.database;
 import IMDb.Classes.movie;
 import IMDb.Classes.myList;
@@ -158,7 +157,7 @@ public class main extends Application {
     /**
     * loads values for bar chart
     */
-    public static void loadBarChart(){
+    public static void loadBarChart() {
 
         // declare and instantiate variables
         userRating = 0;
@@ -191,7 +190,7 @@ public class main extends Application {
     /**
     * loads stats for user such as average score, watch time, etc
     */
-    public static void loadStats(){
+    public static void loadStats() {
 
         // variable declaration and initalization from the fxml file
         Label watchTime = (Label) profile.lookup("#watchTime");
@@ -216,6 +215,11 @@ public class main extends Application {
                 avgUserRating.setText("Your Average Rating: " + df.format((userRating/ratedMovies)));
             }
             
+        }
+        // reset score labels if the user has not completed any movies
+        else {
+            avgRating.setText("Platform Average Rating: ");
+            avgUserRating.setText("Your Average Rating: ");
         }
 
     }
