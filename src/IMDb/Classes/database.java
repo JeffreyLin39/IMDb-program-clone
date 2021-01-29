@@ -123,6 +123,10 @@ public class database {
                 System.out.println(e);
             }   
         }
+
+        // close the dataset
+        dataset.close();
+    
     }
 
     /**
